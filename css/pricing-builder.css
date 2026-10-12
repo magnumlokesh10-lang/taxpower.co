@@ -142,15 +142,20 @@
 
 /* Reflected orange and blue light on a white price summary. */
 .tp-plan .tp-plan-summary {
- background:radial-gradient(ellipse at 0% 8%,#ffe1c5a6 0%,transparent 51%),radial-gradient(ellipse at 100% 68%,#bceaff99 0%,transparent 56%),linear-gradient(135deg,#fff 35%,#ffffffed 70%,#f3faff);
+ background:radial-gradient(ellipse 190px 170px at 100% 0%,#ffd8b5a6 0%,#fff0e459 48%,transparent 100%),radial-gradient(ellipse 180px 170px at 0% 100%,#bce5ff99 0%,#eaf7ff59 48%,transparent 100%),#fff;
  border-color:#d6e4ec;
  box-shadow:inset 1px 1px 0 #fff,inset -1px -1px 0 #ffffffcc,0 10px 28px #458dad12;
 }
 .tp-plan .tp-summary-price {
  padding:14px 16px; border:1px solid #ffffffed; border-radius:12px;
- background:radial-gradient(ellipse at 4% 100%,#ffc98a66,transparent 65%),radial-gradient(ellipse at 96% 0%,#9edfff70,transparent 65%),#ffffff94;
+ background:radial-gradient(ellipse 85px 60px at 100% 0%,#ffdbbc80,transparent 100%),radial-gradient(ellipse 85px 60px at 0% 100%,#c7eaff80,transparent 100%),#fff;
  box-shadow:inset 0 1px 0 white,0 4px 16px #7297ad0d;
 }
 .tp-plan .tp-summary-price strong { color:#174763; text-shadow:0 2px 16px #ffffff; }
 .tp-plan .tp-plan-tax { color:#435e70; font-weight:600; }
 .tp-mobile-price { background:radial-gradient(ellipse at 0% 100%,#ffe7d1,transparent 65%),radial-gradient(ellipse at 100% 0%,#def3ff,transparent 65%),#fff; }
+
+/* Edition replaces the redundant summary heading in one compact row. */
+.tp-plan .tp-summary-topline { padding-bottom:10px; margin-bottom:12px; }
+.tp-plan .tp-summary-illustration { width:35px; height:30px; }
+.pricing-page .tp-plan-summary h3 { margin:0 0 18px; }
