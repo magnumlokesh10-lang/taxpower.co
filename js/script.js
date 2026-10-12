@@ -461,21 +461,14 @@ function initTaxPowerSite() {
     const purpose = triggerElement.getAttribute('data-demo-purpose');
     const productStr = triggerElement.getAttribute('data-demo-product');
 
-    // NOTE: Purpose of enquiry aur Product checkboxes ki auto-selection
-    // abhi intentionally disable (commented out) ki gayi hai.
-    // Jab bhi "Get Started" ya "Request Trial License" click hota tha,
-    // to data-demo-purpose se purpose field auto-select hota tha (e.g. "Free Trial / Demo")
-    // aur data-demo-product se matching product checkboxes auto-check hote the.
-    // Code preserve kiya gaya hai — enable karne ke liye niche ke comment blocks hatao.
-
-    /* --- Purpose of Enquiry Auto-Selection (disabled) ---
+    // Apply only supported enquiry purposes supplied by the pricing/demo links.
     if (purpose) {
       const hiddenSelect = document.getElementById('purposeSelectHidden');
       const triggerText = document.getElementById('purposeTriggerText');
       const dropdown = document.getElementById('purposeDropdown');
       const options = dropdown?.querySelectorAll('.purpose-option');
 
-      if (hiddenSelect && triggerText && dropdown) {
+      if (hiddenSelect && triggerText && dropdown && [...hiddenSelect.options].some(option => option.value === purpose)) {
         hiddenSelect.value = purpose;
         triggerText.textContent = purpose;
         dropdown.classList.add('has-value');
@@ -496,7 +489,7 @@ function initTaxPowerSite() {
         setPurposeFieldError(false);
       }
     }
-    --- End Purpose Auto-Selection --- */
+
 
     // Product Checkboxes Auto-Selection — ENABLED
     // "Get Started" / "Request Trial License" pe click karne par data-demo-product se
@@ -516,8 +509,7 @@ function initTaxPowerSite() {
       }
     }
 
-    // Suppress unused variable warning for purpose (still disabled above)
-    void purpose;
+
   }
 
   function isDemoOrTrialTrigger(element) {

@@ -13,7 +13,7 @@
       if (builder.dataset.ready) return;
       builder.dataset.ready = 'true';
       const get = name => builder.querySelector('[data-plan-' + name + ']');
-      const cta = get('cta');
+      const actions = [...builder.querySelectorAll('[data-plan-action]')];
       // Start a newly loaded chooser from the HTML defaults, including restored controls.
       builder.querySelectorAll('[name="tp-module"], [name="tp-edition"]').forEach(input => { input.checked = input.defaultChecked; });
       function update(animate = false) {
@@ -31,29 +31,34 @@
         get('original').textContent = saving ? money(separate) : '';
         get('saving').hidden = !saving;
         get('saving').textContent = saving ? 'Save ' + money(saving) + ' on installation vs separate modules' : '';
-        cta.setAttribute('aria-disabled', String(!plan));
-        if (plan) {
-          cta.href = 'index.html#demo-enquiry';
-          cta.dataset.demoProduct = selected.map(key => products[key]).join(',');
-          cta.dataset.demoPurpose = 'Free Trial / Demo';
-        } else {
-          cta.removeAttribute('href');
-          delete cta.dataset.demoProduct;
-          delete cta.dataset.demoPurpose;
-        }
+        get('base').textContent = money(plan[0]);
+        get('gst').textContent = money(Math.round(plan[0] * .18));
+        const total = money(plan[0] + Math.round(plan[0] * .18));
+        get('total').textContent = total;
+        get('mobile-total').textContent = total;
+        actions.forEach(action => {
+          action.dataset.demoProduct = selected.map(key => products[key]).join(',');
+          action.dataset.demoPurpose = action.dataset.planAction === 'quote' ? 'Pricing or Quotation' : 'Free Trial / Demo';
+        });
         if (animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
           get('output').animate?.([{ opacity: .45, transform: 'translateY(4px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 200, easing: 'ease-out' });
         }
       }
-      builder.addEventListener('change', () => update(true));
-      cta.addEventListener('click', event => {
-        if (cta.getAttribute('aria-disabled') === 'true') {
-          event.preventDefault();
-          event.stopPropagation();
-          builder.querySelector('[name="tp-module"]').focus();
+      builder.addEventListener('change', event => {
+        get('message').textContent = '';
+        if (!builder.querySelector('[name="tp-module"]:checked')) {
+          event.target.checked = true;
+          get('message').textContent = 'Keep at least one product selected. Select another product first to switch.';
         }
+        update(true);
       });
       update();
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          builder.classList.toggle('tp-plan-in-view', entries[0].isIntersecting);
+        });
+        observer.observe(builder);
+      }
     });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init, { once: true });

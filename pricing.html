@@ -35,10 +35,10 @@
   </script>
   <link rel="stylesheet" href="css/stylesheet.css?v=20260929-nav-color-shift">
   <link rel="stylesheet" href="css/pricing.css?v=20261004-pricing-illustrations">
-  <link rel="stylesheet" href="css/pricing-builder.css?v=20261006-illustrated">
-  <script src="js/pricing-builder.js?v=20261006-refined" defer></script>
+  <link rel="stylesheet" href="css/pricing-builder.css?v=20261012-pricing-refined">
+  <script src="js/pricing-builder.js?v=20261012-pricing-refined" defer></script>
   <script src="js/nav-loader.js?v=20260929-polish" defer></script>
-  <script src="js/script.js?v=20260929-minimal" defer></script>
+  <script src="js/script.js?v=20261012-pricing-refined" defer></script>
   <script src="js/page-loader.js" defer></script>
   <link rel="stylesheet" href="css/support-chat.css?v=20261004-composer">
   <script src="js/support-chat-config.js?v=20261004-conversation" defer></script>
@@ -58,8 +58,8 @@
         
         <div class="pricing-banner-content">
           <span class="pricing-banner-eyebrow">PLANS &amp; LICENSING</span>
-          <h1><span>TaxPower Software</span><span class="pricing-brand-divider" aria-hidden="true">/</span><span>Pricing</span></h1>
-          <p class="pricing-banner-summary">Choose the right plan for your business or tax practice.</p>
+          <h1 class="tp-pricing-title"><span>TaxPower GST &amp; TDS</span> <span>Software Pricing</span></h1>
+          <p class="pricing-banner-summary">Choose your products. Compare plans. Know your cost.</p>
           <div class="pricing-banner-products" aria-label="Available modules"><span>TaxPower GST</span><span>TaxPower Billing</span><span>TaxPower TDS</span></div>
         </div>
       </header>
@@ -70,16 +70,16 @@
         <div class="tp-plan-options">
           <fieldset class="tp-plan-editions"><legend><span>01</span> Who is the software for?</legend>
             <div class="tp-edition-grid">
-              <label class="tp-choice"><input type="radio" name="tp-edition" value="professional" checked><span class="tp-choice-content"><strong>Professional</strong><small>CAs, consultants &amp; tax practices</small></span><span class="tp-choice-check" aria-hidden="true"></span></label>
-              <label class="tp-choice"><input type="radio" name="tp-edition" value="business"><span class="tp-choice-content"><strong>Business</strong><small>Companies &amp; finance teams</small></span><span class="tp-choice-check" aria-hidden="true"></span></label>
+              <label class="tp-choice"><input type="radio" name="tp-edition" value="professional" checked><span class="tp-choice-content"><strong>Professional</strong><small>CAs, consultants &amp; tax practices</small><small>LAN: ₹500 + GST / additional PC</small></span><span class="tp-choice-check" aria-hidden="true"></span></label>
+              <label class="tp-choice"><input type="radio" name="tp-edition" value="business"><span class="tp-choice-content"><strong>Business</strong><small>Companies &amp; finance teams</small><small>LAN: ₹1,000 + GST / additional PC</small></span><span class="tp-choice-check" aria-hidden="true"></span></label>
             </div>
           </fieldset>
-          <fieldset class="tp-plan-modules"><legend><span>02</span> What do you need? <small data-plan-count>3 products selected</small></legend><p class="tp-field-help">Select your products. Combine them to save.</p>
+          <fieldset class="tp-plan-modules"><legend><span>02</span> What do you need? <small data-plan-count>3 products selected</small></legend><p class="tp-field-help">Select one or more products. Combine them to save.</p>
             <label class="tp-choice tp-module"><input type="checkbox" name="tp-module" value="gst" checked><span class="tp-module-icon" aria-hidden="true"><img src="asset/swt_icon/taxpower_icon.png" width="24" height="24" alt="" decoding="async"></span><span class="tp-choice-content"><strong>TaxPower GST</strong><small>GST Return Filing</small></span><span class="tp-choice-check" aria-hidden="true"></span></label>
             <label class="tp-choice tp-module"><input type="checkbox" name="tp-module" value="billing" checked><span class="tp-module-icon tp-module-icon--billing" aria-hidden="true"><img src="asset/swt_icon/taxpower_icon.png" width="24" height="24" alt="" decoding="async"></span><span class="tp-choice-content"><strong>TaxPower Billing</strong><small>E-Invoice and E-Way Bill Generation</small></span><span class="tp-choice-check" aria-hidden="true"></span></label>
-            <label class="tp-choice tp-module"><input type="checkbox" name="tp-module" value="tds" checked><span class="tp-module-icon tp-module-icon--tds" aria-hidden="true"><img src="asset/swt_icon/taxpower_icon.png" width="24" height="24" alt="" decoding="async"></span><span class="tp-choice-content"><strong>TaxPower TDS</strong><small>TDS Return Filling</small></span><span class="tp-choice-check" aria-hidden="true"></span></label>
+            <label class="tp-choice tp-module"><input type="checkbox" name="tp-module" value="tds" checked><span class="tp-module-icon tp-module-icon--tds" aria-hidden="true"><img src="asset/swt_icon/taxpower_icon.png" width="24" height="24" alt="" decoding="async"></span><span class="tp-choice-content"><strong>TaxPower TDS</strong><small>TDS Return Filing</small></span><span class="tp-choice-check" aria-hidden="true"></span></label>
           </fieldset>
-          <p class="tp-plan-hint"><span aria-hidden="true">✦</span> Your bundle price is applied automatically.</p>
+          <p class="tp-selection-message" data-plan-message role="status" aria-live="polite"></p><p class="tp-plan-hint"><span aria-hidden="true">✦</span> Your bundle price is applied automatically.</p>
         </div>
         <aside class="tp-plan-summary" aria-label="Your selected plan"><div class="tp-summary-topline"><span>YOUR SELECTED PLAN</span><svg class="tp-summary-illustration" viewBox="0 0 56 48" fill="none" aria-hidden="true" focusable="false"><rect x="6" y="9" width="31" height="34" rx="5" fill="#e6eff7"/><rect x="12" y="4" width="31" height="35" rx="5" fill="#f7fbff" stroke="#97bad3"/><path d="M19 13h17M19 20h13M19 27h8" stroke="#76a2c1" stroke-width="2" stroke-linecap="round"/><circle cx="41" cy="33" r="10" fill="#edf6fb" stroke="#97bad3"/><path d="m36 33 3 3 6-7" stroke="#287eaa" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <div data-plan-output aria-live="polite" aria-atomic="true">
@@ -87,19 +87,27 @@
             <h3 data-plan-name>TaxPower GST + TaxPower Billing + TaxPower TDS</h3><p class="tp-summary-label">One-time installation fee</p>
             <div class="tp-summary-price"><del data-plan-original>₹17,000</del><strong data-plan-price>₹15,000</strong></div>
             <p class="tp-plan-saving" data-plan-saving>Save ₹2,000 on installation vs separate modules</p>
-            <div class="tp-plan-renewal"><span>Annual renewal <small>AMC / financial year</small></span><strong data-plan-renewal>₹8,000</strong></div>
+            <dl class="tp-cost-breakdown"><div><dt>Installation</dt><dd data-plan-base>₹15,000</dd></div><div><dt>GST on installation (18%)</dt><dd data-plan-gst>₹2,700</dd></div><div class="tp-cost-total"><dt>Installation total <small>Including GST · excluding LAN</small></dt><dd data-plan-total>₹17,700</dd></div></dl><div class="tp-plan-renewal"><span>Annual renewal <small>AMC / financial year · after the first year</small></span><strong data-plan-renewal>₹8,000</strong></div>
           </div>
           <ul class="tp-plan-includes"><li>Support &amp; updates free for the first year</li><li>Product key delivered by email</li><li>Optional multi-user LAN access</li></ul>
-          <a class="tp-plan-cta" data-plan-cta href="index.html#demo-enquiry" data-demo-purpose="Free Trial / Demo" data-demo-product="TaxPower GST Return,TaxPower E-Invoice &amp; E-Way Bill,TaxPower TDS Return">Request Trial / Enquire <span aria-hidden="true">↗</span></a>
-          <p class="tp-plan-tax">18% GST extra on installation. LAN charges additional.</p>
+          <a class="tp-plan-cta" data-plan-cta data-plan-action="quote" href="index.html#demo-enquiry" data-demo-purpose="Pricing or Quotation" data-demo-product="TaxPower GST Return,TaxPower E-Invoice &amp; E-Way Bill,TaxPower TDS Return">Get Quotation <span aria-hidden="true">↗</span></a><a class="tp-plan-demo" data-plan-action="demo" href="index.html#demo-enquiry" data-demo-purpose="Free Trial / Demo" data-demo-product="TaxPower GST Return,TaxPower E-Invoice &amp; E-Way Bill,TaxPower TDS Return">Book Free Demo <span aria-hidden="true">↗</span></a>
+          <p class="tp-plan-tax">Installation total includes 18% GST. Optional LAN charges are additional.</p>
         </aside>
       </div>
+      <div class="tp-mobile-price"><span><small>Installation incl. GST · excl. LAN</small><strong data-plan-mobile-total>₹17,700</strong></span><a data-plan-action="quote" href="index.html#demo-enquiry" data-demo-purpose="Pricing or Quotation" data-demo-product="TaxPower GST Return,TaxPower E-Invoice &amp; E-Way Bill,TaxPower TDS Return">Get Quotation ↗</a></div>
+      <p class="tp-seller">Sold by <strong>Siddharth Enterprises</strong><span>GSTIN: 27IVQPS1619A1ZB · Established in 2016</span></p>
       <noscript><p>Interactive selection requires JavaScript. Open “View all prices” below to compare every plan.</p></noscript>
     </section>
     <details class="tp-price-list"><summary><span>View all prices <small>Compare individual modules &amp; bundles</small></span><span class="tp-details-plus" aria-hidden="true">+</span></summary>
       <div class="tp-price-table-wrap" tabindex="0" role="region" aria-label="All prices; scroll horizontally on small screens"><table><caption>Installation and annual AMC · INR · GST extra</caption><thead><tr><th scope="col">Modules</th><th scope="col">Professional<br>Installation</th><th scope="col">Professional<br>AMC / F.Y</th><th scope="col">Business<br>Installation</th><th scope="col">Business<br>AMC / F.Y</th></tr></thead><tbody><tr><th scope="row">TaxPower GST</th><td>₹7,000</td><td>₹5,000</td><td>₹12,000</td><td>₹6,000</td></tr><tr><th scope="row">TaxPower Billing</th><td>₹5,000</td><td>₹3,000</td><td>₹7,000</td><td>₹4,000</td></tr><tr><th scope="row">TaxPower TDS</th><td>₹5,000</td><td>₹2,500</td><td>₹7,000</td><td>₹3,500</td></tr><tr><th scope="row">TaxPower GST + TaxPower Billing</th><td>₹11,000</td><td>₹7,000</td><td>₹15,000</td><td>₹8,000</td></tr><tr><th scope="row">TaxPower GST + TaxPower TDS</th><td>₹11,000</td><td>₹7,000</td><td>₹16,000</td><td>₹8,500</td></tr><tr><th scope="row">TaxPower Billing + TaxPower TDS</th><td>₹9,000</td><td>₹5,000</td><td>₹12,000</td><td>₹6,500</td></tr><tr><th scope="row">TaxPower Complete Suite</th><td>₹15,000</td><td>₹8,000</td><td>₹20,000</td><td>₹10,000</td></tr></tbody></table></div>
     </details>
 
+    <section class="tp-pricing-faq" aria-labelledby="pricing-faq-title"><span class="tp-plan-eyebrow">BEFORE YOU CHOOSE</span><h2 id="pricing-faq-title">TaxPower pricing questions</h2>
+<details><summary>What does the installation price include?</summary><p>The displayed price is the one-time installation fee. Support and software updates are free for the first year from purchase. The summary shows installation plus 18% GST; optional LAN access is extra.</p></details>
+<details><summary>When does annual AMC apply?</summary><p>AMC applies after the first year. The annual AMC for your selected products is shown separately from the installation total.</p></details>
+<details><summary>Which edition should I choose?</summary><p>Professional is intended for CAs, consultants and tax practices; Business is intended for companies and finance teams. Installation and AMC vary by edition. Contact us to confirm the licence that fits your requirements.</p></details>
+<details><summary>Can I use TaxPower on additional LAN computers?</summary><p>Optional LAN access costs ₹500 plus 18% GST per additional computer for Professional, or ₹1,000 plus 18% GST for Business. These charges are not included in the displayed installation total.</p></details>
+<details><summary>How will I receive my product key?</summary><p>Your product key is delivered by email after confirmed payment. You can book a free demo or request a quotation before purchasing.</p></details></section>
     <section class="pricing-terms" aria-labelledby="terms-heading">
         <svg class="pricing-decoration pricing-decoration--terms" viewBox="0 0 160 120" fill="none" aria-hidden="true" focusable="false"><rect x="34" y="14" width="80" height="94" rx="10" fill="#f1f9fc" stroke="#9acada" stroke-width="2"/><rect x="53" y="8" width="43" height="15" rx="6" fill="#ffe9cd" stroke="#e6b680"/><path d="M65 43H99M65 62H99M65 81H91" stroke="#a2c6d3" stroke-width="4" stroke-linecap="round"/><path d="M46 41L50 45L57 36M46 60L50 64L57 55M46 79L50 83L57 74" stroke="#53a797" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M118 68L138 76V91Q137 104 118 112Q99 104 98 91V76Z" fill="#e4f3ed" stroke="#97cdbb"/><path d="M109 89L116 96L128 81" stroke="#4b9d89" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><h2 id="terms-heading">Terms &amp; conditions</h2>
         <ul>
