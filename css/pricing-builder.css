@@ -214,3 +214,15 @@
  color:#174763;
 }
 .tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-selected-products { margin:0; padding:0; }
+
+/* Use the same price-box finish for every selected product count. */
+.tp-plan .tp-summary-selection-row .tp-selected-products .tp-selected-badge[data-product] {
+ box-sizing:border-box;
+ margin:0;
+ padding:12px 10px;
+ border:1px solid #ffffffed;
+ border-radius:12px;
+ background:radial-gradient(ellipse 85px 60px at 100% 0%,#ffdbbc80,transparent 100%),radial-gradient(ellipse 85px 60px at 0% 100%,#c7eaff80,transparent 100%),#fff;
+ box-shadow:inset 0 1px 0 white,0 4px 16px #7297ad0d;
+ color:#174763;
+}
