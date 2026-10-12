@@ -43,24 +43,56 @@ var FIELDS = [
   ['state', 'State'],
   ['product', 'Products'],
   ['purpose', 'Purpose'],
-  ['page', 'Page URL']
+  ['page', 'Page URL'],
+  ['requestId', 'Enquiry Reference']
 ];
 
+function validateEnquiry(data) {
+  ['company', 'name', 'city', 'state', 'email', 'mobile', 'product', 'purpose', 'requestId'].forEach(function (key) {
+    data[key] = String(data[key] || '').trim();
+    if (!data[key] || data[key].length > 250) throw new Error('Please check required fields.');
+  });
+  if (data.website) throw new Error('Request rejected.');
+  if (!/^TP-[a-f0-9-]{36}$/i.test(data.requestId)) throw new Error('Invalid reference.');
+  if (!/^[0-9]{10}$/.test(data.mobile) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) throw new Error('Invalid contact details.');
+  data.gstin = String(data.gstin || '').trim().toUpperCase();
+  if (data.gstin && !/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(data.gstin)) throw new Error('Invalid GSTIN.');
+  if (String(data.address || '').length > 500 || String(data.page || '').length > 2000) throw new Error('Details too long.');
+  if (["01 - Jammu & Kashmir", "02 - Himachal Pradesh", "03 - Punjab", "04 - Chandigarh", "05 - Uttarakhand", "06 - Haryana", "07 - Delhi", "08 - Rajasthan", "09 - Uttar Pradesh", "10 - Bihar", "11 - Sikkim", "12 - Arunachal Pradesh", "13 - Nagaland", "14 - Manipur", "15 - Mizoram", "16 - Tripura", "17 - Meghalaya", "18 - Assam", "19 - West Bengal", "20 - Jharkhand", "21 - Odisha", "22 - Chhattisgarh", "23 - Madhya Pradesh", "24 - Gujarat", "26 - Dadra & Nagar Haveli and Daman & Diu", "27 - Maharashtra", "29 - Karnataka", "30 - Goa", "31 - Lakshadweep", "32 - Kerala", "33 - Tamil Nadu", "34 - Puducherry", "35 - Andaman & Nicobar Islands", "36 - Telangana", "37 - Andhra Pradesh", "38 - Ladakh", "97 - Other Territory", "99 - Other Country"].indexOf(data.state) < 0) throw new Error('Invalid state.');
+  var selected = data.product.split(', ');
+  if (!selected.length || selected.length > 3 || selected.some(function (item) { return ["TaxPower GST Return", "TaxPower E-Invoice &amp; E-Way Bill", "TaxPower TDS Return"].indexOf(item) < 0; })) throw new Error('Invalid products.');
+  if (['Free Trial / Demo', 'Want to Purchase', 'Pricing or Quotation', 'Renewal of License'].indexOf(data.purpose) < 0) throw new Error('Invalid purpose.');
+}
+
 function doPost(e) {
+  var lock = LockService.getScriptLock();
+  var data;
   try {
-    var data = parseRequest(e);
-    if (!data.submittedAt) {
-      data.submittedAt = Utilities.formatDate(new Date(), 'Asia/Kolkata', 'dd-MM-yyyy HH:mm:ss');
+    data = parseRequest(e);
+    validateEnquiry(data);
+    lock.waitLock(15000);
+    var sheet = getEnquirySheet();
+    var referenceColumn = FIELDS.length;
+    // Durable deduplication survives notification failures and client timeouts.
+    if (sheet.getLastRow() > 1 && sheet.getRange(2, referenceColumn, sheet.getLastRow() - 1, 1).createTextFinder(data.requestId).matchEntireCell(true).findNext()) {
+      return jsonOut({result: 'success', reference: data.requestId});
     }
-
-    saveToSheet(data);
-    sendEmailAlert(data);
-    sendWhatsAppAlert(data);
-
-    return jsonOut({ result: 'success' });
+    var cache = CacheService.getScriptCache();
+    var rateKey = 'enquiry:' + Utilities.base64EncodeWebSafe(Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, data.email.toLowerCase()));
+    var count = Number(cache.get(rateKey) || 0);
+    if (count >= 5) throw new Error('Please try again later.');
+    data.submittedAt = Utilities.formatDate(new Date(), 'Asia/Kolkata', 'dd-MM-yyyy HH:mm:ss');
+    saveToSheet(data, sheet);
+    cache.put(rateKey, String(count + 1), 600);
   } catch (err) {
-    return jsonOut({ result: 'error', message: String(err) });
+    return jsonOut({result: 'error', message: 'Unable to accept enquiry. Please check your details or retry later.'});
+  } finally {
+    if (lock.hasLock()) lock.releaseLock();
   }
+  // The enquiry is already saved: notification errors must not prompt duplicate submissions.
+  try { sendEmailAlert(data); } catch (err) { console.error('Enquiry email notification failed'); }
+  try { sendWhatsAppAlert(data); } catch (err) { console.error('Enquiry WhatsApp notification failed'); }
+  return jsonOut({result: 'success', reference: data.requestId});
 }
 
 function doGet() {
@@ -79,17 +111,25 @@ function parseRequest(e) {
   return data;
 }
 
-function saveToSheet(data) {
+function getEnquirySheet() {
   var ss = SpreadsheetApp.openById(SHEET_ID);
   var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
-
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(FIELDS.map(function (f) { return f[1]; }));
     sheet.getRange(1, 1, 1, FIELDS.length).setFontWeight('bold');
     sheet.setFrozenRows(1);
+  } else {
+    sheet.getRange(1, FIELDS.length).setValue('Enquiry Reference');
   }
+  return sheet;
+}
 
-  sheet.appendRow(FIELDS.map(function (f) { return data[f[0]] || ''; }));
+function saveToSheet(data, sheet) {
+  sheet.appendRow(FIELDS.map(function (f) {
+    var value = String(data[f[0]] || '');
+    // Preserve user text without interpreting spreadsheet formulas.
+    return /^[=+@-]/.test(value) ? "'" + value : value;
+  }));
 }
 
 function sendEmailAlert(data) {

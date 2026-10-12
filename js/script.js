@@ -1150,6 +1150,7 @@ function initTaxPowerSite() {
   }
 
   function updateSubmitEnabled() {
+    updateDemoSubmitLabel(document.getElementById('demoEnquiryForm'));
     const form = document.getElementById('demoEnquiryForm');
     if (!form) return;
     const any = form.querySelectorAll('input[name="product"]:checked').length > 0;
@@ -1461,328 +1462,124 @@ function initTaxPowerSite() {
     }
   });
 
-  document.addEventListener('pointerdown', (event) => {
-    const handle = event.target.closest('.demo-submit-kicker-badge .demo-kicker-icon');
-    if (!handle || event.button !== 0) return;
+  function updateDemoSubmitLabel(form) {
+    if (!form || form.dataset.sending === 'true' || form.dataset.sent === 'true') return;
+    const labels = {'Free Trial / Demo': 'Request Demo', 'Want to Purchase': 'Request Purchase Callback',
+      'Pricing or Quotation': 'Request Quotation', 'Renewal of License': 'Request Renewal'};
+    const text = form.querySelector('.submit-btn-text');
+    if (text) text.textContent = labels[form.querySelector('[name="purpose"]')?.value] || 'Send Enquiry';
+  }
 
-    const button = handle.closest('.demo-submit-kicker-badge');
-    const form = button?.closest('#demoEnquiryForm');
-    if (!button || !form) return;
-
-    event.preventDefault();
-    const buttonRect = button.getBoundingClientRect();
-    const handleRect = handle.getBoundingClientRect();
-    const startOffset = handleRect.left - buttonRect.left;
-    const rightPadding = 19;
-    const maxMove = Math.max(buttonRect.width - handleRect.width - startOffset - rightPadding, 0);
-    const submitThreshold = Math.round(maxMove * 0.7);
-
-    let currentDelta = 0;
-    let dragging = true;
-
-    handle.classList.add('is-dragging');
-    button.classList.add('is-dragging');
-    button.classList.remove('is-ready-to-submit');
-    button.dataset.slideComplete = 'false';
-
-    const resetDrag = () => {
-      currentDelta = 0;
-      dragging = false;
-      handle.style.transform = '';
-      handle.classList.remove('is-dragging');
-      button.classList.remove('is-dragging');
-      button.classList.remove('is-ready-to-submit');
-      button.dataset.slideComplete = 'false';
-      const text = button.querySelector('.submit-btn-text');
-      if (text) text.style.transform = '';
-    };
-
-    const finishDrag = () => {
-      dragging = false;
-      handle.classList.remove('is-dragging');
-      if (currentDelta >= submitThreshold) {
-        if (!validateDemoEnquiryForm(form)) {
-          resetDrag();
-          return;
-        }
-        handle.style.transform = `translateX(${maxMove}px)`;
-        text = button.querySelector('.submit-btn-text');
-        if (text) text.style.transform = 'translateX(-30px)';
-        button.dataset.slideComplete = 'true';
-        button.dataset.slideTriggered = 'true';
-        button.classList.add('is-submit-complete');
-        button.classList.remove('is-ready-to-submit');
-        setTimeout(() => form.requestSubmit(), 180);
-      } else {
-        resetDrag();
-      }
-    };
-
-    const onPointerMove = (moveEvent) => {
-      if (!dragging) return;
-      currentDelta = Math.min(Math.max(moveEvent.clientX - event.clientX, 0), maxMove);
-      handle.style.transform = `translateX(${currentDelta}px)`;
-      const text = button.querySelector('.submit-btn-text');
-      if (text) {
-        const textShift = Math.min(currentDelta, 30);
-        text.style.transform = `translateX(-${textShift}px)`;
-      }
-      button.classList.toggle('is-ready-to-submit', currentDelta >= submitThreshold);
-    };
-
-    const onPointerEnd = () => {
-      if (!dragging) return;
-      finishDrag();
-      cleanup();
-    };
-
-    const cleanup = () => {
-      dragging = false;
-      handle.releasePointerCapture(event.pointerId);
-      handle.removeEventListener('pointermove', onPointerMove);
-      handle.removeEventListener('pointerup', onPointerEnd);
-      handle.removeEventListener('pointercancel', onPointerEnd);
-      button.classList.remove('is-dragging');
-    };
-
-    handle.setPointerCapture(event.pointerId);
-    handle.addEventListener('pointermove', onPointerMove);
-    handle.addEventListener('pointerup', onPointerEnd);
-    handle.addEventListener('pointercancel', onPointerEnd);
-  });
-
-  const setSubmitCompletedState = (button) => {
-    if (!button) return;
-    const icon = button.querySelector('.demo-kicker-icon');
-    const text = button.querySelector('.submit-btn-text');
-
-    button.classList.add('is-submit-complete');
-    button.classList.remove('is-ready-to-submit', 'is-dragging');
-    button.dataset.slideComplete = 'true';
-    button.dataset.slideTriggered = 'true';
-
-    if (icon) {
-      icon.style.transform = 'translateX(105px)';
-      icon.classList.remove('is-dragging');
+  function demoFieldError(input, message) {
+    input.setAttribute('aria-invalid', message ? 'true' : 'false');
+    const host = input.closest('.form-field');
+    if (!host) return;
+    let error = host.querySelector('.demo-field-error');
+    if (!error) {
+      error = document.createElement('span');
+      error.className = 'demo-field-error';
+      error.id = 'demo-error-' + input.name;
+      host.appendChild(error);
+      input.setAttribute('aria-describedby', error.id);
     }
+    error.textContent = message;
+  }
 
-    if (text) {
-      text.style.transform = 'translateX(-33px)';
-      text.textContent = 'Submitted';
+  function normalizeDemoInput(input) {
+    if (input.name === 'mobile') {
+      let digits = input.value.replace(/\D/g, '');
+      if (digits.length === 12 && digits.startsWith('91')) digits = digits.slice(2);
+      if (digits.length === 11 && digits.startsWith('0')) digits = digits.slice(1);
+      input.value = digits;
+    } else {
+      input.value = input.value.trim();
+      if (input.name === 'gstin') input.value = input.value.toUpperCase();
     }
-  };
+  }
 
-  const resetSubmitDragState = (button) => {
-    if (!button) return;
-    button.dataset.slideComplete = 'false';
-    button.dataset.slideTriggered = 'false';
-    button.classList.remove('is-ready-to-submit', 'is-dragging', 'is-submit-complete');
-    const icon = button.querySelector('.demo-kicker-icon');
-    if (icon) {
-      icon.style.removeProperty('transform');
-      icon.classList.remove('is-dragging');
-    }
-    const text = button.querySelector('.submit-btn-text');
-    if (text) {
-      text.style.removeProperty('transform');
-      text.textContent = 'Submit';
-    }
-  };
-
-  const validateDemoEnquiryForm = (form) => {
-    const fullName = form.querySelector('[name="name"]');
-    const companyName = form.querySelector('[name="company"]');
-    const mobileNumber = form.querySelector('[name="mobile"]');
-    const emailInput = form.querySelector('[name="email"]');
-    const cityInput = form.querySelector('[name="city"]');
-    const stateInput = form.querySelector('[name="state"]');
-    const selectedProducts = form.querySelectorAll('input[name="product"]:checked');
-    const purposeValue = document.getElementById('purposeSelectHidden')?.value || '';
-    const gstStateOptions = Array.from(document.querySelectorAll('#gstStateCodes option')).map((option) => option.value);
-
-    if (!companyName?.checkValidity()) {
-      companyName?.focus();
-      companyName?.reportValidity();
+  function validateDemoEnquiryForm(form) {
+    let firstInvalid;
+    form.querySelectorAll('input:not([type="checkbox"]):not([name="website"])').forEach(input => {
+      normalizeDemoInput(input);
+      let message = input.validity.valueMissing ? 'Please complete this field.' :
+        !input.checkValidity() ? (input.name === 'mobile' ? 'Enter a 10-digit mobile number.' : 'Please enter a valid value.') : '';
+      if (input.name === 'gstin' && input.value && !/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(input.value)) message = 'Enter a valid 15-character GSTIN.';
+      if (input.name === 'state' && !Array.from(form.querySelectorAll('#gstStateCodes option')).some(o => o.value === input.value)) message = 'Choose a state from the list.';
+      demoFieldError(input, message);
+      if (message && !firstInvalid) firstInvalid = input;
+    });
+    const productsMissing = !form.querySelector('input[name="product"]:checked');
+    const purposeMissing = !form.querySelector('[name="purpose"]')?.value;
+    setProductFieldError(productsMissing);
+    setPurposeFieldError(purposeMissing);
+    if (firstInvalid) {
+      const details = firstInvalid.closest('details');
+      if (details) details.open = true;
+      firstInvalid.focus();
+    } else if (productsMissing) form.querySelector('input[name="product"]').focus();
+    else if (purposeMissing) document.getElementById('purposeTrigger')?.focus();
+    if (firstInvalid || productsMissing || purposeMissing) {
+      setDemoStatus(productsMissing ? 'Please select at least one product.' : purposeMissing ? 'Please select purpose of enquiry.' : 'Please check the highlighted fields.', true);
       return false;
     }
-
-    if (!fullName?.checkValidity()) {
-      fullName?.focus();
-      fullName?.reportValidity();
-      return false;
-    }
-
-    if (!mobileNumber?.checkValidity()) {
-      mobileNumber?.focus();
-      mobileNumber?.reportValidity();
-      return false;
-    }
-
-    if (!emailInput?.checkValidity()) {
-      emailInput?.focus();
-      emailInput?.reportValidity();
-      return false;
-    }
-
-    if (!cityInput?.checkValidity()) {
-      cityInput?.focus();
-      cityInput?.reportValidity();
-      return false;
-    }
-
-    if (!stateInput?.value?.trim() || !gstStateOptions.includes(stateInput.value.trim())) {
-      setDemoStatus('Please choose a valid GST state code from the list.', true);
-      stateInput?.focus();
-      return false;
-    }
-
-    if (!selectedProducts.length) {
-      setProductFieldError(true);
-      setDemoStatus('Please select at least one product.', true);
-      form.querySelector('input[name="product"]')?.focus();
-      return false;
-    }
-
-    if (!purposeValue) {
-      setPurposeFieldError(true);
-      setDemoStatus('Please select purpose of enquiry.', true);
-      document.getElementById('purposeTrigger')?.focus();
-      return false;
-    }
-
-    setProductFieldError(false);
-    setPurposeFieldError(false);
     return true;
-  };
+  }
 
-  document.addEventListener('click', (event) => {
-    const button = event.target.closest('.demo-submit-kicker-badge');
-    if (!button || !button.closest('#demoEnquiryForm')) return;
-
-    // Agar drag se already trigger ho chuka hai to skip
-    if (button.dataset.slideTriggered === 'true') {
-      event.preventDefault();
-      button.dataset.slideTriggered = 'false';
-      return;
+  document.addEventListener('focusout', event => {
+    if (event.target.matches('#demoEnquiryForm input:not([type="checkbox"]):not([name="website"])')) normalizeDemoInput(event.target);
+  });
+  document.addEventListener('input', event => {
+    const form = event.target.closest('#demoEnquiryForm');
+    if (!form) return;
+    if (event.target.matches('input')) demoFieldError(event.target, '');
+    if (form.dataset.sent === 'true') {
+      delete form.dataset.sent;
+      form.querySelector('button[type="submit"]').disabled = false;
+      setDemoStatus('');
     }
-
-    // Single click se bhi submit ho ??? drag ki zaroorat nahi
-    if (button.dataset.slideComplete !== 'true') {
-      event.preventDefault();
-      const form = button.closest('#demoEnquiryForm');
-      if (!form) return;
-      if (!validateDemoEnquiryForm(form)) return;
-
-      button.classList.add('is-ready-to-submit');
-      const icon = button.querySelector('.demo-kicker-icon');
-      const text = button.querySelector('.submit-btn-text');
-
-      if (icon) icon.style.transform = 'translateX(20px)';
-      if (text) text.style.transform = 'translateX(-30px)';
-
-      button.dataset.slideComplete = 'true';
-      button.dataset.slideTriggered = 'true';
-      setTimeout(() => {
-        setSubmitCompletedState(button);
-        form.requestSubmit();
-      }, 180);
+    updateDemoSubmitLabel(form);
+  });
+  document.addEventListener('change', event => {
+    const form = event.target.closest('#demoEnquiryForm');
+    if (form?.dataset.sent === 'true') {
+      delete form.dataset.sent;
+      form.querySelector('button[type="submit"]').disabled = false;
+      setDemoStatus('');
     }
+    updateDemoSubmitLabel(form);
   });
 
-  // The submit handler logic is now entirely handled by the capture-phase listener below,
-  // which works reliably with event delegation and handles form submission.
-
-  // capture-phase submit listener to reliably prevent Enter-key or other submits
-  document.addEventListener('submit', (event) => {
+  document.addEventListener('submit', async event => {
     const form = event.target;
-    if (!form || form.id !== 'demoEnquiryForm') return;
-    const submitBtn = form.querySelector('.demo-submit-kicker-badge');
-
-    // Agar Enter key ya kisi aur method se submit ho raha hai
-    // to validation check karo
-    if (submitBtn?.dataset.slideComplete !== 'true') {
-      event.preventDefault();
-      if (!validateDemoEnquiryForm(form)) {
-        resetSubmitDragState(submitBtn);
-        return;
-      }
-      // Validation pass ho gayi ??? submit allow karo
-      submitBtn.dataset.slideComplete = 'true';
-    }
-
-    const selectedProducts = form.querySelectorAll('input[name="product"]:checked');
-    const purposeValue = document.getElementById('purposeSelectHidden')?.value || '';
-    const stateInput = form.querySelector('[name="state"]');
-    const stateValue = stateInput?.value.trim();
-    const gstStateOptions = Array.from(document.querySelectorAll('#gstStateCodes option')).map((option) => option.value);
-
-    if (!selectedProducts.length) {
-      event.preventDefault();
-      resetSubmitDragState(submitBtn);
-      setProductFieldError(true);
-      setDemoStatus('Please select at least one product.', true);
-      form.querySelector('input[name="product"]')?.focus();
-      return;
-    }
-    if (!purposeValue) {
-      event.preventDefault();
-      resetSubmitDragState(submitBtn);
-      setPurposeFieldError(true);
-      setDemoStatus('Please select purpose of enquiry.', true);
-      document.getElementById('purposeTrigger')?.focus();
-      return;
-    }
-    if (stateValue && !gstStateOptions.includes(stateValue)) {
-      event.preventDefault();
-      resetSubmitDragState(submitBtn);
-      setDemoStatus('Please choose a valid GST state code from the list.', true);
-      stateInput?.focus();
-      return;
-    }
-
+    if (form.id !== 'demoEnquiryForm') return;
     event.preventDefault();
-
-    if (typeof window.sendDemoEnquiryToBackend === 'function') {
-      setDemoStatus('Sending your enquiry...');
-      window.sendDemoEnquiryToBackend(form);
+    if (form.dataset.sending === 'true' || form.dataset.sent === 'true' || !validateDemoEnquiryForm(form)) return;
+    const button = form.querySelector('button[type="submit"]');
+    const sections = Array.from(form.children).filter(el => el.id !== 'demoFormStatus');
+    const selected = Array.from(form.querySelectorAll('input[name="product"]:checked')).map(i => i.value).join(', ');
+    form.dataset.sending = 'true';
+    form.setAttribute('aria-busy', 'true');
+    button.disabled = true;
+    button.querySelector('.submit-btn-text').textContent = 'Sending…';
+    setDemoStatus('Sending your enquiry…');
+    try {
+      if (typeof window.sendDemoEnquiryToBackend !== 'function') throw new Error('Service unavailable');
+      const submission = window.sendDemoEnquiryToBackend(form);
+      sections.forEach(el => { el.inert = true; });
+      const result = await submission;
+      if (!result || result.result !== 'success') throw new Error('Save not confirmed');
+      form.dataset.sent = 'true';
+      setDemoStatus('Thank you! Your enquiry for ' + selected + ' has been received.' + (result.reference ? ' Reference: ' + result.reference + '.' : '') + ' Our team will contact you shortly.');
+      button.querySelector('.submit-btn-text').textContent = 'Enquiry Sent';
+    } catch (error) {
+      setDemoStatus('We could not confirm your enquiry. Your details are still here. Please retry; if this continues, contact us directly.', true);
+      button.disabled = false;
+      button.querySelector('.submit-btn-text').textContent = 'Retry Enquiry';
+    } finally {
+      sections.forEach(el => { el.inert = false; });
+      delete form.dataset.sending;
+      form.removeAttribute('aria-busy');
     }
-
-    setDemoStatus('Thank you! TaxPower team will contact you shortly.');
-    if (submitBtn) {
-      setSubmitCompletedState(submitBtn);
-    }
-
-    setTimeout(() => {
-      form.reset();
-      updateSubmitEnabled();
-      closeGstStateDropdown();
-      setProductFieldError(false);
-      setPurposeFieldError(false);
-
-      const purposeDropdownEl = document.getElementById('purposeDropdown');
-      const purposeTriggerTextEl = document.getElementById('purposeTriggerText');
-      const purposeHiddenSelect = document.getElementById('purposeSelectHidden');
-      if (purposeDropdownEl && purposeTriggerTextEl) {
-        purposeTriggerTextEl.textContent = 'Select purpose of enquiry';
-        purposeDropdownEl.classList.remove('has-value', 'is-open');
-        purposeDropdownEl.querySelectorAll('.purpose-option').forEach(o => {
-          o.classList.remove('is-selected');
-          o.setAttribute('aria-selected', 'false');
-        });
-        const triggerIconEl = purposeDropdownEl.querySelector('.purpose-trigger-icon');
-        if (triggerIconEl) {
-          triggerIconEl.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>';
-        }
-      }
-      if (purposeHiddenSelect) purposeHiddenSelect.value = '';
-
-      if (submitBtn) {
-        resetSubmitDragState(submitBtn);
-      }
-
-      resetDemoTriggerState();
-      setDemoStatus('');
-    }, 10000);
   }, true);
 
   // module 02c: custom purpose dropdown interaction
@@ -1869,6 +1666,7 @@ function initTaxPowerSite() {
         const value = option.dataset.value || option.textContent.trim();
         const selectedIcon = option.querySelector('.purpose-option-icon')?.innerHTML || defaultTriggerIconHTML;
         hiddenSelect.value = value;
+        hiddenSelect.dispatchEvent(new Event('change', {bubbles: true}));
         triggerText.textContent = value;
         if (triggerIcon) {
           triggerIcon.innerHTML = selectedIcon;

@@ -10,10 +10,10 @@
   <meta name="description" content="Contact TaxPower GST and TDS software support for installation, updates, licensing and product queries. Request a live demo or discuss pricing with our team.">
   <link rel="stylesheet" href="css/stylesheet.css?v=20261012-footer-refined">
   <script src="js/nav-loader.js?v=20260929-polish" defer></script>
-  <script src="js/form-backend.js" defer></script>
-  <script src="js/script.js?v=20261004-company-first" defer></script>
+  <script src="js/form-backend.js?v=20261012-sales-enquiry" defer></script>
+  <script src="js/script.js?v=20261012-sales-enquiry" defer></script>
   <script src="js/page-loader.js" defer></script>
-  <link rel="stylesheet" href="css/support-cards.css?v=20261006-product-alignment">
+  <link rel="stylesheet" href="css/support-cards.css?v=20261012-sales-enquiry">
   <link rel="stylesheet" href="css/support-chat.css?v=20261004-composer">
   <script src="js/support-chat-config.js?v=20261004-conversation" defer></script>
   <script src="js/support-chat.js?v=20261004-composer" defer></script>
@@ -66,21 +66,15 @@
     <!-- Demo enquiry form placed under Support -->
     <div id="demo-enquiry"></div>
     <div class="demo-form-modal embedded" id="demoEnquiryModal" aria-hidden="false">
-      <div class="demo-form-dialog" role="dialog" aria-modal="true" aria-labelledby="demoFormTitle">
-        <div class="support-form-badge-row"><span class="support-new-user-badge" role="note"><span aria-hidden="true">★</span> New users only</span></div>
+      <div class="demo-form-dialog" role="region" aria-labelledby="demoFormTitle">
+        <div class="support-form-badge-row"><span class="support-new-user-badge" role="note"><span aria-hidden="true">★</span> Sales enquiries</span></div>
         <div class="demo-form-heading">
           <div class="demo-heading-kicker-badge">
             <img src="asset/swt_icon/taxpower_icon.png" alt="TaxPower" class="demo-kicker-icon" width="22" height="22">
-            <span class="section-kicker demo-kicker-text">Live Demo</span>
+            <span class="section-kicker demo-kicker-text">Let’s talk TaxPower</span>
           </div>
-          <h2 id="demoFormTitle">
-            Book
-            <span class="heading-highlight">TaxPower GST</span>
-            &
-            <span class="heading-highlight">TaxPower TDS</span>
-            Demo
-          </h2>
-          <p>Fill details and select the product modules you want to discuss.</p>
+          <h2 id="demoFormTitle">Request a <span class="heading-highlight">TaxPower Demo</span> or Quotation</h2>
+          <p>For demos, purchases, quotations and renewals. Choose TaxPower GST, Billing or TDS.</p>
         </div>
 
         <div class="form-start-divider" aria-hidden="true">
@@ -96,7 +90,7 @@
           <span class="form-start-divider-line"></span>
         </div>
 
-        <form class="demo-enquiry-form" id="demoEnquiryForm">
+        <form class="demo-enquiry-form" id="demoEnquiryForm" novalidate>
           <div class="form-grid">
             <label class="form-field">
               <span class="form-label-text">
@@ -153,8 +147,8 @@
                       d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6 6l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7a2 2 0 0 1 1.72 2.03z" />
                   </svg></span>
                 <input type="tel" name="mobile" inputmode="numeric" autocomplete="tel" pattern="[0-9]{10}"
-                  placeholder="10 digit mobile number" oninput="this.value = this.value.replace(/[^0-9]/g, '')"
-                  maxlength="10" required>
+                  placeholder="10 digit mobile number"
+                  maxlength="16" required>
               </div>
             </label>
             <label class="form-field">
@@ -174,45 +168,6 @@
                     <polyline points="22,6 12,13 2,6" />
                   </svg></span>
                 <input type="email" name="email" autocomplete="email" placeholder="Enter your email address" required>
-              </div>
-            </label>
-            <label class="form-field">
-              <span class="form-label-text">
-                <svg class="form-label-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                  aria-hidden="true">
-                  <rect x="2" y="5" width="20" height="14" rx="2" />
-                  <line x1="2" y1="10" x2="22" y2="10" />
-                </svg>
-                GSTIN Number <span class="field-optional">(Optional)</span>
-              </span>
-              <div class="input-icon-wrapper">
-                <span class="input-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="5" width="20" height="14" rx="2" />
-                    <line x1="2" y1="10" x2="22" y2="10" />
-                  </svg></span>
-                <input type="text" name="gstin" autocomplete="off" placeholder="e.g. 27AAAAA0000A1Z5" maxlength="15"
-                  style="text-transform: uppercase;">
-              </div>
-            </label>
-            <label class="form-field">
-              <span class="form-label-text">
-                <svg class="form-label-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
-                  aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                Address <span class="field-optional">(Optional)</span>
-              </span>
-              <div class="input-icon-wrapper">
-                <span class="input-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                    <circle cx="12" cy="10" r="3"></circle>
-                  </svg></span>
-                <input type="text" name="address" autocomplete="street-address" placeholder="Enter your address">
               </div>
             </label>
             <label class="form-field">
@@ -257,6 +212,48 @@
             </div>
           </div>
 
+          <details class="demo-billing-details"><summary>Billing details <span>— optional</span></summary><div class="form-grid">
+<label class="form-field">
+              <span class="form-label-text">
+                <svg class="form-label-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <rect x="2" y="5" width="20" height="14" rx="2" />
+                  <line x1="2" y1="10" x2="22" y2="10" />
+                </svg>
+                GSTIN Number <span class="field-optional">(Optional)</span>
+              </span>
+              <div class="input-icon-wrapper">
+                <span class="input-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="5" width="20" height="14" rx="2" />
+                    <line x1="2" y1="10" x2="22" y2="10" />
+                  </svg></span>
+                <input type="text" name="gstin" autocomplete="off" placeholder="e.g. 27AAAAA0000A1Z5" maxlength="15"
+                  style="text-transform: uppercase;">
+              </div>
+            </label>
+            <label class="form-field">
+              <span class="form-label-text">
+                <svg class="form-label-icon" width="13" height="13" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                  aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                Address <span class="field-optional">(Optional)</span>
+              </span>
+              <div class="input-icon-wrapper">
+                <span class="input-icon" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg></span>
+                <input type="text" name="address" autocomplete="street-address" placeholder="Enter your address">
+              </div>
+            </label>
+            </div></details>
+          <div class="demo-honeypot" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
           <datalist id="gstStateCodes">
             <option value="01 - Jammu & Kashmir">
             <option value="02 - Himachal Pradesh">
@@ -364,7 +361,7 @@
                   </span>
                 </div>
                 <span class="product-card-title">TaxPower TDS</span>
-                <span class="product-card-badge">TDS Return Filling</span>
+                <span class="product-card-badge">TDS Return Filing</span>
               </div>
             </label>
           </fieldset>
@@ -475,10 +472,11 @@
             </div>
           </div>
 
+          <p class="demo-privacy">We’ll use your details to contact you about your enquiry.</p>
           <div class="form-actions">
             <button type="submit" class="demo-submit-kicker-badge">
               <img src="asset/swt_icon/taxpower_icon.png" alt="TaxPower" class="demo-kicker-icon">
-              <span class="section-kicker submit-btn-text">Submit</span>
+              <span class="section-kicker submit-btn-text">Send Enquiry</span>
             </button>
           </div>
           <p class="form-status" id="demoFormStatus" aria-live="polite"></p>
