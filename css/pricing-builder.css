@@ -159,3 +159,12 @@
 .tp-plan .tp-summary-topline { padding-bottom:10px; margin-bottom:12px; }
 .tp-plan .tp-summary-illustration { width:35px; height:30px; }
 .pricing-page .tp-plan-summary h3 { margin:0 0 18px; }
+
+/* Selected products arrive as compact text badges; prices align to the right. */
+.tp-selected-products { position:relative; display:flex; flex-wrap:wrap; gap:7px; margin:0 0 20px; min-height:29px; }
+.tp-selected-badge { display:inline-flex; align-items:center; padding:6px 10px; border:1px solid #f4c9a9; border-radius:8px; background:#fff5ed; color:#a74512; font-size:11px; font-weight:650; line-height:1.4; white-space:nowrap; }
+.tp-selected-badge[data-product="tds"] { border-color:#bddfee; background:#eef8ff; color:#176b97; }
+.tp-plan .tp-price-details { text-align:right; }
+.tp-plan .tp-price-details .tp-summary-price { justify-content:flex-end; }
+.tp-plan .tp-price-details .tp-plan-saving { max-width:100%; box-sizing:border-box; text-align:right; }
+@media(max-width:480px) { .tp-selected-products { gap:6px; } .tp-selected-badge { padding:5px 8px; font-size:10px; } }
