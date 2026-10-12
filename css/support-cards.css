@@ -151,3 +151,21 @@
   #support .support-sales-layout .product-card-inner { min-height:56px; }
   #support .support-sales-layout .demo-submit-kicker-badge { width:auto; }
 }
+
+/* Restore the logo slider button and remove the heading's extra top row. */
+#support .support-sales-layout .demo-form-modal.embedded > .demo-form-dialog { position:relative; padding-top:18px; }
+#support .support-sales-layout .support-form-badge-row { position:absolute; top:16px; right:24px; margin:0; }
+#support .support-sales-layout .demo-heading-kicker-badge { padding-right:130px; min-height:26px; box-sizing:border-box; }
+#support .support-sales-layout .demo-form-heading h2,
+#support .support-sales-layout .demo-form-heading h2 .heading-highlight { font-style:normal; }
+#support .support-sales-layout .demo-submit-kicker-badge { width:auto; min-width:190px; min-height:44px; padding:5px 14px 5px 15px; gap:10px; border-radius:999px; background:rgba(0,180,216,.12); border:1px solid rgba(0,180,216,.28); box-shadow:0 2px 8px rgba(0,180,216,.12); color:#00b4d8; }
+#support .support-sales-layout .demo-submit-kicker-badge .demo-kicker-icon { display:block; width:24px; height:24px; flex-shrink:0; cursor:grab; touch-action:none; }
+#support .support-sales-layout .demo-submit-kicker-badge .submit-btn-text { color:#00b4d8; text-transform:uppercase; font-size:14px !important; letter-spacing:.5px; }
+#support .support-sales-layout .demo-submit-kicker-badge.is-ready-to-submit { background:rgba(0,180,216,.18); }
+#support .support-sales-layout .demo-submit-kicker-badge.is-submit-complete { background:rgba(248,140,63,.3); border-color:rgba(248,140,63,.5); }
+#support .support-sales-layout .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .demo-kicker-icon { transform:translateX(var(--demo-icon-travel,0px)); }
+#support .support-sales-layout .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .submit-btn-text { transform:translateX(var(--demo-text-travel,-34px)); }
+#support .support-sales-layout .demo-submit-kicker-badge.is-dragging .demo-kicker-icon { cursor:grabbing; transition:none; }
+@media(max-width:600px) { #support .support-sales-layout .support-form-badge-row { right:14px; } }
+@media(max-width:380px) { #support .support-sales-layout .demo-heading-kicker-badge .demo-kicker-text { font-size:9px; letter-spacing:0; } #support .support-sales-layout .demo-heading-kicker-badge { gap:5px; padding-right:112px; } }
+@media(prefers-reduced-motion:reduce) { #support .support-sales-layout .demo-submit-kicker-badge, #support .support-sales-layout .demo-submit-kicker-badge * { transition:none; } }

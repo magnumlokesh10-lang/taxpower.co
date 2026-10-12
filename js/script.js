@@ -1462,8 +1462,63 @@ function initTaxPowerSite() {
     }
   });
 
+  function setDemoButtonMotion(button, state) {
+    const icon = button.querySelector('.demo-kicker-icon');
+    const text = button.querySelector('.submit-btn-text');
+    if (!icon || !text) return;
+    icon.style.removeProperty('transform');
+    text.style.removeProperty('transform');
+    button.classList.remove('is-dragging', 'is-ready-to-submit', 'is-submit-complete');
+    if (state) {
+      const padding = parseFloat(getComputedStyle(button).paddingRight) || 15;
+      const distance = Math.max(0, button.clientWidth - icon.offsetLeft - icon.offsetWidth - padding);
+      button.style.setProperty('--demo-icon-travel', distance + 'px');
+      button.style.setProperty('--demo-text-travel', -(icon.offsetWidth + 10) + 'px');
+      button.classList.add(state);
+    }
+  }
+
+  // Original logo drag interaction, with native click/keyboard submission retained.
+  document.addEventListener('pointerdown', event => {
+    const icon = event.target.closest('#demoEnquiryForm .demo-submit-kicker-badge .demo-kicker-icon');
+    if (!icon || event.button !== 0) return;
+    const button = icon.closest('button');
+    const form = button.closest('form');
+    if (button.disabled || form.dataset.sending === 'true' || form.dataset.sent === 'true') return;
+    event.preventDefault();
+    setDemoButtonMotion(button, 'is-dragging');
+    const distance = parseFloat(button.style.getPropertyValue('--demo-icon-travel')) || 0;
+    let delta = 0;
+    icon.setPointerCapture(event.pointerId);
+    const move = e => {
+      delta = Math.min(distance, Math.max(0, e.clientX - event.clientX));
+      icon.style.transform = `translateX(${delta}px)`;
+      button.querySelector('.submit-btn-text').style.transform = `translateX(-${Math.min(delta, 30)}px)`;
+    };
+    const finish = e => {
+      icon.removeEventListener('pointermove', move);
+      icon.removeEventListener('pointerup', finish);
+      icon.removeEventListener('pointercancel', finish);
+      if (icon.hasPointerCapture(event.pointerId)) icon.releasePointerCapture(event.pointerId);
+      setDemoButtonMotion(button, '');
+      // Suppress the synthetic click following a drag/tap handled here.
+      button.dataset.suppressClick = 'true';
+      setTimeout(() => delete button.dataset.suppressClick, 400);
+      if (e.type !== 'pointercancel' && (delta < 4 || (distance > 0 && delta >= distance * .7))) form.requestSubmit();
+    };
+    icon.addEventListener('pointermove', move);
+    icon.addEventListener('pointerup', finish);
+    icon.addEventListener('pointercancel', finish);
+  });
+  document.addEventListener('click', event => {
+    const button = event.target.closest('#demoEnquiryForm .demo-submit-kicker-badge');
+    if (button?.dataset.suppressClick === 'true') { event.preventDefault(); delete button.dataset.suppressClick; }
+  }, true);
+
   function updateDemoSubmitLabel(form) {
     if (!form || form.dataset.sending === 'true' || form.dataset.sent === 'true') return;
+    form.querySelector('button[type="submit"]').style.removeProperty('width');
+    setDemoButtonMotion(form.querySelector('button[type="submit"]'), '');
     const labels = {'Free Trial / Demo': 'Request Demo', 'Want to Purchase': 'Request Purchase Callback',
       'Pricing or Quotation': 'Request Quotation', 'Renewal of License': 'Request Renewal'};
     const text = form.querySelector('.submit-btn-text');
@@ -1559,6 +1614,9 @@ function initTaxPowerSite() {
     const selected = Array.from(form.querySelectorAll('input[name="product"]:checked')).map(i => i.value).join(', ');
     form.dataset.sending = 'true';
     form.setAttribute('aria-busy', 'true');
+    const buttonWidth = button.getBoundingClientRect().width;
+    if (buttonWidth) button.style.width = buttonWidth + 'px';
+    setDemoButtonMotion(button, 'is-ready-to-submit');
     button.disabled = true;
     button.querySelector('.submit-btn-text').textContent = 'Sending…';
     setDemoStatus('Sending your enquiry…');
@@ -1571,9 +1629,12 @@ function initTaxPowerSite() {
       form.dataset.sent = 'true';
       setDemoStatus('Thank you! Your enquiry for ' + selected + ' has been received.' + (result.reference ? ' Reference: ' + result.reference + '.' : '') + ' Our team will contact you shortly.');
       button.querySelector('.submit-btn-text').textContent = 'Enquiry Sent';
+      setDemoButtonMotion(button, 'is-submit-complete');
     } catch (error) {
       setDemoStatus('We could not confirm your enquiry. Your details are still here. Please retry; if this continues, contact us directly.', true);
       button.disabled = false;
+      button.style.removeProperty('width');
+      setDemoButtonMotion(button, '');
       button.querySelector('.submit-btn-text').textContent = 'Retry Enquiry';
     } finally {
       sections.forEach(el => { el.inert = false; });
