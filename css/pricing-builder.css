@@ -199,3 +199,18 @@
 .tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-plan-saving { grid-column:2; grid-row:3; }
 .tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-selected-products { grid-column:1; grid-row:2; min-height:0; align-self:stretch; }
 .tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-selected-badge[data-product] { box-sizing:border-box; min-height:0; }
+
+/* Match the single selected product to its adjacent price surface. */
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-selected-badge[data-product],
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-summary-price {
+ box-sizing:border-box;
+ align-self:stretch;
+ margin:0;
+ padding:12px 10px;
+ border:1px solid #ffffffed;
+ border-radius:12px;
+ background:radial-gradient(ellipse 85px 60px at 100% 0%,#ffdbbc80,transparent 100%),radial-gradient(ellipse 85px 60px at 0% 100%,#c7eaff80,transparent 100%),#fff;
+ box-shadow:inset 0 1px 0 white,0 4px 16px #7297ad0d;
+ color:#174763;
+}
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-selected-products { margin:0; padding:0; }
