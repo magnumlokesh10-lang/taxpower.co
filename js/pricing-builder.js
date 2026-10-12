@@ -31,11 +31,7 @@
         get('original').textContent = saving ? money(separate) : '';
         get('saving').hidden = !saving;
         get('saving').textContent = saving ? 'Save ' + money(saving) + ' on installation vs separate modules' : '';
-        get('base').textContent = money(plan[0]);
-        get('gst').textContent = money(Math.round(plan[0] * .18));
-        const total = money(plan[0] + Math.round(plan[0] * .18));
-        get('total').textContent = total;
-        get('mobile-total').textContent = total;
+        get('mobile-price').textContent = money(plan[0]);
         actions.forEach(action => {
           action.dataset.demoProduct = selected.map(key => products[key]).join(',');
           action.dataset.demoPurpose = action.dataset.planAction === 'quote' ? 'Pricing or Quotation' : 'Free Trial / Demo';

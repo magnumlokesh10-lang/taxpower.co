@@ -112,14 +112,6 @@
 .tp-plan .tp-module .tp-choice-content { grid-column:2; grid-row:1; }
 .tp-plan .tp-selection-message { margin:10px 0 0; font-size:12px; line-height:1.5; color:#95500f; }
 .tp-plan .tp-selection-message:empty { display:none; }
-.tp-cost-breakdown { margin:16px 0 0; display:grid; gap:9px; font-size:12px; }
-.tp-cost-breakdown > div { display:flex; align-items:baseline; justify-content:space-between; gap:14px; }
-.tp-cost-breakdown dt { color:#526777; }
-.tp-cost-breakdown dd { margin:0; font-weight:700; white-space:nowrap; }
-.tp-cost-total { border-top:1px solid #dce4eb; padding-top:12px; }
-.tp-cost-total dt { color:#203348; font-weight:700; }
-.tp-cost-total small { display:block; margin-top:4px; font-size:10px; font-weight:400; }
-.tp-cost-total dd { color:#176b97; font-size:24px; }
 .tp-plan-demo { display:flex; justify-content:space-between; gap:10px; padding:12px 16px; margin-top:9px; border:1px solid #c5dce9; border-radius:8px; background:white; color:#176b97; font-size:13px; font-weight:700; text-decoration:none; }
 .tp-plan-demo:hover { background:#eef8ff; }
 .tp-plan-demo:focus-visible,.tp-mobile-price a:focus-visible,.tp-pricing-faq summary:focus-visible { outline:3px solid #83b9d6; outline-offset:3px; }
@@ -147,3 +139,18 @@
  .tp-mobile-price { position:fixed; left:16px; right:16px; bottom:88px; margin:0; visibility:hidden; pointer-events:none; }
  .tp-plan-in-view .tp-mobile-price { visibility:visible; pointer-events:auto; }
 }
+
+/* Reflected orange and blue light on a white price summary. */
+.tp-plan .tp-plan-summary {
+ background:radial-gradient(ellipse at 0% 8%,#ffe1c5a6 0%,transparent 51%),radial-gradient(ellipse at 100% 68%,#bceaff99 0%,transparent 56%),linear-gradient(135deg,#fff 35%,#ffffffed 70%,#f3faff);
+ border-color:#d6e4ec;
+ box-shadow:inset 1px 1px 0 #fff,inset -1px -1px 0 #ffffffcc,0 10px 28px #458dad12;
+}
+.tp-plan .tp-summary-price {
+ padding:14px 16px; border:1px solid #ffffffed; border-radius:12px;
+ background:radial-gradient(ellipse at 4% 100%,#ffc98a66,transparent 65%),radial-gradient(ellipse at 96% 0%,#9edfff70,transparent 65%),#ffffff94;
+ box-shadow:inset 0 1px 0 white,0 4px 16px #7297ad0d;
+}
+.tp-plan .tp-summary-price strong { color:#174763; text-shadow:0 2px 16px #ffffff; }
+.tp-plan .tp-plan-tax { color:#435e70; font-weight:600; }
+.tp-mobile-price { background:radial-gradient(ellipse at 0% 100%,#ffe7d1,transparent 65%),radial-gradient(ellipse at 100% 0%,#def3ff,transparent 65%),#fff; }
