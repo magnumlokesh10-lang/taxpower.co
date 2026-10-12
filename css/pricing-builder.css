@@ -106,9 +106,9 @@
 .tp-plan .tp-module:has(input:checked) .tp-choice-content strong { color:#203348; }
 .tp-plan .tp-module:has(input:checked) .tp-choice-check { background:var(--module-accent); border-color:var(--module-accent); }
 .tp-plan .tp-module:has(input:checked) .tp-module-icon { background:transparent; }
-.tp-plan .tp-module { grid-template-columns:22px minmax(0,1fr); }
-.tp-plan .tp-module .tp-module-icon { display:none; }
-.tp-plan .tp-module .tp-choice-check { grid-column:1; grid-row:1; width:22px; height:22px; border-radius:6px; }
+.tp-plan .tp-module { grid-template-columns:32px minmax(0,1fr) 22px; }
+.tp-plan .tp-module .tp-module-icon { display:grid; grid-column:1; grid-row:1; }
+.tp-plan .tp-module .tp-choice-check { grid-column:3; grid-row:1; width:22px; height:22px; border-radius:6px; }
 .tp-plan .tp-module .tp-choice-content { grid-column:2; grid-row:1; }
 .tp-plan .tp-selection-message { margin:10px 0 0; font-size:12px; line-height:1.5; color:#95500f; }
 .tp-plan .tp-selection-message:empty { display:none; }
