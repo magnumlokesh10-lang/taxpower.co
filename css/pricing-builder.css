@@ -190,3 +190,12 @@
  .tp-plan .tp-summary-actions > a { padding:10px 8px; font-size:11px; }
  .tp-summary-actions { gap:8px; }
 }
+
+/* A single product shares the exact price row height. */
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) { row-gap:0; }
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-price-details { display:contents; }
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-summary-label { grid-column:2; grid-row:1; text-align:right; }
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-summary-price { grid-column:2; grid-row:2; }
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-plan-saving { grid-column:2; grid-row:3; }
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-selected-products { grid-column:1; grid-row:2; min-height:0; align-self:stretch; }
+.tp-summary-selection-row:has(.tp-selected-products > [data-product]):not(:has(.tp-selected-products > [data-product] ~ [data-product])) .tp-selected-badge[data-product] { box-sizing:border-box; min-height:0; }
