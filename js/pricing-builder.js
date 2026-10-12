@@ -16,13 +16,56 @@
       const actions = [...builder.querySelectorAll('[data-plan-action]')];
       // Start a newly loaded chooser from the HTML defaults, including restored controls.
       builder.querySelectorAll('[name="tp-module"], [name="tp-edition"]').forEach(input => { input.checked = input.defaultChecked; });
+      function renderBadges(selected, animate) {
+        const container = get('badges');
+        const motion = animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        container.querySelectorAll('[data-exit]').forEach(node => node.remove());
+        const previous = new Map([...container.children].map(node => [node.dataset.product, { node, rect: node.getBoundingClientRect() }]));
+        const bounds = container.getBoundingClientRect();
+        previous.forEach(({ node, rect }, key) => {
+          node.getAnimations?.().forEach(animation => animation.cancel());
+          if (!selected.includes(key)) {
+            if (motion && node.animate) {
+              const ghost = node.cloneNode(true);
+              ghost.removeAttribute('data-product');
+              ghost.dataset.exit = '';
+              ghost.setAttribute('aria-hidden', 'true');
+              Object.assign(ghost.style, { position: 'absolute', left: (rect.left - bounds.left) + 'px', top: (rect.top - bounds.top) + 'px', width: rect.width + 'px' });
+              container.append(ghost);
+              ghost.animate([{ opacity: 1 }, { opacity: 0, transform: 'translateX(14px)' }], { duration: 180, easing: 'ease-out' }).finished.then(() => ghost.remove(), () => ghost.remove());
+            }
+            node.remove();
+          }
+        });
+        selected.forEach(key => {
+          let node = previous.get(key)?.node;
+          if (!node) {
+            node = document.createElement('span');
+            node.className = 'tp-selected-badge';
+            node.dataset.product = key;
+            node.textContent = labels[key];
+          }
+          container.append(node);
+        });
+        if (motion) selected.forEach(key => {
+          const node = container.querySelector('[data-product="' + key + '"]');
+          const old = previous.get(key)?.rect;
+          const rect = node.getBoundingClientRect();
+          const x = old ? old.left - rect.left : -36;
+          const y = old ? old.top - rect.top : 0;
+          if (!old || x || y) node.animate?.([
+            { opacity: old ? 1 : 0, transform: 'translate(' + x + 'px,' + y + 'px)' },
+            { opacity: 1, transform: 'translate(0,0)' }
+          ], { duration: 280, easing: 'cubic-bezier(.22,1,.36,1)' });
+        });
+      }
       function update(animate = false) {
         const edition = builder.querySelector('[name="tp-edition"]:checked').value;
         const selected = [...builder.querySelectorAll('[name="tp-module"]:checked')].map(input => input.value);
         const plan = prices[edition][selected.join('+')];
         get('count').textContent = selected.length + (selected.length === 1 ? ' product selected' : ' products selected');
         get('edition').textContent = edition === 'business' ? 'BUSINESS EDITION' : 'PROFESSIONAL EDITION';
-        get('name').textContent = selected.length ? selected.map(key => labels[key]).join(' + ') : 'Select at least one product';
+        renderBadges(selected, animate);
         get('price').textContent = plan ? money(plan[0]) : '—';
         get('renewal').textContent = plan ? money(plan[1]) : '—';
         const separate = selected.reduce((sum, key) => sum + prices[edition][key][0], 0);
@@ -37,7 +80,8 @@
           action.dataset.demoPurpose = action.dataset.planAction === 'quote' ? 'Pricing or Quotation' : 'Free Trial / Demo';
         });
         if (animate && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-          get('output').animate?.([{ opacity: .45, transform: 'translateY(4px)' }, { opacity: 1, transform: 'translateY(0)' }], { duration: 200, easing: 'ease-out' });
+          get('price-details').getAnimations?.().forEach(animation => animation.cancel());
+          get('price-details').animate?.([{ opacity: .5 }, { opacity: 1 }], { duration: 200, easing: 'ease-out' });
         }
       }
       builder.addEventListener('change', event => {
