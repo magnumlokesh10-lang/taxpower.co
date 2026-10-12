@@ -168,3 +168,25 @@
 .tp-plan .tp-price-details .tp-summary-price { justify-content:flex-end; }
 .tp-plan .tp-price-details .tp-plan-saving { max-width:100%; box-sizing:border-box; text-align:right; }
 @media(max-width:480px) { .tp-selected-products { gap:6px; } .tp-selected-badge { padding:5px 8px; font-size:10px; } }
+
+/* Compact side-by-side selection, pricing and enquiry actions. */
+.tp-summary-selection-row { display:grid; grid-template-columns:minmax(105px,.8fr) minmax(0,1.7fr); gap:16px; align-items:stretch; }
+.tp-summary-selection-row .tp-selected-products { flex-direction:column; flex-wrap:nowrap; gap:7px; margin:0; min-height:130px; }
+.tp-summary-selection-row .tp-selected-badge:not([data-exit]) { flex:1; justify-content:center; text-align:center; white-space:normal; min-height:34px; padding:8px; font-size:11px; }
+.tp-summary-selection-row .tp-selected-badge:not([data-exit]):only-child { font-size:15px; }
+.tp-summary-selection-row .tp-selected-products:has(> [data-product]:nth-child(2)):not(:has(> [data-product]:nth-child(3))) .tp-selected-badge { font-size:12px; }
+.tp-summary-selection-row .tp-price-details { min-width:0; align-self:center; }
+.tp-summary-selection-row .tp-summary-price { padding:12px 10px; gap:7px; }
+.tp-summary-selection-row .tp-summary-price strong { font-size:clamp(28px,3vw,42px); }
+.tp-summary-selection-row .tp-summary-price del { font-size:12px; }
+.tp-summary-actions { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; }
+.tp-plan .tp-summary-actions > a { margin:0; min-width:0; min-height:46px; box-sizing:border-box; padding:11px 12px; gap:6px; font-size:12px; align-items:center; }
+@media(max-width:480px) {
+ .tp-summary-selection-row { grid-template-columns:minmax(86px,.8fr) minmax(0,1.4fr); gap:10px; }
+ .tp-summary-selection-row .tp-selected-badge:not([data-exit]) { padding:6px; font-size:10px; }
+ .tp-summary-selection-row .tp-selected-badge:not([data-exit]):only-child { font-size:13px; }
+ .tp-summary-selection-row .tp-summary-price strong { font-size:28px; }
+ .tp-summary-selection-row .tp-summary-label { font-size:10px; }
+ .tp-plan .tp-summary-actions > a { padding:10px 8px; font-size:11px; }
+ .tp-summary-actions { gap:8px; }
+}
