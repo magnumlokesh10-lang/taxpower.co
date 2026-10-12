@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  // Existing taxpower.org prices; [one-time installation, annual AMC].
+  // Existing taxpower.co prices; [one-time installation, annual AMC].
   const prices = {
     professional: { gst: [7000, 5000], billing: [5000, 3000], tds: [5000, 2500], 'gst+billing': [11000, 7000], 'gst+tds': [11000, 7000], 'billing+tds': [9000, 5000], 'gst+billing+tds': [15000, 8000] },
     business: { gst: [12000, 6000], billing: [7000, 4000], tds: [7000, 3500], 'gst+billing': [15000, 8000], 'gst+tds': [16000, 8500], 'billing+tds': [12000, 6500], 'gst+billing+tds': [20000, 10000] }
