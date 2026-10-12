@@ -5126,3 +5126,25 @@ body.demo-form-open {
   animation:none; background-position:50% 50%;
  }
 }
+
+/* Full-width footer aligned with the surrounding page sections. */
+.footer-refined { margin-top:24px; padding-bottom:28px; }
+.footer-refined .footer-panel { width:100%; border:1px solid #cee4ed; border-radius:22px; overflow:hidden; background:radial-gradient(ellipse 340px 230px at 0 0,#fff1e5,transparent),radial-gradient(ellipse 380px 250px at 100% 100%,#e8f8ff,transparent),#fff; box-shadow:0 10px 30px #284c6410; }
+.footer-refined .site-footer-inner { width:100%; max-width:none; margin:0; padding:32px clamp(22px,3vw,42px) 26px; grid-template-columns:minmax(0,1.35fr) minmax(0,.7fr) minmax(0,.7fr) minmax(0,1.25fr); gap:28px; border:0; border-radius:0; background:none; box-shadow:none; backdrop-filter:none; }
+.footer-refined .site-footer-inner > * { min-width:0; }
+.footer-refined .footer-summary { max-width:300px; font-size:13px; line-height:1.75; margin-top:12px; }
+.footer-refined .footer-tagline { font-size:14px; }
+.footer-dealer-label { display:block; margin-top:14px; color:#a35c28; font-size:10px; font-weight:700; letter-spacing:.045em; text-transform:uppercase; }
+.footer-refined .footer-demo-button { margin-top:12px; padding:10px 14px; gap:22px; min-height:42px; font-size:12px; border-radius:9px; background:linear-gradient(110deg,#087da5,#00a8c8); box-shadow:0 5px 14px #009ec018; }
+.footer-refined .footer-link-group h2,.footer-refined .footer-contact-block h2 { color:#244758; font-size:13px; margin:0 0 14px; }
+.footer-refined .footer-link-group a { font-size:13px; padding:8px 0; line-height:1.5; }
+.footer-refined .footer-business-name { color:#29475c; font-size:13px; line-height:1.6; }
+.footer-established { font-size:11px; color:#687f8b; margin-top:3px; }
+.footer-refined address { margin:12px 0; font-style:normal; font-size:12px; line-height:1.8; color:#5c7280; }
+.footer-refined .footer-email { display:flex; align-items:center; flex-wrap:wrap; gap:8px; color:#087da5; font-size:12px; font-weight:650; text-decoration:none; padding:8px 0; overflow-wrap:anywhere; }
+.footer-refined .footer-email:hover { color:#bd5e20; }
+.footer-business-strip { display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px 24px; margin:0 clamp(22px,3vw,42px); padding:14px 0; border-top:1px solid #ddebf0; font-size:11px; line-height:1.7; color:#617a87; }
+.footer-business-strip strong { color:#3e6171; font-weight:600; }
+.footer-refined .footer-bottom { width:100%; max-width:none; margin:0; padding:14px clamp(22px,3vw,42px); border-top:1px solid #e2edf2; background:#f4f9fc99; font-size:11px; color:#617787; }
+@media(max-width:1000px) { .footer-refined .site-footer-inner { grid-template-columns:repeat(2,minmax(0,1fr)); gap:28px 36px; } .footer-refined .footer-brand-block { grid-column:1; grid-row:1; } .footer-refined .footer-contact-block { grid-column:2; grid-row:1; } }
+@media(max-width:600px) { .footer-refined .footer-panel { border-radius:16px; } .footer-refined .site-footer-inner { padding:24px 20px; gap:24px 18px; } .footer-refined .footer-brand-block { grid-column:1/-1; grid-row:auto; } .footer-refined .footer-contact-block { grid-column:1/-1; grid-row:auto; padding-top:18px; border-top:1px solid #e2edf2; } .footer-refined .footer-summary { max-width:none; } .footer-business-strip { margin:0 20px; } .footer-refined .footer-bottom { align-items:flex-start; flex-direction:column; gap:5px; padding:14px 20px 78px; } }
