@@ -60,7 +60,7 @@ function validateEnquiry(data) {
   if (String(data.address || '').length > 500 || String(data.page || '').length > 2000) throw new Error('Details too long.');
   if (["01 - Jammu & Kashmir", "02 - Himachal Pradesh", "03 - Punjab", "04 - Chandigarh", "05 - Uttarakhand", "06 - Haryana", "07 - Delhi", "08 - Rajasthan", "09 - Uttar Pradesh", "10 - Bihar", "11 - Sikkim", "12 - Arunachal Pradesh", "13 - Nagaland", "14 - Manipur", "15 - Mizoram", "16 - Tripura", "17 - Meghalaya", "18 - Assam", "19 - West Bengal", "20 - Jharkhand", "21 - Odisha", "22 - Chhattisgarh", "23 - Madhya Pradesh", "24 - Gujarat", "26 - Dadra & Nagar Haveli and Daman & Diu", "27 - Maharashtra", "29 - Karnataka", "30 - Goa", "31 - Lakshadweep", "32 - Kerala", "33 - Tamil Nadu", "34 - Puducherry", "35 - Andaman & Nicobar Islands", "36 - Telangana", "37 - Andhra Pradesh", "38 - Ladakh", "97 - Other Territory", "99 - Other Country"].indexOf(data.state) < 0) throw new Error('Invalid state.');
   var selected = data.product.split(', ');
-  if (!selected.length || selected.length > 3 || selected.some(function (item) { return ["TaxPower GST Return", "TaxPower E-Invoice &amp; E-Way Bill", "TaxPower TDS Return"].indexOf(item) < 0; })) throw new Error('Invalid products.');
+  if (!selected.length || selected.length > 3 || selected.some(function (item) { return ["TaxPower GST Return", "TaxPower E-Invoice & E-Way Bill", "TaxPower TDS Return"].indexOf(item) < 0; })) throw new Error('Invalid products.');
   if (['Free Trial / Demo', 'Want to Purchase', 'Pricing or Quotation', 'Renewal of License'].indexOf(data.purpose) < 0) throw new Error('Invalid purpose.');
 }
 

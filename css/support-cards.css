@@ -94,3 +94,60 @@
 #support .demo-honeypot { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
 #support #demoFormStatus { overflow-wrap:anywhere; }
 @media(max-width:600px) { #support #demoEnquiryForm .form-grid { grid-template-columns:1fr; gap:12px; } #support .demo-submit-kicker-badge { width:100%; } }
+
+/* Reference layout: a clean enquiry panel with direct-contact cards alongside. */
+#support .support-layout { padding:clamp(16px,2.5vw,32px); background:#fff; }
+#support .support-sales-layout { display:grid; grid-template-columns:minmax(0,1.65fr) minmax(285px,1fr); gap:24px; align-items:start; margin-top:24px; }
+#support .support-form-column, #support .support-contact-column { min-width:0; }
+#support .support-sales-layout .demo-form-modal.embedded > .demo-form-dialog { box-sizing:border-box; width:100% !important; max-width:none; margin:0 !important; padding:24px; border:1px solid #d9e4ef; border-radius:16px; background:#fff; box-shadow:0 3px 12px #233e5b0b !important; }
+#support .support-sales-layout .demo-form-dialog::before { display:none; }
+#support .support-sales-layout .support-form-badge-row { margin:0 0 8px; }
+#support .support-sales-layout .support-new-user-badge { background:#fff7ed; border-color:#ffdfb9; color:#a74b09; font-size:10px; padding:5px 9px; }
+#support .support-sales-layout .demo-form-heading { text-align:left; margin:0 0 16px; }
+#support .support-sales-layout .demo-heading-kicker-badge { margin:0 0 8px; padding:0; border:0; background:none; box-shadow:none; }
+#support .support-sales-layout .demo-form-heading h2 { margin:0; font-size:clamp(21px,2vw,27px); line-height:1.25; text-align:left; }
+#support .support-sales-layout .demo-form-heading p { margin:8px 0 0; font-size:12px; line-height:1.6; text-align:left; }
+#support .support-sales-layout .form-start-divider { margin:0 0 14px; }
+#support .support-sales-layout #demoEnquiryForm { gap:16px; }
+#support .support-sales-layout #demoEnquiryForm .form-grid { gap:13px 16px; }
+#support .support-sales-layout .form-field { gap:6px; text-transform:none; letter-spacing:0; }
+#support .support-sales-layout .form-label-text { font-size:11px; font-weight:600; text-transform:none; letter-spacing:0; }
+#support .support-sales-layout .input-icon { display:none; }
+#support .support-sales-layout .form-field input { min-height:40px; padding:9px 11px; border-color:#cad8e7; border-radius:7px; font-size:13px; background:#fff; }
+#support .support-sales-layout .form-field input[aria-invalid="true"] { border-color:#c9372c; }
+#support .support-sales-layout .demo-billing-details { margin:0; background:#f9fbfe; border-radius:9px; }
+#support .support-sales-layout .demo-billing-details summary { padding:11px 12px; font-size:12px; }
+#support .support-sales-layout .checkbox-group { gap:8px; padding:0; margin:0; min-width:0; }
+#support .support-sales-layout .checkbox-group-title { font-size:11px; text-transform:none; letter-spacing:0; margin-bottom:8px; flex-wrap:wrap; }
+#support .support-sales-layout .checkbox-group-subtitle { font-size:10px; }
+#support .support-sales-layout .product-card-inner { grid-template-columns:minmax(0,1fr) 16px; gap:5px; padding:10px; min-height:78px; border-radius:9px; box-shadow:none; }
+#support .support-sales-layout .product-card-icon { display:none; }
+#support .support-sales-layout .product-card-title { grid-column:1; font-size:11px; line-height:1.4; }
+#support .support-sales-layout .product-card-badge { grid-column:1; white-space:normal; padding:0; border:0; background:none; font-size:9px; line-height:1.4; text-transform:none; letter-spacing:0; }
+#support .support-sales-layout .custom-checkmark { grid-column:2; width:16px; height:16px; }
+#support .support-sales-layout .purpose-dropdown-trigger { min-height:42px; border-color:#cad8e7; border-radius:7px; font-size:12px; padding:10px 12px; }
+#support .support-sales-layout .form-actions { display:flex; align-items:center; justify-content:flex-start; gap:14px; flex-wrap:wrap; margin:0; }
+#support .support-sales-layout .demo-submit-kicker-badge { min-width:155px; min-height:42px; padding:10px 16px; background:linear-gradient(110deg,#ff9900,#f47a22); border:0; border-radius:24px; box-shadow:0 4px 9px #f47a2220; }
+#support .support-sales-layout .demo-submit-kicker-badge .submit-btn-text { font-size:12px; text-transform:none; letter-spacing:0; color:#172536; }
+#support .support-sales-layout .demo-submit-kicker-badge .demo-kicker-icon { display:none; }
+#support .support-sales-layout .demo-privacy { flex:1; min-width:150px; margin:0; text-align:left; font-size:10px; line-height:1.5; }
+#support .support-sales-layout .support-contact-refined { margin:0; }
+#support .support-sales-layout .support-contact-refined > h2 { font-size:16px; margin:0 0 12px; }
+#support .support-sales-layout .support-contact-grid { grid-template-columns:1fr; gap:14px; }
+#support .support-sales-layout .support-contact-card { padding:18px; border:1px solid #d9e4ef; border-radius:14px; background:#fff; box-shadow:none; }
+#support .support-sales-layout .support-contact-card h3 { font-size:18px; }
+#support .support-sales-layout .support-card-art { width:44px; height:36px; }
+#support .support-sales-layout .support-card-bottom { gap:10px; }
+#support .support-sales-layout #demoFormStatus { margin:0; font-size:12px; text-align:left; }
+@media(max-width:960px) {
+  #support .support-sales-layout { grid-template-columns:1fr; }
+  #support .support-sales-layout .support-contact-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+}
+@media(max-width:600px) {
+  #support .support-sales-layout { gap:20px; }
+  #support .support-sales-layout .demo-form-modal.embedded > .demo-form-dialog { padding:18px 14px; }
+  #support .support-sales-layout #demoEnquiryForm .form-grid, #support .support-sales-layout .support-contact-grid { grid-template-columns:1fr; }
+  #support .support-sales-layout .checkbox-group { grid-template-columns:1fr; }
+  #support .support-sales-layout .product-card-inner { min-height:56px; }
+  #support .support-sales-layout .demo-submit-kicker-badge { width:auto; }
+}
