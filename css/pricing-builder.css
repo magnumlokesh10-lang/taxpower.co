@@ -226,3 +226,13 @@
  box-shadow:inset 0 1px 0 white,0 4px 16px #7297ad0d;
  color:#174763;
 }
+
+/* Dealer on the left, software seller on the right. */
+.tp-plan .tp-seller-partners { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:20px; }
+.tp-seller-partners .tp-partner { min-width:0; }
+.tp-seller-partners .tp-partner strong { display:block; color:#29475c; font-size:13px; line-height:1.6; }
+.tp-seller-partners .tp-partner-role { margin-bottom:4px; color:#9e521f; font-size:10px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+.tp-seller-partners .tp-partner-seller { text-align:right; }
+.tp-seller-partners .tp-partner-seller .tp-partner-role { color:#176b97; }
+.tp-seller-partners .tp-partner > span { overflow-wrap:anywhere; }
+@media(max-width:480px) { .tp-plan .tp-seller-partners { gap:12px; } .tp-seller-partners .tp-partner strong { font-size:12px; } .tp-seller-partners .tp-partner > span { font-size:10px; } }
