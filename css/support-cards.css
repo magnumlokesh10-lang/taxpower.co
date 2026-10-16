@@ -197,3 +197,19 @@
  .header.nav-gradient-depth .nav-dropdown-managed.is-open > .nav-dropdown-menu {display:block;}
 }
 @media(prefers-reduced-motion:reduce) {.header.nav-gradient-depth .nav-dropdown-menu{transition:none;}}
+
+/* Compact callback form with a gently animated close control. */
+:is(#support,#quickEnquiryRoot) .quick-enquiry-dialog {padding:20px;}
+:is(#support,#quickEnquiryRoot) .quick-enquiry-heading {gap:12px;align-items:center;}
+:is(#support,#quickEnquiryRoot) .quick-enquiry-heading h2 {margin-bottom:6px;font-size:24px;}
+:is(#support,#quickEnquiryRoot) #quickEnquiryIntro {margin-bottom:14px;}
+:is(#support,#quickEnquiryRoot) #quickEnquiryForm {gap:10px;}
+:is(#support,#quickEnquiryRoot) #quickEnquiryForm > label {gap:4px;}
+:is(#support,#quickEnquiryRoot) .quick-enquiry-dialog .demo-contact-note {margin-top:12px;padding:9px 11px;gap:5px 10px;}
+:is(#support,#quickEnquiryRoot) .quick-enquiry-close {display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;padding:0;border:1px solid #deebf3;border-radius:12px;background:#f3f8fc;color:#55768b;line-height:1;transition:background .2s ease,border-color .2s ease,color .2s ease;}
+:is(#support,#quickEnquiryRoot) .quick-enquiry-close span {display:block;transition:transform .25s ease;}
+:is(#support,#quickEnquiryRoot) .quick-enquiry-close:is(:hover,:focus-visible) {background:#fff0e3;border-color:#efc8a7;color:#b86221;}
+:is(#support,#quickEnquiryRoot) .quick-enquiry-close:is(:hover,:focus-visible) span {transform:rotate(90deg);}
+:is(#support,#quickEnquiryRoot) .quick-enquiry-close:active span {transform:rotate(90deg) scale(.85);}
+@media(max-width:480px) {:is(#support,#quickEnquiryRoot) .quick-enquiry-dialog{padding:18px;}}
+@media(prefers-reduced-motion:reduce) {:is(#support,#quickEnquiryRoot) .quick-enquiry-close,:is(#support,#quickEnquiryRoot) .quick-enquiry-close span{transition:none;}:is(#support,#quickEnquiryRoot) .quick-enquiry-close span{transform:none!important;}}
