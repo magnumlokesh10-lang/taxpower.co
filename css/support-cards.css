@@ -1,84 +1,91 @@
 /* Contact page: compact contacts, optional detailed form, separate callback dialog. */
-#support .support-layout {box-sizing:border-box;width:100%;padding:clamp(20px,3vw,36px);border:1px solid #dce6ed;border-radius:18px;background:#fff;color:#183347;}
-#support .support-clean-heading {display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px;}
-#support .support-eyebrow {display:block;color:#087eaa;font-size:11px;font-weight:700;letter-spacing:1.2px;margin-bottom:7px;}
-#support .support-clean-heading h1 {font-size:clamp(24px,3vw,34px);line-height:1.2;letter-spacing:-.7px;margin:0 0 8px;color:#17384d;font-style:normal;}
-#support .support-clean-heading p,#support .support-clean-card p {margin:0;color:#617385;font-size:13px;line-height:1.6;}
-#support .support-callback {display:inline-flex;justify-content:center;align-items:center;gap:12px;flex-shrink:0;min-height:44px;padding:11px 18px;border:1px solid #ec781e;border-radius:9px;background:#ed7a22;color:#fff;font-family:inherit;font-size:14px;font-weight:600;line-height:1.4;cursor:pointer;}
-#support .support-callback:hover {background:#d96715;}
-#support .support-callback:disabled {opacity:.65;cursor:default;}
-#support .support-clean-contacts {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
-#support .support-clean-card {padding:22px;border:1px solid #dfe7ee;border-radius:13px;background:linear-gradient(135deg,#fff7ef,#fff 50%);min-width:0;display:flex;flex-direction:column;}
-#support .support-clean-card.technical {background:linear-gradient(135deg,#eef8ff,#fff 50%);}
-#support .support-clean-card.sales .support-eyebrow {color:#a85d25;}
-#support .support-clean-card h2 {font-size:21px;line-height:1.3;margin:0 0 8px;color:#17384d;}
-#support .support-clean-details {margin-top:18px;padding-top:15px;border-top:1px solid #e7edf2;display:grid;gap:9px;font-size:14px;}
-#support .support-phone-text {display:flex;gap:8px;flex-wrap:wrap;}
-#support .support-clean-details a {color:#087ca6;text-decoration:none;overflow-wrap:anywhere;}
-#support .support-clean-details a:hover {text-decoration:underline;}
-#support .support-detailed {margin-top:20px;border:1px solid #dce6ed;border-radius:12px;scroll-margin-top:100px;}
-#support .support-detailed > summary {display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none;padding:18px 22px;cursor:pointer;}
-#support .support-detailed > summary::-webkit-details-marker {display:none;}
-#support .support-detailed > summary strong {display:block;font-size:17px;color:#17384d;margin:0 0 5px;line-height:1.4;}
-#support .support-summary-copy {font-size:12px;color:#697c8c;}
-#support .support-detail-toggle {display:flex;align-items:center;gap:8px;color:#087cab;font-size:12px;flex-shrink:0;}
-#support .support-open-label,#support .support-detailed[open] .support-closed-label {display:none;}
-#support .support-detailed[open] .support-open-label {display:inline;}
-#support .support-detailed[open] > summary {border-bottom:1px solid #e7edf2;}
-#support .support-detailed[open] .support-detail-toggle > span:last-child {transform:rotate(180deg);}
-#support .support-detailed .demo-form-modal.embedded > .demo-form-dialog {box-sizing:border-box;width:100%!important;max-width:none;margin:0!important;padding:22px;border:0;border-radius:0 0 12px 12px;background:#fff;box-shadow:none!important;}
-#support .demo-form-dialog::before {display:none;}
-#support #demoEnquiryForm {gap:16px;}
-#support #demoEnquiryForm .form-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;}
-#support #demoEnquiryForm .form-field {min-width:0;gap:6px;text-transform:none;letter-spacing:0;}
-#support #demoEnquiryForm .form-label-text {font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;}
-#support #demoEnquiryForm .form-label-icon,#support #demoEnquiryForm .input-icon {display:none;}
-#support #demoEnquiryForm .form-field input {min-height:42px;padding:10px 12px;border:1px solid #cad8e7;border-radius:7px;font-size:14px;background:#fff;}
-#support .demo-billing-details {margin:0;border:1px solid #dce9f2;border-radius:9px;background:#f9fbfe;}
-#support .demo-billing-details summary {padding:11px 12px;color:#16476c;font-size:12px;font-weight:600;cursor:pointer;}
-#support .demo-billing-details summary span {font-weight:400;color:#526679;}
-#support .demo-billing-details > .form-grid {padding:0 12px 14px;}
-#support .demo-field-error {display:block;color:#b42318;font-size:12px;line-height:1.4;margin-top:4px;}
-#support .demo-field-error:empty {display:none;}
-#support #demoEnquiryForm input[aria-invalid="true"] {border-color:#c9372c;}
-#support #demoEnquiryForm .checkbox-group {gap:10px;padding:0;margin:0;min-width:0;}
-#support .checkbox-group-title {font-size:12px;text-transform:none;letter-spacing:0;margin-bottom:8px;flex-wrap:wrap;}
-#support .checkbox-group-subtitle {font-size:11px;}
-#support .product-card-inner {display:grid;grid-template-columns:minmax(0,1fr) 18px;grid-template-rows:auto auto;gap:5px;padding:12px;min-height:76px;border-radius:9px;box-shadow:none;}
-#support .product-card-header {display:contents;}
-#support .product-card-icon {display:none;}
-#support .product-card-title {grid-column:1;grid-row:1;font-size:12px;line-height:1.4;margin:0;}
-#support .product-card-badge {grid-column:1;grid-row:2;white-space:normal;padding:0;border:0;background:none;font-size:10px;line-height:1.4;text-transform:none;letter-spacing:0;}
-#support .custom-checkmark {grid-column:2;grid-row:1/3;width:18px;height:18px;align-self:center;}
-#support .purpose-dropdown-trigger {min-height:44px;border-color:#cad8e7;border-radius:7px;font-size:13px;padding:10px 12px;}
-#support .form-actions {display:flex;align-items:center;justify-content:flex-start;gap:16px;flex-wrap:wrap;margin:0;}
-#support .demo-privacy {flex:1;min-width:160px;margin:0;text-align:left;font-size:11px;color:#526679;line-height:1.5;}
-#support .demo-submit-kicker-badge {width:auto;min-width:190px;min-height:44px;padding:5px 14px 5px 15px;gap:10px;border-radius:999px;background:rgba(0,180,216,.12);border:1px solid rgba(0,180,216,.28);box-shadow:0 2px 8px rgba(0,180,216,.12);color:#00b4d8;}
-#support .demo-submit-kicker-badge .demo-kicker-icon {display:block;width:24px;height:24px;flex-shrink:0;cursor:grab;touch-action:none;}
-#support .demo-submit-kicker-badge .submit-btn-text {color:#00b4d8;text-transform:uppercase;font-size:14px!important;letter-spacing:.5px;}
-#support .demo-submit-kicker-badge.is-ready-to-submit {background:rgba(0,180,216,.18);}
-#support .demo-submit-kicker-badge.is-submit-complete {background:rgba(248,140,63,.3);border-color:rgba(248,140,63,.5);}
-#support .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .demo-kicker-icon {transform:translateX(var(--demo-icon-travel,0px));}
-#support .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .submit-btn-text {transform:translateX(var(--demo-text-travel,-34px));}
-#support .demo-submit-kicker-badge.is-dragging .demo-kicker-icon {cursor:grabbing;transition:none;}
-#support .demo-submit-kicker-badge:disabled {opacity:.75;cursor:default;}
-#support #demoFormStatus {margin:0;font-size:12px;text-align:left;overflow-wrap:anywhere;}
-#support .demo-honeypot {position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
-#support :focus-visible {outline:3px solid #ed982b;outline-offset:3px;}
-#support .quick-enquiry-dialog {box-sizing:border-box;width:min(430px,calc(100% - 28px));max-height:calc(100dvh - 32px);overflow-y:auto;padding:26px;margin:auto;border:1px solid #d5e2eb;border-radius:16px;background:#fff;color:#17384d;box-shadow:0 16px 60px #17384d33;}
-#support .quick-enquiry-dialog::backdrop {background:#17384d66;backdrop-filter:blur(3px);}
-#support .quick-enquiry-heading {display:flex;align-items:start;justify-content:space-between;gap:16px;}
-#support .quick-enquiry-heading h2 {font-size:26px;line-height:1.2;margin:0 0 10px;color:#17384d;}
-#support .quick-enquiry-close {border:0;background:transparent;color:#627b8d;font-size:26px;min-width:36px;min-height:36px;cursor:pointer;}
-#support #quickEnquiryIntro {font-size:13px;line-height:1.5;color:#617385;margin:0 0 20px;}
-#support #quickEnquiryForm {display:grid;gap:14px;}
-#support #quickEnquiryForm > label {display:grid;gap:6px;font-size:12px;font-weight:600;color:#2f4a5d;}
-#support #quickEnquiryForm input:not([type=hidden]),#support #quickEnquiryForm select {box-sizing:border-box;font:inherit;font-size:16px;width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid #cfdde7;border-radius:7px;background:#fff;color:#294759;}
-#support #quickEnquiryForm [aria-invalid=true] {border-color:#c9372c!important;}
-#support .quick-field-error {display:block;font-size:12px;font-weight:400;color:#b42318;margin-top:3px;}
-#support .quick-field-error:empty,#support .quick-enquiry-status:empty {display:none;}
-#support .quick-enquiry-privacy {font-size:11px;line-height:1.5;color:#70818f;margin:0;}
-#support .quick-enquiry-status {font-size:13px;line-height:1.5;color:#087ca6;margin:0;overflow-wrap:anywhere;}
-#support .quick-enquiry-status.is-error {color:#b42318;}
-@media(max-width:650px){#support .support-clean-heading{align-items:start;flex-direction:column;gap:16px;}#support .support-clean-contacts,#support #demoEnquiryForm .form-grid{grid-template-columns:1fr;}#support .support-clean-card{padding:18px;}#support .support-detailed > summary{padding:16px;flex-wrap:wrap;}#support .support-detailed .demo-form-modal.embedded > .demo-form-dialog{padding:18px 14px;}#support #demoEnquiryForm .checkbox-group{grid-template-columns:1fr;}#support #demoEnquiryForm .form-field input{font-size:16px;}#support .product-card-inner{min-height:58px;}}
-@media(prefers-reduced-motion:reduce){#support .demo-submit-kicker-badge,#support .demo-submit-kicker-badge *{transition:none;}}
+:is(#support, #quickEnquiryRoot) .support-layout {box-sizing:border-box;width:100%;padding:clamp(20px,3vw,36px);border:1px solid #dce6ed;border-radius:18px;background:#fff;color:#183347;}
+:is(#support, #quickEnquiryRoot) .support-clean-heading {display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px;}
+:is(#support, #quickEnquiryRoot) .support-eyebrow {display:block;color:#087eaa;font-size:11px;font-weight:700;letter-spacing:1.2px;margin-bottom:7px;}
+:is(#support, #quickEnquiryRoot) .support-clean-heading h1 {font-size:clamp(24px,3vw,34px);line-height:1.2;letter-spacing:-.7px;margin:0 0 8px;color:#17384d;font-style:normal;}
+:is(#support, #quickEnquiryRoot) .support-clean-heading p,:is(#support, #quickEnquiryRoot) .support-clean-card p {margin:0;color:#617385;font-size:13px;line-height:1.6;}
+:is(#support, #quickEnquiryRoot) .support-callback {display:inline-flex;justify-content:center;align-items:center;gap:12px;flex-shrink:0;min-height:44px;padding:11px 18px;border:1px solid #ec781e;border-radius:9px;background:#ed7a22;color:#fff;font-family:inherit;font-size:14px;font-weight:600;line-height:1.4;cursor:pointer;}
+:is(#support, #quickEnquiryRoot) .support-callback:hover {background:#d96715;}
+:is(#support, #quickEnquiryRoot) .support-callback:disabled {opacity:.65;cursor:default;}
+:is(#support, #quickEnquiryRoot) .support-clean-contacts {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+:is(#support, #quickEnquiryRoot) .support-clean-card {padding:22px;border:1px solid #dfe7ee;border-radius:13px;background:linear-gradient(135deg,#fff7ef,#fff 50%);min-width:0;display:flex;flex-direction:column;}
+:is(#support, #quickEnquiryRoot) .support-clean-card.technical {background:linear-gradient(135deg,#eef8ff,#fff 50%);}
+:is(#support, #quickEnquiryRoot) .support-clean-card.sales .support-eyebrow {color:#a85d25;}
+:is(#support, #quickEnquiryRoot) .support-clean-card h2 {font-size:21px;line-height:1.3;margin:0 0 8px;color:#17384d;}
+:is(#support, #quickEnquiryRoot) .support-clean-details {margin-top:18px;padding-top:15px;border-top:1px solid #e7edf2;display:grid;gap:9px;font-size:14px;}
+:is(#support, #quickEnquiryRoot) .support-phone-text {display:flex;gap:8px;flex-wrap:wrap;}
+:is(#support, #quickEnquiryRoot) .support-clean-details a {color:#087ca6;text-decoration:none;overflow-wrap:anywhere;}
+:is(#support, #quickEnquiryRoot) .support-clean-details a:hover {text-decoration:underline;}
+:is(#support, #quickEnquiryRoot) .support-detailed {margin-top:20px;border:1px solid #dce6ed;border-radius:12px;scroll-margin-top:100px;}
+:is(#support, #quickEnquiryRoot) .support-detailed > summary {display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none;padding:18px 22px;cursor:pointer;}
+:is(#support, #quickEnquiryRoot) .support-detailed > summary::-webkit-details-marker {display:none;}
+:is(#support, #quickEnquiryRoot) .support-detailed > summary strong {display:block;font-size:17px;color:#17384d;margin:0 0 5px;line-height:1.4;}
+:is(#support, #quickEnquiryRoot) .support-summary-copy {font-size:12px;color:#697c8c;}
+:is(#support, #quickEnquiryRoot) .support-detail-toggle {display:flex;align-items:center;gap:8px;color:#087cab;font-size:12px;flex-shrink:0;}
+:is(#support, #quickEnquiryRoot) .support-open-label,:is(#support, #quickEnquiryRoot) .support-detailed[open] .support-closed-label {display:none;}
+:is(#support, #quickEnquiryRoot) .support-detailed[open] .support-open-label {display:inline;}
+:is(#support, #quickEnquiryRoot) .support-detailed[open] > summary {border-bottom:1px solid #e7edf2;}
+:is(#support, #quickEnquiryRoot) .support-detailed[open] .support-detail-toggle > span:last-child {transform:rotate(180deg);}
+:is(#support, #quickEnquiryRoot) .support-detailed .demo-form-modal.embedded > .demo-form-dialog {box-sizing:border-box;width:100%!important;max-width:none;margin:0!important;padding:22px;border:0;border-radius:0 0 12px 12px;background:#fff;box-shadow:none!important;}
+:is(#support, #quickEnquiryRoot) .demo-form-dialog::before {display:none;}
+:is(#support, #quickEnquiryRoot) #demoEnquiryForm {gap:16px;}
+:is(#support, #quickEnquiryRoot) #demoEnquiryForm .form-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;}
+:is(#support, #quickEnquiryRoot) #demoEnquiryForm .form-field {min-width:0;gap:6px;text-transform:none;letter-spacing:0;}
+:is(#support, #quickEnquiryRoot) #demoEnquiryForm .form-label-text {font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;}
+:is(#support, #quickEnquiryRoot) #demoEnquiryForm .form-label-icon,:is(#support, #quickEnquiryRoot) #demoEnquiryForm .input-icon {display:none;}
+:is(#support, #quickEnquiryRoot) #demoEnquiryForm .form-field input {min-height:42px;padding:10px 12px;border:1px solid #cad8e7;border-radius:7px;font-size:14px;background:#fff;}
+:is(#support, #quickEnquiryRoot) .demo-billing-details {margin:0;border:1px solid #dce9f2;border-radius:9px;background:#f9fbfe;}
+:is(#support, #quickEnquiryRoot) .demo-billing-details summary {padding:11px 12px;color:#16476c;font-size:12px;font-weight:600;cursor:pointer;}
+:is(#support, #quickEnquiryRoot) .demo-billing-details summary span {font-weight:400;color:#526679;}
+:is(#support, #quickEnquiryRoot) .demo-billing-details > .form-grid {padding:0 12px 14px;}
+:is(#support, #quickEnquiryRoot) .demo-field-error {display:block;color:#b42318;font-size:12px;line-height:1.4;margin-top:4px;}
+:is(#support, #quickEnquiryRoot) .demo-field-error:empty {display:none;}
+:is(#support, #quickEnquiryRoot) #demoEnquiryForm input[aria-invalid="true"] {border-color:#c9372c;}
+:is(#support, #quickEnquiryRoot) #demoEnquiryForm .checkbox-group {gap:10px;padding:0;margin:0;min-width:0;}
+:is(#support, #quickEnquiryRoot) .checkbox-group-title {font-size:12px;text-transform:none;letter-spacing:0;margin-bottom:8px;flex-wrap:wrap;}
+:is(#support, #quickEnquiryRoot) .checkbox-group-subtitle {font-size:11px;}
+:is(#support, #quickEnquiryRoot) .product-card-inner {display:grid;grid-template-columns:minmax(0,1fr) 18px;grid-template-rows:auto auto;gap:5px;padding:12px;min-height:76px;border-radius:9px;box-shadow:none;}
+:is(#support, #quickEnquiryRoot) .product-card-header {display:contents;}
+:is(#support, #quickEnquiryRoot) .product-card-icon {display:none;}
+:is(#support, #quickEnquiryRoot) .product-card-title {grid-column:1;grid-row:1;font-size:12px;line-height:1.4;margin:0;}
+:is(#support, #quickEnquiryRoot) .product-card-badge {grid-column:1;grid-row:2;white-space:normal;padding:0;border:0;background:none;font-size:10px;line-height:1.4;text-transform:none;letter-spacing:0;}
+:is(#support, #quickEnquiryRoot) .custom-checkmark {grid-column:2;grid-row:1/3;width:18px;height:18px;align-self:center;}
+:is(#support, #quickEnquiryRoot) .purpose-dropdown-trigger {min-height:44px;border-color:#cad8e7;border-radius:7px;font-size:13px;padding:10px 12px;}
+:is(#support, #quickEnquiryRoot) .form-actions {display:flex;align-items:center;justify-content:flex-start;gap:16px;flex-wrap:wrap;margin:0;}
+:is(#support, #quickEnquiryRoot) .demo-privacy {flex:1;min-width:160px;margin:0;text-align:left;font-size:11px;color:#526679;line-height:1.5;}
+:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge {width:auto;min-width:190px;min-height:44px;padding:5px 14px 5px 15px;gap:10px;border-radius:999px;background:rgba(0,180,216,.12);border:1px solid rgba(0,180,216,.28);box-shadow:0 2px 8px rgba(0,180,216,.12);color:#00b4d8;}
+:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge .demo-kicker-icon {display:block;width:24px;height:24px;flex-shrink:0;cursor:grab;touch-action:none;}
+:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge .submit-btn-text {color:#00b4d8;text-transform:uppercase;font-size:14px!important;letter-spacing:.5px;}
+:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge.is-ready-to-submit {background:rgba(0,180,216,.18);}
+:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge.is-submit-complete {background:rgba(248,140,63,.3);border-color:rgba(248,140,63,.5);}
+:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .demo-kicker-icon {transform:translateX(var(--demo-icon-travel,0px));}
+:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .submit-btn-text {transform:translateX(var(--demo-text-travel,-34px));}
+:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge.is-dragging .demo-kicker-icon {cursor:grabbing;transition:none;}
+:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge:disabled {opacity:.75;cursor:default;}
+:is(#support, #quickEnquiryRoot) #demoFormStatus {margin:0;font-size:12px;text-align:left;overflow-wrap:anywhere;}
+:is(#support, #quickEnquiryRoot) .demo-honeypot {position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+:is(#support, #quickEnquiryRoot) :focus-visible {outline:3px solid #ed982b;outline-offset:3px;}
+:is(#support, #quickEnquiryRoot) .quick-enquiry-dialog {box-sizing:border-box;width:min(430px,calc(100% - 28px));max-height:calc(100dvh - 32px);overflow-y:auto;padding:26px;margin:auto;border:1px solid #d5e2eb;border-radius:16px;background:#fff;color:#17384d;box-shadow:0 16px 60px #17384d33;}
+:is(#support, #quickEnquiryRoot) .quick-enquiry-dialog::backdrop {background:#17384d66;backdrop-filter:blur(3px);}
+:is(#support, #quickEnquiryRoot) .quick-enquiry-heading {display:flex;align-items:start;justify-content:space-between;gap:16px;}
+:is(#support, #quickEnquiryRoot) .quick-enquiry-heading h2 {font-size:26px;line-height:1.2;margin:0 0 10px;color:#17384d;}
+:is(#support, #quickEnquiryRoot) .quick-enquiry-close {border:0;background:transparent;color:#627b8d;font-size:26px;min-width:36px;min-height:36px;cursor:pointer;}
+:is(#support, #quickEnquiryRoot) #quickEnquiryIntro {font-size:13px;line-height:1.5;color:#617385;margin:0 0 20px;}
+:is(#support, #quickEnquiryRoot) #quickEnquiryForm {display:grid;gap:14px;}
+:is(#support, #quickEnquiryRoot) #quickEnquiryForm > label {display:grid;gap:6px;font-size:12px;font-weight:600;color:#2f4a5d;}
+:is(#support, #quickEnquiryRoot) #quickEnquiryForm input:not([type=hidden]),:is(#support, #quickEnquiryRoot) #quickEnquiryForm select {box-sizing:border-box;font:inherit;font-size:16px;width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid #cfdde7;border-radius:7px;background:#fff;color:#294759;}
+:is(#support, #quickEnquiryRoot) #quickEnquiryForm [aria-invalid=true] {border-color:#c9372c!important;}
+:is(#support, #quickEnquiryRoot) .quick-field-error {display:block;font-size:12px;font-weight:400;color:#b42318;margin-top:3px;}
+:is(#support, #quickEnquiryRoot) .quick-field-error:empty,:is(#support, #quickEnquiryRoot) .quick-enquiry-status:empty {display:none;}
+:is(#support, #quickEnquiryRoot) .quick-enquiry-privacy {font-size:11px;line-height:1.5;color:#70818f;margin:0;}
+:is(#support, #quickEnquiryRoot) .quick-enquiry-status {font-size:13px;line-height:1.5;color:#087ca6;margin:0;overflow-wrap:anywhere;}
+:is(#support, #quickEnquiryRoot) .quick-enquiry-status.is-error {color:#b42318;}
+@media(max-width:650px){:is(#support, #quickEnquiryRoot) .support-clean-heading{align-items:start;flex-direction:column;gap:16px;}:is(#support, #quickEnquiryRoot) .support-clean-contacts,:is(#support, #quickEnquiryRoot) #demoEnquiryForm .form-grid{grid-template-columns:1fr;}:is(#support, #quickEnquiryRoot) .support-clean-card{padding:18px;}:is(#support, #quickEnquiryRoot) .support-detailed > summary{padding:16px;flex-wrap:wrap;}:is(#support, #quickEnquiryRoot) .support-detailed .demo-form-modal.embedded > .demo-form-dialog{padding:18px 14px;}:is(#support, #quickEnquiryRoot) #demoEnquiryForm .checkbox-group{grid-template-columns:1fr;}:is(#support, #quickEnquiryRoot) #demoEnquiryForm .form-field input{font-size:16px;}:is(#support, #quickEnquiryRoot) .product-card-inner{min-height:58px;}}
+@media(prefers-reduced-motion:reduce){:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge,:is(#support, #quickEnquiryRoot) .demo-submit-kicker-badge *{transition:none;}}
+
+/* Persistent site-wide callback entry; dialog lives outside page visibility containers. */
+#quickEnquiryRoot .quick-enquiry-floating {position:fixed;right:22px;bottom:calc(18px + env(safe-area-inset-bottom, 0px));z-index:1000;display:flex;align-items:center;gap:10px;min-height:48px;padding:12px 18px;border:1px solid #087ca6;border-radius:14px;background:linear-gradient(115deg,#087eaa,#12658b);color:#fff;box-shadow:0 6px 22px #17465c26;font:600 14px/1.4 Arial,sans-serif;cursor:pointer;}
+#quickEnquiryRoot .quick-enquiry-floating[hidden] {display:none;}
+#quickEnquiryRoot .quick-enquiry-floating > span:first-child {display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:#ffffff24;font-size:18px;}
+#quickEnquiryRoot .quick-enquiry-floating:hover {background:#09678e;}
+@media(max-width:600px){#quickEnquiryRoot .quick-enquiry-floating {right:14px;min-height:46px;padding:10px 14px;font-size:13px;}}

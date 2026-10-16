@@ -1,6 +1,71 @@
 /* Delegated interactions work on support.html and the dynamically loaded home page. */
 (() => {
-  let opener;
+  if (window.taxPowerQuickEnquiryInitialized) return;
+  window.taxPowerQuickEnquiryInitialized = true;
+  let opener, dialog, loading, autoTimer;
+  let shown = false;
+  const sessionKey = 'taxpower-quick-enquiry-shown';
+  try { shown = sessionStorage.getItem(sessionKey) === '1'; } catch (_) {}
+  const root = document.createElement('div');
+  root.id = 'quickEnquiryRoot';
+  const floating = document.createElement('button');
+  floating.type = 'button';
+  floating.className = 'quick-enquiry-floating';
+  floating.dataset.quickEnquiryOpen = '';
+  floating.setAttribute('aria-haspopup', 'dialog');
+  floating.setAttribute('aria-controls', 'quickEnquiryDialog');
+  floating.innerHTML = '<span aria-hidden="true">✉</span><span>Quick Enquiry</span>';
+  root.appendChild(floating);
+  document.body.appendChild(root);
+
+  function adoptDialog(candidate) {
+    if (!dialog && candidate) {
+      dialog = candidate;
+      root.appendChild(dialog);
+    }
+    // The home page may load its support section after a standalone copy was fetched.
+    document.querySelectorAll('#quickEnquiryDialog').forEach(node => {
+      if (dialog && node !== dialog) node.remove();
+    });
+    return dialog;
+  }
+  function ensureDialog() {
+    const existing = adoptDialog(document.getElementById('quickEnquiryDialog'));
+    if (existing) return Promise.resolve(existing);
+    if (loading) return loading;
+    loading = fetch('support.html', {cache: 'no-cache'})
+      .then(response => { if (!response.ok) throw new Error('Unable to load enquiry'); return response.text(); })
+      .then(html => {
+        const page = new DOMParser().parseFromString(html, 'text/html');
+        const candidate = document.getElementById('quickEnquiryDialog') || page.getElementById('quickEnquiryDialog');
+        if (!candidate) throw new Error('Enquiry form unavailable');
+        return adoptDialog(candidate);
+      }).finally(() => { loading = null; });
+    return loading;
+  }
+  function showEnquiry(trigger) {
+    if (!dialog || dialog.open) return;
+    opener = trigger || floating;
+    dialog.showModal();
+    floating.hidden = true;
+    shown = true;
+    clearTimeout(autoTimer);
+    try { sessionStorage.setItem(sessionKey, '1'); } catch (_) {}
+    dialog.querySelector('input[name="name"]').focus();
+  }
+  function scheduleAutoPopup() {
+    if (shown || autoTimer) return;
+    autoTimer = setTimeout(() => {
+      autoTimer = null;
+      if (shown) return;
+      // Wait if the visitor is already typing or using another dialog.
+      if (document.hidden || document.querySelector('dialog[open]') ||
+          document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')) {
+        scheduleAutoPopup(); return;
+      }
+      showEnquiry();
+    }, 2500);
+  }
   function openDetailedFromHash() {
     if (location.hash === '#demo-enquiry') {
       const details = document.getElementById('demo-enquiry');
@@ -9,11 +74,14 @@
   }
   document.addEventListener('click', event => {
     const trigger = event.target.closest('[data-quick-enquiry-open]');
-    const dialog = document.getElementById('quickEnquiryDialog');
-    if (trigger && dialog) {
-      opener = trigger;
-      dialog.showModal();
-      dialog.querySelector('input[name="name"]').focus();
+    if (trigger) {
+      if (dialog) showEnquiry(trigger);
+      else {
+        trigger.disabled = true;
+        ensureDialog().then(() => showEnquiry(trigger)).catch(() => {
+          window.location.href = 'support.html';
+        }).finally(() => { trigger.disabled = false; });
+      }
     }
     if (event.target.closest('[data-quick-enquiry-close]') && dialog) dialog.close();
     if (event.target.closest('a[href$="#demo-enquiry"], [data-demo-form-open]')) {
@@ -22,11 +90,18 @@
     }
   }, true);
   document.addEventListener('close', event => {
-    if (event.target.id === 'quickEnquiryDialog' && opener?.isConnected) opener.focus();
+    if (event.target.id !== 'quickEnquiryDialog') return;
+    floating.hidden = false;
+    if (opener?.isConnected) opener.focus();
   }, true);
   window.addEventListener('hashchange', openDetailedFromHash);
-  document.addEventListener('taxpower:sections-loaded', openDetailedFromHash);
+  document.addEventListener('taxpower:sections-loaded', () => {
+    openDetailedFromHash();
+    adoptDialog(document.getElementById('quickEnquiryDialog'));
+    if (dialog) scheduleAutoPopup();
+  });
   openDetailedFromHash();
+  ensureDialog().then(scheduleAutoPopup).catch(() => { /* Floating button retries on demand. */ });
 
   function errorFor(input, message) {
     input.setAttribute('aria-invalid', String(Boolean(message)));
