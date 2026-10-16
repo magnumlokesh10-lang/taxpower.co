@@ -16,3 +16,9 @@ The existing 12 columns retain their order; column 13 becomes Enquiry Reference.
 The browser expects readable JSON `{ "result": "success", "reference": "TP-…" }`. Existing backend versions returning `{ "result": "success" }` remain compatible but do not provide a reference or the new server protections. If access settings or CORS prevent reading a response, the form retains details and reports that confirmation was unavailable; it never assumes that saving failed or succeeded. Retry IDs are retained in the current page session. Reloading starts a new session.
 
 Saving the row is authoritative. Notification failures are logged separately and do not turn a successful save into an error. Monitor Apps Script executions for failed alerts. GitHub changes alone do not deploy Apps Script. No live test enquiry was submitted during the code update.
+
+## Quick callback enquiries (October 16 update)
+
+Redeploy the updated script to support the new callback popup. It sends `enquiryType=quick` with name, mobile, email, product and `purpose=Request a Callback`. Company, city, state, GSTIN and address are intentionally blank for quick requests. Detailed requests still require all existing mandatory fields. Both flows share the same 13 sheet columns, confirmed-save responses, deduplication and notification recipients. No additional service or SMTP setup is required for this popup.
+
+Check one quick request and one detailed request after deploying. Verify the product is saved correctly for both the popup select and detailed-form checkboxes. Website updates do not redeploy Apps Script automatically.

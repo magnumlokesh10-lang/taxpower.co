@@ -48,20 +48,25 @@ var FIELDS = [
 ];
 
 function validateEnquiry(data) {
-  ['company', 'name', 'city', 'state', 'email', 'mobile', 'product', 'purpose', 'requestId'].forEach(function (key) {
+  var quick = data.enquiryType === 'quick';
+  if (data.enquiryType && !quick && data.enquiryType !== 'detailed') throw new Error('Invalid enquiry type.');
+  (quick ? ['name', 'email', 'mobile', 'product', 'purpose', 'requestId'] : ['company', 'name', 'city', 'state', 'email', 'mobile', 'product', 'purpose', 'requestId']).forEach(function (key) {
     data[key] = String(data[key] || '').trim();
     if (!data[key] || data[key].length > 250) throw new Error('Please check required fields.');
   });
+  if (quick) {
+    ['company', 'city', 'state', 'gstin', 'address'].forEach(function (key) { data[key] = ''; });
+  }
   if (data.website) throw new Error('Request rejected.');
   if (!/^TP-[a-f0-9-]{36}$/i.test(data.requestId)) throw new Error('Invalid reference.');
   if (!/^[0-9]{10}$/.test(data.mobile) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) throw new Error('Invalid contact details.');
   data.gstin = String(data.gstin || '').trim().toUpperCase();
   if (data.gstin && !/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$/.test(data.gstin)) throw new Error('Invalid GSTIN.');
   if (String(data.address || '').length > 500 || String(data.page || '').length > 2000) throw new Error('Details too long.');
-  if (["01 - Jammu & Kashmir", "02 - Himachal Pradesh", "03 - Punjab", "04 - Chandigarh", "05 - Uttarakhand", "06 - Haryana", "07 - Delhi", "08 - Rajasthan", "09 - Uttar Pradesh", "10 - Bihar", "11 - Sikkim", "12 - Arunachal Pradesh", "13 - Nagaland", "14 - Manipur", "15 - Mizoram", "16 - Tripura", "17 - Meghalaya", "18 - Assam", "19 - West Bengal", "20 - Jharkhand", "21 - Odisha", "22 - Chhattisgarh", "23 - Madhya Pradesh", "24 - Gujarat", "26 - Dadra & Nagar Haveli and Daman & Diu", "27 - Maharashtra", "29 - Karnataka", "30 - Goa", "31 - Lakshadweep", "32 - Kerala", "33 - Tamil Nadu", "34 - Puducherry", "35 - Andaman & Nicobar Islands", "36 - Telangana", "37 - Andhra Pradesh", "38 - Ladakh", "97 - Other Territory", "99 - Other Country"].indexOf(data.state) < 0) throw new Error('Invalid state.');
+  if (!quick && ["01 - Jammu & Kashmir", "02 - Himachal Pradesh", "03 - Punjab", "04 - Chandigarh", "05 - Uttarakhand", "06 - Haryana", "07 - Delhi", "08 - Rajasthan", "09 - Uttar Pradesh", "10 - Bihar", "11 - Sikkim", "12 - Arunachal Pradesh", "13 - Nagaland", "14 - Manipur", "15 - Mizoram", "16 - Tripura", "17 - Meghalaya", "18 - Assam", "19 - West Bengal", "20 - Jharkhand", "21 - Odisha", "22 - Chhattisgarh", "23 - Madhya Pradesh", "24 - Gujarat", "26 - Dadra & Nagar Haveli and Daman & Diu", "27 - Maharashtra", "29 - Karnataka", "30 - Goa", "31 - Lakshadweep", "32 - Kerala", "33 - Tamil Nadu", "34 - Puducherry", "35 - Andaman & Nicobar Islands", "36 - Telangana", "37 - Andhra Pradesh", "38 - Ladakh", "97 - Other Territory", "99 - Other Country"].indexOf(data.state) < 0) throw new Error('Invalid state.');
   var selected = data.product.split(', ');
   if (!selected.length || selected.length > 3 || selected.some(function (item) { return ["TaxPower GST Return", "TaxPower E-Invoice & E-Way Bill", "TaxPower TDS Return"].indexOf(item) < 0; })) throw new Error('Invalid products.');
-  if (['Free Trial / Demo', 'Want to Purchase', 'Pricing or Quotation', 'Renewal of License'].indexOf(data.purpose) < 0) throw new Error('Invalid purpose.');
+  if ((quick ? ['Request a Callback'] : ['Free Trial / Demo', 'Want to Purchase', 'Pricing or Quotation', 'Renewal of License']).indexOf(data.purpose) < 0) throw new Error('Invalid purpose.');
 }
 
 function doPost(e) {

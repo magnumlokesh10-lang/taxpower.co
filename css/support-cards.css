@@ -1,171 +1,84 @@
-#support .support-layout > .section-inner > .support-page-title { font-size:clamp(26px,3vw,40px); line-height:1.2; letter-spacing:-.035em; color:#163f50; }
-    #support .support-layout > .section-inner > .support-page-title span { color:#087e9a; }
-    /* Contact cards only; embedded enquiry form retains its existing styles. */
-    #support .support-contact-refined { margin-top:20px; }
-    #support .support-contact-refined > h2 { font-size:22px; letter-spacing:-.025em; margin:0 0 18px; color:#173f50; }
-    #support .support-contact-refined .support-contact-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px; }
-    #support .support-contact-refined .support-contact-card {
-      --support-accent:#087b96; --support-soft:#d5f2fa; --support-border:#bfe5ef; --support-stripe:#00b4d8;
-      display:flex; flex-direction:column; min-width:0; padding:16px 20px;
-      border:1px solid var(--support-border); border-radius:14px; border-top:3px solid var(--support-stripe);
-      background:linear-gradient(125deg,#f7fdff,#e7f7fc);
-      box-shadow:0 7px 22px #15456206; transform:none; transition:none;
-    }
-    #support .support-contact-refined .support-sales {
-      --support-accent:#a94d13; --support-soft:#ffe4d2; --support-border:#f3d4bf; --support-stripe:#f47a22;
-      background:linear-gradient(125deg,#fffaf6,#fff0e3);
-    }
-    #support .support-contact-refined .support-contact-card:hover { transform:none; border-color:var(--support-border); box-shadow:0 7px 22px #15456206; }
-    #support .support-contact-refined .support-card-top { display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:4px; }
-    #support .support-contact-refined .support-card-kicker { font-size:9px; letter-spacing:.13em; font-weight:750; color:var(--support-accent); }
-    #support .support-contact-refined .support-card-art { width:58px; height:44px; flex-shrink:0; color:var(--support-accent); }
-    #support .support-contact-refined h3 { margin:0 0 7px; font-size:20px; line-height:1.3; letter-spacing:-.035em; color:var(--support-accent); }
-    #support .support-contact-refined p { font-size:12px; line-height:1.65; margin:0; color:#536e7c; max-width:500px; }
-    #support .support-contact-refined .support-topic-tags { display:flex; flex-wrap:wrap; gap:7px; list-style:none; padding:0; margin:10px 0 12px; }
-    #support .support-contact-refined .support-topic-tags li { font-size:10px; line-height:1.5; padding:4px 8px; color:var(--support-accent); background:#ffffffb3; border:1px solid var(--support-border); border-radius:6px; }
-    #support .support-contact-refined .support-card-bottom { margin-top:auto; border-top:1px solid var(--support-border); padding-top:10px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; }
-    #support .support-contact-refined .support-email { display:flex; flex-direction:column; gap:5px; color:var(--support-accent); text-decoration:none; min-height:44px; justify-content:center; overflow-wrap:anywhere; }
-    #support .support-contact-refined .support-email > span { font-size:10px; color:#536e7c; }
-    #support .support-contact-refined .support-email strong { font-size:12px; font-weight:650; }
-    #support .support-contact-refined .support-card-action { display:inline-flex; align-items:center; justify-content:center; gap:14px; min-height:44px; padding:10px 13px; border:1px solid var(--support-border); border-radius:9px; background:var(--support-soft); color:var(--support-accent); font-size:11px; font-weight:700; text-decoration:none; }
-    #support .support-contact-refined a:hover { text-decoration:underline; text-underline-offset:3px; }
-    #support .support-contact-refined a:focus-visible { outline:3px solid var(--support-accent); outline-offset:4px; }
-    @media(max-width:700px) {
-      #support .support-contact-refined .support-contact-grid { grid-template-columns:1fr; gap:14px; }
-      #support .support-contact-refined .support-contact-card { padding:15px 17px; }
-      #support .support-contact-refined h3 { font-size:19px; }
-      #support .support-contact-refined .support-card-art { width:54px; height:41px; }
-    }
-
-#support .support-direct-phones { margin:0 0 12px; font-size:13px; font-weight:650; }
-#support .support-direct-phones a { color:#087b96; text-decoration:none; }
-#support .support-contact-refined button.support-card-action { cursor:pointer; font-family:inherit; }
-
-/* Compact, non-interactive notice inside the form panel. */
-#support .support-form-badge-row { display:flex; justify-content:flex-end; margin:0 0 8px; }
-#support .support-new-user-badge { display:inline-flex; align-items:center; gap:6px; padding:7px 11px; border:1px solid #efb7b7; border-radius:8px; color:#bd2424; background:#fff1f1; font-size:11px; line-height:1.3; font-weight:700; white-space:nowrap; box-shadow:0 2px 5px #bd242408; }
-#support .support-new-user-badge > span { color:#d32f2f; font-size:13px; }
-@media(max-width:480px) { #support .support-new-user-badge { font-size:10px; padding:6px 9px; } }
-
-/* One full-width panel aligns support content with neighbouring page panels. */
-#support .support-layout { box-sizing:border-box; width:100%; min-width:0; padding:clamp(20px,3vw,42px); border:1px solid #cfe3ec; border-radius:22px; background:linear-gradient(135deg,#ffffffed,#f3faffd9); }
-#support .support-layout > .section-inner { width:100%; max-width:none; margin:0; }
-#support .support-layout .support-contact-grid { width:100%; }
-#support .support-layout > .demo-form-modal.embedded { width:100%; }
-#support .support-layout > .demo-form-modal.embedded > .demo-form-dialog { box-sizing:border-box; width:100% !important; max-width:none; margin:24px 0 0 !important; padding:20px clamp(16px,2.4vw,32px); }
-#support .support-layout #demo-enquiry { scroll-margin-top:100px; }
-@media(max-width:700px) { #support .support-layout { padding:18px 14px; border-radius:16px; } }
-
-/* Demo enquiry products: icon beside the name, subtitle below the name. */
-#demoEnquiryForm .product-card-inner {
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr) 20px;
-  grid-template-rows: auto auto;
-  align-content: center;
-  align-items: center;
-  gap: 5px 10px;
-  min-height: 84px;
-}
-#demoEnquiryForm .product-card-header { display: contents; }
-#demoEnquiryForm .product-card-icon { grid-column: 1; grid-row: 1 / 3; }
-#demoEnquiryForm .custom-checkmark { grid-column: 3; grid-row: 1 / 3; }
-#demoEnquiryForm .product-card-title { grid-column: 2; grid-row: 1; margin: 0; min-width: 0; }
-#demoEnquiryForm .product-card-badge { grid-column: 2; grid-row: 2; max-width: 100%; box-sizing: border-box; }
-
-/* Compact sales enquiry form. Keep the surrounding section width unchanged. */
-#support .demo-form-heading h2 { font-size:clamp(22px,2.3vw,30px); line-height:1.25; }
-#support .demo-form-heading p { margin:8px auto 0; max-width:620px; font-size:14px; }
-#support #demoEnquiryForm .form-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 18px; }
-#support #demoEnquiryForm .form-field { min-width:0; }
-#support #demoEnquiryForm .form-label-icon { display:none; }
-#support .demo-billing-details { margin:14px 0; border:1px solid #dce9f2; border-radius:12px; background:linear-gradient(120deg,#fff8f0,#fff 45%,#f2f9ff); }
-#support .demo-billing-details summary { padding:12px 14px; cursor:pointer; font-weight:600; color:#16476c; }
-#support .demo-billing-details summary span { font-weight:400; color:#526679; }
-#support .demo-billing-details > .form-grid { padding:0 14px 14px; }
-#support .demo-field-error { display:block; color:#b42318; font-size:12px; line-height:1.4; margin-top:4px; }
-#support .demo-field-error:empty { display:none; }
-#support #demoEnquiryForm input[aria-invalid="true"] { border-color:#c9372c; }
-#support .demo-privacy { margin:16px 0 10px; font-size:12px; color:#526679; text-align:center; }
-#support .demo-submit-kicker-badge { min-width:190px; width:auto; max-width:100%; height:auto; min-height:46px; padding:12px 20px; gap:10px; border-radius:12px; background:linear-gradient(120deg,#0879bd,#135b98); color:white; box-shadow:0 4px 12px #0879bd22; }
-#support .demo-submit-kicker-badge .submit-btn-text { color:inherit; font-size:14px; transform:none; }
-#support .demo-submit-kicker-badge .demo-kicker-icon { width:22px; height:22px; cursor:inherit; }
-#support .demo-submit-kicker-badge:disabled { opacity:.75; cursor:default; }
-#support #demoEnquiryForm :focus-visible { outline:3px solid #ed982b; outline-offset:3px; }
-#support .demo-honeypot { position:absolute; left:-10000px; width:1px; height:1px; overflow:hidden; }
-#support #demoFormStatus { overflow-wrap:anywhere; }
-@media(max-width:600px) { #support #demoEnquiryForm .form-grid { grid-template-columns:1fr; gap:12px; } #support .demo-submit-kicker-badge { width:100%; } }
-
-/* Reference layout: a clean enquiry panel with direct-contact cards alongside. */
-#support .support-layout { padding:clamp(16px,2.5vw,32px); background:#fff; }
-#support .support-sales-layout { display:grid; grid-template-columns:minmax(0,1.65fr) minmax(285px,1fr); gap:24px; align-items:start; margin-top:24px; }
-#support .support-form-column, #support .support-contact-column { min-width:0; }
-#support .support-sales-layout .demo-form-modal.embedded > .demo-form-dialog { box-sizing:border-box; width:100% !important; max-width:none; margin:0 !important; padding:24px; border:1px solid #d9e4ef; border-radius:16px; background:#fff; box-shadow:0 3px 12px #233e5b0b !important; }
-#support .support-sales-layout .demo-form-dialog::before { display:none; }
-#support .support-sales-layout .support-form-badge-row { margin:0 0 8px; }
-#support .support-sales-layout .support-new-user-badge { background:#fff7ed; border-color:#ffdfb9; color:#a74b09; font-size:10px; padding:5px 9px; }
-#support .support-sales-layout .demo-form-heading { text-align:left; margin:0 0 16px; }
-#support .support-sales-layout .demo-heading-kicker-badge { margin:0 0 8px; padding:0; border:0; background:none; box-shadow:none; }
-#support .support-sales-layout .demo-form-heading h2 { margin:0; font-size:clamp(21px,2vw,27px); line-height:1.25; text-align:left; }
-#support .support-sales-layout .demo-form-heading p { margin:8px 0 0; font-size:12px; line-height:1.6; text-align:left; }
-#support .support-sales-layout .form-start-divider { margin:0 0 14px; }
-#support .support-sales-layout #demoEnquiryForm { gap:16px; }
-#support .support-sales-layout #demoEnquiryForm .form-grid { gap:13px 16px; }
-#support .support-sales-layout .form-field { gap:6px; text-transform:none; letter-spacing:0; }
-#support .support-sales-layout .form-label-text { font-size:11px; font-weight:600; text-transform:none; letter-spacing:0; }
-#support .support-sales-layout .input-icon { display:none; }
-#support .support-sales-layout .form-field input { min-height:40px; padding:9px 11px; border-color:#cad8e7; border-radius:7px; font-size:13px; background:#fff; }
-#support .support-sales-layout .form-field input[aria-invalid="true"] { border-color:#c9372c; }
-#support .support-sales-layout .demo-billing-details { margin:0; background:#f9fbfe; border-radius:9px; }
-#support .support-sales-layout .demo-billing-details summary { padding:11px 12px; font-size:12px; }
-#support .support-sales-layout .checkbox-group { gap:8px; padding:0; margin:0; min-width:0; }
-#support .support-sales-layout .checkbox-group-title { font-size:11px; text-transform:none; letter-spacing:0; margin-bottom:8px; flex-wrap:wrap; }
-#support .support-sales-layout .checkbox-group-subtitle { font-size:10px; }
-#support .support-sales-layout .product-card-inner { grid-template-columns:minmax(0,1fr) 16px; gap:5px; padding:10px; min-height:78px; border-radius:9px; box-shadow:none; }
-#support .support-sales-layout .product-card-icon { display:none; }
-#support .support-sales-layout .product-card-title { grid-column:1; font-size:11px; line-height:1.4; }
-#support .support-sales-layout .product-card-badge { grid-column:1; white-space:normal; padding:0; border:0; background:none; font-size:9px; line-height:1.4; text-transform:none; letter-spacing:0; }
-#support .support-sales-layout .custom-checkmark { grid-column:2; width:16px; height:16px; }
-#support .support-sales-layout .purpose-dropdown-trigger { min-height:42px; border-color:#cad8e7; border-radius:7px; font-size:12px; padding:10px 12px; }
-#support .support-sales-layout .form-actions { display:flex; align-items:center; justify-content:flex-start; gap:14px; flex-wrap:wrap; margin:0; }
-#support .support-sales-layout .demo-submit-kicker-badge { min-width:155px; min-height:42px; padding:10px 16px; background:linear-gradient(110deg,#ff9900,#f47a22); border:0; border-radius:24px; box-shadow:0 4px 9px #f47a2220; }
-#support .support-sales-layout .demo-submit-kicker-badge .submit-btn-text { font-size:12px; text-transform:none; letter-spacing:0; color:#172536; }
-#support .support-sales-layout .demo-submit-kicker-badge .demo-kicker-icon { display:none; }
-#support .support-sales-layout .demo-privacy { flex:1; min-width:150px; margin:0; text-align:left; font-size:10px; line-height:1.5; }
-#support .support-sales-layout .support-contact-refined { margin:0; }
-#support .support-sales-layout .support-contact-refined > h2 { font-size:16px; margin:0 0 12px; }
-#support .support-sales-layout .support-contact-grid { grid-template-columns:1fr; gap:14px; }
-#support .support-sales-layout .support-contact-card { padding:18px; border:1px solid #d9e4ef; border-radius:14px; background:#fff; box-shadow:none; }
-#support .support-sales-layout .support-contact-card h3 { font-size:18px; }
-#support .support-sales-layout .support-card-art { width:44px; height:36px; }
-#support .support-sales-layout .support-card-bottom { gap:10px; }
-#support .support-sales-layout #demoFormStatus { margin:0; font-size:12px; text-align:left; }
-@media(max-width:960px) {
-  #support .support-sales-layout { grid-template-columns:1fr; }
-  #support .support-sales-layout .support-contact-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-}
-@media(max-width:600px) {
-  #support .support-sales-layout { gap:20px; }
-  #support .support-sales-layout .demo-form-modal.embedded > .demo-form-dialog { padding:18px 14px; }
-  #support .support-sales-layout #demoEnquiryForm .form-grid, #support .support-sales-layout .support-contact-grid { grid-template-columns:1fr; }
-  #support .support-sales-layout .checkbox-group { grid-template-columns:1fr; }
-  #support .support-sales-layout .product-card-inner { min-height:56px; }
-  #support .support-sales-layout .demo-submit-kicker-badge { width:auto; }
-}
-
-/* Restore the logo slider button and remove the heading's extra top row. */
-#support .support-sales-layout .demo-form-modal.embedded > .demo-form-dialog { position:relative; padding-top:18px; }
-#support .support-sales-layout .support-form-badge-row { position:absolute; top:16px; right:24px; margin:0; }
-#support .support-sales-layout .demo-heading-kicker-badge { padding-right:130px; min-height:26px; box-sizing:border-box; }
-#support .support-sales-layout .demo-form-heading h2,
-#support .support-sales-layout .demo-form-heading h2 .heading-highlight { font-style:normal; }
-#support .support-sales-layout .demo-submit-kicker-badge { width:auto; min-width:190px; min-height:44px; padding:5px 14px 5px 15px; gap:10px; border-radius:999px; background:rgba(0,180,216,.12); border:1px solid rgba(0,180,216,.28); box-shadow:0 2px 8px rgba(0,180,216,.12); color:#00b4d8; }
-#support .support-sales-layout .demo-submit-kicker-badge .demo-kicker-icon { display:block; width:24px; height:24px; flex-shrink:0; cursor:grab; touch-action:none; }
-#support .support-sales-layout .demo-submit-kicker-badge .submit-btn-text { color:#00b4d8; text-transform:uppercase; font-size:14px !important; letter-spacing:.5px; }
-#support .support-sales-layout .demo-submit-kicker-badge.is-ready-to-submit { background:rgba(0,180,216,.18); }
-#support .support-sales-layout .demo-submit-kicker-badge.is-submit-complete { background:rgba(248,140,63,.3); border-color:rgba(248,140,63,.5); }
-#support .support-sales-layout .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .demo-kicker-icon { transform:translateX(var(--demo-icon-travel,0px)); }
-#support .support-sales-layout .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .submit-btn-text { transform:translateX(var(--demo-text-travel,-34px)); }
-#support .support-sales-layout .demo-submit-kicker-badge.is-dragging .demo-kicker-icon { cursor:grabbing; transition:none; }
-@media(max-width:600px) { #support .support-sales-layout .support-form-badge-row { right:14px; } }
-@media(max-width:380px) { #support .support-sales-layout .demo-heading-kicker-badge .demo-kicker-text { font-size:9px; letter-spacing:0; } #support .support-sales-layout .demo-heading-kicker-badge { gap:5px; padding-right:112px; } }
-@media(prefers-reduced-motion:reduce) { #support .support-sales-layout .demo-submit-kicker-badge, #support .support-sales-layout .demo-submit-kicker-badge * { transition:none; } }
+/* Contact page: compact contacts, optional detailed form, separate callback dialog. */
+#support .support-layout {box-sizing:border-box;width:100%;padding:clamp(20px,3vw,36px);border:1px solid #dce6ed;border-radius:18px;background:#fff;color:#183347;}
+#support .support-clean-heading {display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px;}
+#support .support-eyebrow {display:block;color:#087eaa;font-size:11px;font-weight:700;letter-spacing:1.2px;margin-bottom:7px;}
+#support .support-clean-heading h1 {font-size:clamp(24px,3vw,34px);line-height:1.2;letter-spacing:-.7px;margin:0 0 8px;color:#17384d;font-style:normal;}
+#support .support-clean-heading p,#support .support-clean-card p {margin:0;color:#617385;font-size:13px;line-height:1.6;}
+#support .support-callback {display:inline-flex;justify-content:center;align-items:center;gap:12px;flex-shrink:0;min-height:44px;padding:11px 18px;border:1px solid #ec781e;border-radius:9px;background:#ed7a22;color:#fff;font-family:inherit;font-size:14px;font-weight:600;line-height:1.4;cursor:pointer;}
+#support .support-callback:hover {background:#d96715;}
+#support .support-callback:disabled {opacity:.65;cursor:default;}
+#support .support-clean-contacts {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;}
+#support .support-clean-card {padding:22px;border:1px solid #dfe7ee;border-radius:13px;background:linear-gradient(135deg,#fff7ef,#fff 50%);min-width:0;display:flex;flex-direction:column;}
+#support .support-clean-card.technical {background:linear-gradient(135deg,#eef8ff,#fff 50%);}
+#support .support-clean-card.sales .support-eyebrow {color:#a85d25;}
+#support .support-clean-card h2 {font-size:21px;line-height:1.3;margin:0 0 8px;color:#17384d;}
+#support .support-clean-details {margin-top:18px;padding-top:15px;border-top:1px solid #e7edf2;display:grid;gap:9px;font-size:14px;}
+#support .support-phone-text {display:flex;gap:8px;flex-wrap:wrap;}
+#support .support-clean-details a {color:#087ca6;text-decoration:none;overflow-wrap:anywhere;}
+#support .support-clean-details a:hover {text-decoration:underline;}
+#support .support-detailed {margin-top:20px;border:1px solid #dce6ed;border-radius:12px;scroll-margin-top:100px;}
+#support .support-detailed > summary {display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none;padding:18px 22px;cursor:pointer;}
+#support .support-detailed > summary::-webkit-details-marker {display:none;}
+#support .support-detailed > summary strong {display:block;font-size:17px;color:#17384d;margin:0 0 5px;line-height:1.4;}
+#support .support-summary-copy {font-size:12px;color:#697c8c;}
+#support .support-detail-toggle {display:flex;align-items:center;gap:8px;color:#087cab;font-size:12px;flex-shrink:0;}
+#support .support-open-label,#support .support-detailed[open] .support-closed-label {display:none;}
+#support .support-detailed[open] .support-open-label {display:inline;}
+#support .support-detailed[open] > summary {border-bottom:1px solid #e7edf2;}
+#support .support-detailed[open] .support-detail-toggle > span:last-child {transform:rotate(180deg);}
+#support .support-detailed .demo-form-modal.embedded > .demo-form-dialog {box-sizing:border-box;width:100%!important;max-width:none;margin:0!important;padding:22px;border:0;border-radius:0 0 12px 12px;background:#fff;box-shadow:none!important;}
+#support .demo-form-dialog::before {display:none;}
+#support #demoEnquiryForm {gap:16px;}
+#support #demoEnquiryForm .form-grid {display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;}
+#support #demoEnquiryForm .form-field {min-width:0;gap:6px;text-transform:none;letter-spacing:0;}
+#support #demoEnquiryForm .form-label-text {font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;}
+#support #demoEnquiryForm .form-label-icon,#support #demoEnquiryForm .input-icon {display:none;}
+#support #demoEnquiryForm .form-field input {min-height:42px;padding:10px 12px;border:1px solid #cad8e7;border-radius:7px;font-size:14px;background:#fff;}
+#support .demo-billing-details {margin:0;border:1px solid #dce9f2;border-radius:9px;background:#f9fbfe;}
+#support .demo-billing-details summary {padding:11px 12px;color:#16476c;font-size:12px;font-weight:600;cursor:pointer;}
+#support .demo-billing-details summary span {font-weight:400;color:#526679;}
+#support .demo-billing-details > .form-grid {padding:0 12px 14px;}
+#support .demo-field-error {display:block;color:#b42318;font-size:12px;line-height:1.4;margin-top:4px;}
+#support .demo-field-error:empty {display:none;}
+#support #demoEnquiryForm input[aria-invalid="true"] {border-color:#c9372c;}
+#support #demoEnquiryForm .checkbox-group {gap:10px;padding:0;margin:0;min-width:0;}
+#support .checkbox-group-title {font-size:12px;text-transform:none;letter-spacing:0;margin-bottom:8px;flex-wrap:wrap;}
+#support .checkbox-group-subtitle {font-size:11px;}
+#support .product-card-inner {display:grid;grid-template-columns:minmax(0,1fr) 18px;grid-template-rows:auto auto;gap:5px;padding:12px;min-height:76px;border-radius:9px;box-shadow:none;}
+#support .product-card-header {display:contents;}
+#support .product-card-icon {display:none;}
+#support .product-card-title {grid-column:1;grid-row:1;font-size:12px;line-height:1.4;margin:0;}
+#support .product-card-badge {grid-column:1;grid-row:2;white-space:normal;padding:0;border:0;background:none;font-size:10px;line-height:1.4;text-transform:none;letter-spacing:0;}
+#support .custom-checkmark {grid-column:2;grid-row:1/3;width:18px;height:18px;align-self:center;}
+#support .purpose-dropdown-trigger {min-height:44px;border-color:#cad8e7;border-radius:7px;font-size:13px;padding:10px 12px;}
+#support .form-actions {display:flex;align-items:center;justify-content:flex-start;gap:16px;flex-wrap:wrap;margin:0;}
+#support .demo-privacy {flex:1;min-width:160px;margin:0;text-align:left;font-size:11px;color:#526679;line-height:1.5;}
+#support .demo-submit-kicker-badge {width:auto;min-width:190px;min-height:44px;padding:5px 14px 5px 15px;gap:10px;border-radius:999px;background:rgba(0,180,216,.12);border:1px solid rgba(0,180,216,.28);box-shadow:0 2px 8px rgba(0,180,216,.12);color:#00b4d8;}
+#support .demo-submit-kicker-badge .demo-kicker-icon {display:block;width:24px;height:24px;flex-shrink:0;cursor:grab;touch-action:none;}
+#support .demo-submit-kicker-badge .submit-btn-text {color:#00b4d8;text-transform:uppercase;font-size:14px!important;letter-spacing:.5px;}
+#support .demo-submit-kicker-badge.is-ready-to-submit {background:rgba(0,180,216,.18);}
+#support .demo-submit-kicker-badge.is-submit-complete {background:rgba(248,140,63,.3);border-color:rgba(248,140,63,.5);}
+#support .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .demo-kicker-icon {transform:translateX(var(--demo-icon-travel,0px));}
+#support .demo-submit-kicker-badge:is(.is-ready-to-submit,.is-submit-complete) .submit-btn-text {transform:translateX(var(--demo-text-travel,-34px));}
+#support .demo-submit-kicker-badge.is-dragging .demo-kicker-icon {cursor:grabbing;transition:none;}
+#support .demo-submit-kicker-badge:disabled {opacity:.75;cursor:default;}
+#support #demoFormStatus {margin:0;font-size:12px;text-align:left;overflow-wrap:anywhere;}
+#support .demo-honeypot {position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden;}
+#support :focus-visible {outline:3px solid #ed982b;outline-offset:3px;}
+#support .quick-enquiry-dialog {box-sizing:border-box;width:min(430px,calc(100% - 28px));max-height:calc(100dvh - 32px);overflow-y:auto;padding:26px;margin:auto;border:1px solid #d5e2eb;border-radius:16px;background:#fff;color:#17384d;box-shadow:0 16px 60px #17384d33;}
+#support .quick-enquiry-dialog::backdrop {background:#17384d66;backdrop-filter:blur(3px);}
+#support .quick-enquiry-heading {display:flex;align-items:start;justify-content:space-between;gap:16px;}
+#support .quick-enquiry-heading h2 {font-size:26px;line-height:1.2;margin:0 0 10px;color:#17384d;}
+#support .quick-enquiry-close {border:0;background:transparent;color:#627b8d;font-size:26px;min-width:36px;min-height:36px;cursor:pointer;}
+#support #quickEnquiryIntro {font-size:13px;line-height:1.5;color:#617385;margin:0 0 20px;}
+#support #quickEnquiryForm {display:grid;gap:14px;}
+#support #quickEnquiryForm > label {display:grid;gap:6px;font-size:12px;font-weight:600;color:#2f4a5d;}
+#support #quickEnquiryForm input:not([type=hidden]),#support #quickEnquiryForm select {box-sizing:border-box;font:inherit;font-size:16px;width:100%;min-width:0;min-height:44px;padding:10px 12px;border:1px solid #cfdde7;border-radius:7px;background:#fff;color:#294759;}
+#support #quickEnquiryForm [aria-invalid=true] {border-color:#c9372c!important;}
+#support .quick-field-error {display:block;font-size:12px;font-weight:400;color:#b42318;margin-top:3px;}
+#support .quick-field-error:empty,#support .quick-enquiry-status:empty {display:none;}
+#support .quick-enquiry-privacy {font-size:11px;line-height:1.5;color:#70818f;margin:0;}
+#support .quick-enquiry-status {font-size:13px;line-height:1.5;color:#087ca6;margin:0;overflow-wrap:anywhere;}
+#support .quick-enquiry-status.is-error {color:#b42318;}
+@media(max-width:650px){#support .support-clean-heading{align-items:start;flex-direction:column;gap:16px;}#support .support-clean-contacts,#support #demoEnquiryForm .form-grid{grid-template-columns:1fr;}#support .support-clean-card{padding:18px;}#support .support-detailed > summary{padding:16px;flex-wrap:wrap;}#support .support-detailed .demo-form-modal.embedded > .demo-form-dialog{padding:18px 14px;}#support #demoEnquiryForm .checkbox-group{grid-template-columns:1fr;}#support #demoEnquiryForm .form-field input{font-size:16px;}#support .product-card-inner{min-height:58px;}}
+@media(prefers-reduced-motion:reduce){#support .demo-submit-kicker-badge,#support .demo-submit-kicker-badge *{transition:none;}}

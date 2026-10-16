@@ -431,6 +431,8 @@ function initTaxPowerSite() {
   function focusDemoFullNameField(options = {}) {
     const form = document.getElementById('demoEnquiryForm');
     if (!form) return false;
+    const details = form.closest('details');
+    if (details) details.open = true;
 
     const modal = document.getElementById('demoEnquiryModal');
     if (modal) {
@@ -1266,6 +1268,8 @@ function initTaxPowerSite() {
   function openDemoForm(triggerElement) {
     const modal = document.getElementById('demoEnquiryModal');
     if (!modal) return;
+    const details = modal.closest('details');
+    if (details) details.open = true;
 
     lastDemoTrigger = triggerElement || document.activeElement;
     setDemoTriggerState(lastDemoTrigger, true);

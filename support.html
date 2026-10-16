@@ -10,54 +10,37 @@
   <meta name="description" content="Contact TaxPower GST and TDS software support for installation, updates, licensing and product queries. Request a live demo or discuss pricing with our team.">
   <link rel="stylesheet" href="css/stylesheet.css?v=20261012-footer-refined">
   <script src="js/nav-loader.js?v=20260929-polish" defer></script>
-  <script src="js/form-backend.js?v=20261012-sales-enquiry" defer></script>
-  <script src="js/script.js?v=20261012-form-button-restored" defer></script>
+  <script src="js/form-backend.js?v=20261016-clean-support" defer></script>
+  <script src="js/script.js?v=20261016-clean-support" defer></script>
   <script src="js/page-loader.js" defer></script>
-  <link rel="stylesheet" href="css/support-cards.css?v=20261012-form-button-restored">
+  <link rel="stylesheet" href="css/support-cards.css?v=20261016-clean-support">
+  <script src="js/support-page.js?v=20261016-clean-support" defer></script>
 </head>
 
 <body>
   <div data-nav-slot></div>
   <main class="page-section" id="support">
     <div class="support-layout">
-    <div class="section-inner">
-      <span class="section-kicker">Support</span>
-      <h1 class="hero_heading support-page-title"><span>TaxPower GST &amp; TDS</span> Software Support</h1>
-      <p class="section-lead">Help with installation, licensing and software queries — or a live demo to get started.</p>
-
-
-    </div>
-
-    <div class="support-sales-layout">
-    <div class="support-form-column">
-    <!-- Demo enquiry form placed under Support -->
-    <div id="demo-enquiry"></div>
-    <div class="demo-form-modal embedded" id="demoEnquiryModal" aria-hidden="false">
-      <div class="demo-form-dialog" role="region" aria-labelledby="demoFormTitle">
-        <div class="support-form-badge-row"><span class="support-new-user-badge" role="note"><span aria-hidden="true">★</span> Sales enquiries</span></div>
-        <div class="demo-form-heading">
-          <div class="demo-heading-kicker-badge">
-            <img src="asset/swt_icon/taxpower_icon.png" alt="TaxPower" class="demo-kicker-icon" width="22" height="22">
-            <span class="section-kicker demo-kicker-text">Let’s talk TaxPower</span>
-          </div>
-          <h2 id="demoFormTitle">Request a <span class="heading-highlight">TaxPower Demo</span> or Quotation</h2>
-          <p>For demos, purchases, quotations and renewals. Choose TaxPower GST, Billing or TDS.</p>
-        </div>
-
-        <div class="form-start-divider" aria-hidden="true">
-          <span class="form-start-divider-line"></span>
-          <span class="form-start-divider-label">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
-              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
-              <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
-            </svg>
-            Your Details
-          </span>
-          <span class="form-start-divider-line"></span>
-        </div>
-
-        <form class="demo-enquiry-form" id="demoEnquiryForm" novalidate>
+      <header class="support-clean-heading">
+        <div><span class="support-eyebrow">WE’RE HERE TO HELP</span><h1>Sales &amp; software support</h1><p>Connect with the right team for TaxPower GST, Billing and TDS.</p></div>
+        <button class="support-callback" type="button" data-quick-enquiry-open>Get a callback <span aria-hidden="true">↗</span></button>
+      </header>
+      <div class="support-clean-contacts">
+        <section class="support-clean-card sales" aria-labelledby="sales-contact-title">
+          <span class="support-eyebrow">DEMOS · PURCHASES · RENEWALS</span><h2 id="sales-contact-title">Demo &amp; sales</h2>
+          <p>Explore the software, discuss pricing or renew your licence.</p>
+          <div class="support-clean-details"><div class="support-phone-text"><span>9145073173</span><span aria-hidden="true"> · </span><span>7755912821</span></div><a href="mailto:support@taxpower.co">support@taxpower.co</a></div>
+        </section>
+        <section class="support-clean-card technical" aria-labelledby="technical-contact-title">
+          <span class="support-eyebrow">FOR EXISTING CUSTOMERS</span><h2 id="technical-contact-title">Technical support</h2>
+          <p>Get help with installation, updates, licensing and software queries.</p>
+          <div class="support-clean-details"><div class="support-phone-text"><span>9811881661</span><span aria-hidden="true"> · </span><span>0712-4046531</span></div><a href="mailto:info@magnuminfosystem.com">info@magnuminfosystem.com</a></div>
+        </section>
+      </div>
+      <details class="support-detailed" id="demo-enquiry">
+        <summary><span><strong id="demoFormTitle">Request a demo or quotation</strong><span class="support-summary-copy">Share company details and select your products.</span></span><span class="support-detail-toggle"><span class="support-closed-label">Open detailed form</span><span class="support-open-label">Close form</span><span aria-hidden="true">⌄</span></span></summary>
+        <div class="demo-form-modal embedded" id="demoEnquiryModal" aria-hidden="false"><div class="demo-form-dialog" role="region" aria-labelledby="demoFormTitle">
+<form class="demo-enquiry-form" id="demoEnquiryForm" novalidate>
           <div class="form-grid">
             <label class="form-field">
               <span class="form-label-text">
@@ -448,47 +431,24 @@
           </div>
           <p class="form-status" id="demoFormStatus" aria-live="polite"></p>
         </form>
-      </div>
+        </div></div>
+      </details>
     </div>
-    </div>
-    <aside class="support-contact-column" aria-labelledby="support-contact-title">
-      <section class="support-contact support-contact-refined" aria-labelledby="support-contact-title">
-        <h2 id="support-contact-title">How can we help you?</h2>
-        <div class="support-contact-grid">
-          <article class="support-contact-card support-sales">
-            <div class="support-card-top"><span class="support-card-kicker">EXPLORE TAXPOWER</span>
-              <svg class="support-card-art" viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                <rect x="16" y="12" width="88" height="57" rx="7" fill="white"/><path d="M16 25h88M60 69v12M44 81h32"/><circle cx="24" cy="19" r="2" fill="currentColor" stroke="none"/><path d="m49 35 20 11-20 11z" fill="var(--support-soft)"/><circle cx="98" cy="66" r="14" fill="var(--support-soft)"/><path d="m92 66 4 4 8-9"/>
-              </svg>
-            </div>
-            <h3>Product demos &amp; sales</h3>
-            <p>See TaxPower in action with a free live demo. Discuss software features, pricing and purchase options.</p>
-            <ul class="support-topic-tags" aria-label="Sales enquiry topics"><li>Live demo</li><li>Product guidance</li><li>Pricing</li></ul>
-            <div class="support-direct-phones" aria-label="Demo and sales phone numbers"><span>+91 9145073173</span><span aria-hidden="true"> · </span><span>+91 7755912821</span></div>
-            <div class="support-card-bottom">
-              <a class="support-email" href="mailto:support@taxpower.co"><span>Email for demos &amp; sales</span><strong>support@taxpower.co <span aria-hidden="true">↗</span></strong></a>
-              <a class="support-card-action" href="#demo-enquiry">Book a free demo <span aria-hidden="true">→</span></a>
-            </div>
-          </article>
-          <article class="support-contact-card support-technical">
-            <div class="support-card-top"><span class="support-card-kicker">FOR EXISTING USERS</span>
-              <svg class="support-card-art" viewBox="0 0 120 90" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
-                <path d="M30 53V43a30 30 0 0 1 60 0v22c0 10-10 16-23 16"/><rect x="22" y="44" width="16" height="26" rx="6" fill="white"/><rect x="82" y="44" width="16" height="26" rx="6" fill="white"/><rect x="54" y="76" width="18" height="8" rx="4" fill="var(--support-soft)"/><path d="M45 30h30v25H61l-8 7v-7h-8z" fill="var(--support-soft)"/><path d="M52 39h16M52 46h10"/>
-              </svg>
-            </div>
-            <h3>Technical support</h3>
-            <p>Get help with TaxPower GST &amp; TDS installation, updates, licensing and everyday software queries.</p>
-            <ul class="support-topic-tags" aria-label="Technical support topics"><li>Installation</li><li>Software queries</li><li>Licensing</li></ul>
-            <div class="support-direct-phones"><span>+91 9811881661</span><span> · </span><span>0712-4046531</span></div><div class="support-card-bottom">
-              <a class="support-email" href="mailto:info@magnuminfosystem.com"><span>Email our support team</span><strong>info@magnuminfosystem.com <span aria-hidden="true">↗</span></strong></a>
-
-            </div>
-          </article>
-        </div>
-      </section>
-    </aside>
-    </div>
-    </div>
+    <dialog class="quick-enquiry-dialog" id="quickEnquiryDialog" aria-labelledby="quickEnquiryTitle" aria-describedby="quickEnquiryIntro">
+      <div class="quick-enquiry-heading"><div><span class="support-eyebrow">QUICK ENQUIRY</span><h2 id="quickEnquiryTitle">Let’s connect.</h2></div><button type="button" class="quick-enquiry-close" data-quick-enquiry-close aria-label="Close quick enquiry">×</button></div>
+      <p id="quickEnquiryIntro">Leave your details for a demo or sales callback.</p>
+      <form id="quickEnquiryForm" novalidate>
+        <input type="hidden" name="enquiryType" value="quick"><input type="hidden" name="purpose" value="Request a Callback">
+        <label>Name <span><input name="name" autocomplete="name" maxlength="120" placeholder="Your name" required><span class="quick-field-error" aria-live="polite"></span></span></label>
+        <label>Mobile number <span><input name="mobile" type="tel" inputmode="tel" autocomplete="tel" maxlength="16" placeholder="10-digit mobile number" required pattern="[0-9]{10}"><span class="quick-field-error" aria-live="polite"></span></span></label>
+        <label>Email ID <span><input name="email" type="email" autocomplete="email" maxlength="250" placeholder="you@company.com" required><span class="quick-field-error" aria-live="polite"></span></span></label>
+        <label>Product <span><select name="product" required><option value="">Select product</option><option value="TaxPower GST Return">TaxPower GST</option><option value="TaxPower E-Invoice &amp; E-Way Bill">TaxPower Billing</option><option value="TaxPower TDS Return">TaxPower TDS</option></select><span class="quick-field-error" aria-live="polite"></span></span></label>
+        <div class="demo-honeypot" aria-hidden="true"><label>Leave this field empty<input name="website" tabindex="-1" autocomplete="off"></label></div>
+        <button class="support-callback" type="submit">Request a callback <span aria-hidden="true">→</span></button>
+        <p class="quick-enquiry-privacy">We’ll use your details to respond to this enquiry. All four fields are required.</p>
+        <p class="quick-enquiry-status" role="status" aria-live="polite"></p>
+      </form>
+    </dialog>
   </main>
   <div data-footer-slot></div>
 </body>

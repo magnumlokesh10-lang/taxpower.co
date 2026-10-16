@@ -9,7 +9,7 @@ window.TAXPOWER_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz8GTac
     if (pending.has(form)) return pending.get(form);
     const data = Object.fromEntries(new FormData(form));
     Object.keys(data).forEach(key => { data[key] = String(data[key]).trim(); });
-    data.product = Array.from(form.querySelectorAll('input[name="product"]:checked')).map(i => i.value).join(', ');
+    if (form.querySelector('input[name="product"]')) data.product = Array.from(form.querySelectorAll('input[name="product"]:checked')).map(i => i.value).join(', ');
     data.page = window.location.href;
     const fingerprint = JSON.stringify(data);
     let request = requests.get(form);
