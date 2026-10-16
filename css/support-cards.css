@@ -95,3 +95,32 @@
 .demo-contact-label {font-size:12px;font-weight:500;color:#86512b;}
 .demo-contact-numbers {display:inline-flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:600;color:#304e63;}
 .demo-contact-numbers > span {white-space:nowrap;}
+
+/* One aligned content column with compact sales/support strips. */
+#support .support-layout > .support-clean-heading,
+#support .support-sales-strip,#support .support-technical-strip,
+#support .support-faq,#support .support-help-links {max-width:850px;box-sizing:border-box;margin-left:auto;margin-right:auto;}
+#support .support-clean-heading {margin-bottom:20px;}
+#support .support-clean-heading p {max-width:740px;}
+#support .support-sales-strip,#support .support-technical-strip {display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 18px;border:1px solid #f0dece;border-radius:11px;background:#fff9f3;}
+#support .support-sales-strip h2,#support .support-technical-strip h2 {font-size:17px;line-height:1.4;color:#17384d;margin:0;}
+#support .support-sales-strip .support-eyebrow {font-size:10px;letter-spacing:.6px;color:#99521d;margin-bottom:4px;}
+#support .support-strip-contacts {display:grid;gap:5px;font-size:13px;min-width:0;}
+#support .support-strip-contacts a,#support .support-help-links a,#support .support-faq a {color:#087ca6;text-decoration:none;overflow-wrap:anywhere;}
+#support .support-strip-contacts a:hover,#support .support-help-links a:hover,#support .support-faq a:hover {text-decoration:underline;}
+#support .support-technical-strip {margin-top:16px;background:#f2f9fe;border-color:#d7e7f2;}
+#support .support-technical-strip .support-eyebrow {font-size:10px;letter-spacing:.6px;margin-bottom:4px;}
+#support .support-technical-strip p {font-size:12px;color:#617385;margin:5px 0 0;}
+#support .support-faq {margin-top:26px;}
+#support .support-faq h2 {font-size:19px;color:#17384d;margin:0 0 12px;}
+#support .support-faq details {border-bottom:1px solid #e0e9ef;padding:0;}
+#support .support-faq summary {padding:13px 0;cursor:pointer;font-size:13px;font-weight:600;color:#284a60;}
+#support .support-faq p {font-size:13px;line-height:1.65;color:#617385;margin:0;padding:0 0 14px;}
+#support .support-help-links {display:flex;flex-wrap:wrap;gap:12px 22px;margin-top:18px;font-size:12px;}
+#quickEnquiryRoot .quick-enquiry-prompt {position:fixed;right:14px;bottom:calc(82px + env(safe-area-inset-bottom,0px));z-index:1001;display:flex;align-items:center;gap:8px;max-width:calc(100vw - 28px);padding:10px 12px;border:1px solid #cce1ee;border-radius:12px;background:#fff;box-shadow:0 5px 20px #17384d20;}
+#quickEnquiryRoot .quick-enquiry-prompt[hidden] {display:none;}
+#quickEnquiryRoot .quick-enquiry-prompt button {font:600 13px/1.4 Arial,sans-serif;color:#12658b;border:0;background:none;min-height:40px;cursor:pointer;}
+#quickEnquiryRoot .quick-enquiry-prompt-dismiss {font-size:22px!important;min-width:32px;}
+@media(max-width:760px){#support .support-sales-strip,#support .support-technical-strip {flex-wrap:wrap;justify-content:flex-start;}#support .support-sales-strip > div:first-child,#support .support-technical-strip > div:first-child {flex:1 1 100%;}}
+
+@media(max-width:650px){body:has(.tp-plan-in-view) #quickEnquiryRoot .quick-enquiry-prompt {bottom:calc(166px + env(safe-area-inset-bottom,0px));}}

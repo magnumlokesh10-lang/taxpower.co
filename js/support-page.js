@@ -2,7 +2,7 @@
 (() => {
   if (window.taxPowerQuickEnquiryInitialized) return;
   window.taxPowerQuickEnquiryInitialized = true;
-  let opener, dialog, loading, autoTimer;
+  let opener, dialog, loading, autoTimer, mobilePrompt;
   let shown = false;
   const cooldownKey = 'taxpower-quick-enquiry-until';
   const day = 24 * 60 * 60 * 1000;
@@ -23,6 +23,7 @@
     }
     clearTimeout(autoTimer);
     autoTimer = null;
+    if (mobilePrompt) mobilePrompt.hidden = true;
   }
   const autoBlocked = () => readCooldown() > Date.now();
   document.addEventListener('taxpower:enquiry-saved', () => suppressAutoPopup(7 * day));
@@ -30,6 +31,7 @@
     if (event.key === cooldownKey && autoBlocked()) {
       clearTimeout(autoTimer);
       autoTimer = null;
+      if (mobilePrompt) mobilePrompt.hidden = true;
     }
   });
   const root = document.createElement('div');
@@ -43,6 +45,15 @@
   floating.innerHTML = '<span aria-hidden="true">✉</span><span>Quick Enquiry</span>';
   root.appendChild(floating);
   document.body.appendChild(root);
+  mobilePrompt = document.createElement('div');
+  mobilePrompt.className = 'quick-enquiry-prompt';
+  mobilePrompt.hidden = true;
+  mobilePrompt.innerHTML = '<button type="button" data-quick-enquiry-open>Need a demo? Request a callback →</button><button type="button" class="quick-enquiry-prompt-dismiss" aria-label="Dismiss callback suggestion">×</button>';
+  root.appendChild(mobilePrompt);
+  mobilePrompt.querySelector('.quick-enquiry-prompt-dismiss').addEventListener('click', () => {
+    suppressAutoPopup(day);
+    floating.focus();
+  });
 
   function adoptDialog(candidate) {
     if (!dialog && candidate) {
@@ -72,6 +83,7 @@
   function showEnquiry(trigger) {
     if (!dialog || dialog.open) return;
     opener = trigger || floating;
+    mobilePrompt.hidden = true;
     dialog.showModal();
     floating.hidden = true;
     shown = true;
@@ -88,7 +100,11 @@
           document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')) {
         scheduleAutoPopup(); return;
       }
-      showEnquiry();
+      const mobile = window.matchMedia ? window.matchMedia('(max-width: 650px)').matches : window.innerWidth <= 650;
+      if (mobile) {
+        mobilePrompt.hidden = false;
+        shown = true;
+      } else showEnquiry();
     }, 10000);
   }
   function openDetailedFromHash() {
