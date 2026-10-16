@@ -153,3 +153,30 @@
 #support .support-faq .support-help-links {padding-top:16px;margin-top:18px;border-top:1px solid #e4edf3;gap:8px;}
 #support .support-faq .support-help-links a {display:inline-flex;align-items:center;min-height:36px;padding:7px 11px;background:#f4f8fb;border:1px solid #e0e9f1;border-radius:7px;font-size:11px;}
 @media(max-width:650px){#support .support-technical-strip{grid-template-columns:minmax(0,1fr);padding:16px;gap:14px;}#support .support-faq{padding:16px;}#support .support-enquiry-box .support-sales-strip,#support .support-enquiry-box .support-detailed > summary{padding:16px;}#support .support-faq summary{padding:12px;font-size:12px;}#support .support-ready ul{gap:7px 12px;}}
+
+/* Shared support navigation and download assistance. */
+.header.nav-gradient-depth .support-nav-dropdown .nav-dropdown-menu {min-width:270px;right:0;left:auto;}
+.header.nav-gradient-depth .support-nav-dropdown .nav-dropdown-link {flex-direction:column;align-items:flex-start;justify-content:center;gap:4px;padding:12px;white-space:normal;}
+.support-nav-dropdown .nav-dropdown-link strong {font-size:13px;font-weight:600;}
+.support-nav-dropdown .nav-dropdown-link small {font-size:11px;color:#617385;}
+.header.nav-gradient-depth .support-nav-dropdown .nav-dropdown-link:last-child:is(:hover,:focus-visible) {background:#eaf6fd;}
+#technical-support {scroll-margin-top:110px;}
+.download-support-box {display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px;margin-top:24px;border:1px solid #d4e6f0;border-radius:16px;background:linear-gradient(115deg,#edf8ff,#fff);color:#17384d;}
+.download-support-box h2 {font-size:20px;margin:5px 0 8px;}
+.download-support-box p {font-size:13px;line-height:1.6;margin:0;max-width:530px;color:#617385;}
+.download-support-contacts {display:grid;gap:9px;flex-shrink:0;font-size:13px;}
+.download-support-contacts strong {font-size:15px;}
+.download-support-contacts strong span {margin:0 5px;color:#94a9b6;}
+.download-support-contacts a {color:#087ca6;overflow-wrap:anywhere;}
+:is(#support,#quickEnquiryRoot) #quickEnquiryForm select {border-radius:10px;border-color:#b9d4e3;background:linear-gradient(110deg,#fffaf5,#fff 55%,#f0f8fe);cursor:pointer;}
+:is(#support,#quickEnquiryRoot) #quickEnquiryForm select:focus-visible {outline:2px solid #ea8d3c;outline-offset:3px;}
+@supports (appearance:base-select) {
+ :is(#support,#quickEnquiryRoot) #quickEnquiryForm select,
+ :is(#support,#quickEnquiryRoot) #quickEnquiryForm select::picker(select) {appearance:base-select;}
+ :is(#support,#quickEnquiryRoot) #quickEnquiryForm select::picker(select) {border:1px solid #d4e3ed;border-radius:12px;padding:6px;background:#fff;box-shadow:0 10px 28px #17384d20;margin-top:6px;}
+ :is(#support,#quickEnquiryRoot) #quickEnquiryForm select option {padding:11px 12px;border-radius:7px;font:inherit;font-size:14px;color:#294759;}
+ :is(#support,#quickEnquiryRoot) #quickEnquiryForm select option:is(:hover,:focus,:checked) {background:#fff0e3;color:#944b17;}
+ :is(#support,#quickEnquiryRoot) #quickEnquiryForm select option:last-child:is(:hover,:focus,:checked) {background:#e6f4ff;color:#12638c;}
+}
+@media(max-width:760px) {.download-support-box{align-items:flex-start;flex-direction:column;gap:16px;padding:18px;}.download-support-contacts{max-width:100%;}}
+@media(max-width:1180px) {.header.nav-gradient-depth .support-nav-dropdown .nav-dropdown-menu{min-width:0;}}

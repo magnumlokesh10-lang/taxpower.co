@@ -305,6 +305,7 @@ function initTaxPowerSite() {
     'downloads-banner': 'downloads.html',
     aboutus: 'aboutus.html',
     support: 'support.html',
+    'technical-support': 'support.html',
     'demo-enquiry': 'support.html'
   };
 
