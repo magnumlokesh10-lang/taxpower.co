@@ -89,3 +89,9 @@
 #quickEnquiryRoot .quick-enquiry-floating > span:first-child {display:grid;place-items:center;width:26px;height:26px;border-radius:8px;background:#ffffff24;font-size:18px;}
 #quickEnquiryRoot .quick-enquiry-floating:hover {background:#09678e;}
 @media(max-width:600px){#quickEnquiryRoot .quick-enquiry-floating {right:14px;min-height:46px;padding:10px 14px;font-size:13px;}}
+
+/* Shared plain-text demo contacts below forms and pricing actions. */
+.demo-contact-note {display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px 14px;margin-top:16px;padding:12px 14px;border:1px solid #f2dfcf;border-radius:9px;background:#fff9f3;font-family:inherit;line-height:1.5;}
+.demo-contact-label {font-size:12px;font-weight:500;color:#86512b;}
+.demo-contact-numbers {display:inline-flex;align-items:center;flex-wrap:wrap;gap:8px;font-size:13px;font-weight:600;color:#304e63;}
+.demo-contact-numbers > span {white-space:nowrap;}
