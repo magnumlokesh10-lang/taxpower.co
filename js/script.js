@@ -799,6 +799,14 @@ function initTaxPowerSite() {
     }, 300);
   }
 
+  function setDropdownOpen(dropdown, open) {
+    dropdown.classList.toggle('is-open', open);
+    dropdown.querySelector('.nav-dropdown-toggle')?.setAttribute('aria-expanded', String(open));
+  }
+  function closeNavDropdowns() {
+    navDropdowns.forEach(dropdown => setDropdownOpen(dropdown, false));
+  }
+
   // loop layout triggers bindings over links groups array elements
   navItems.forEach((item) => {
     item.addEventListener('mouseenter', () => {
@@ -828,13 +836,15 @@ function initTaxPowerSite() {
     item.addEventListener('click', (event) => {
       setNavClickGuard();
       const parentDropdown = item.closest('.nav-dropdown');
-      if (parentDropdown && window.innerWidth <= 1180 && !parentDropdown.classList.contains('is-open')) {
+      if (parentDropdown && (window.innerWidth <= 1180 || window.matchMedia('(hover: none)').matches)) {
         event.preventDefault();
-        navDropdowns.forEach((dropdown) => dropdown.classList.toggle('is-open', dropdown === parentDropdown));
+        const wasOpen = parentDropdown.classList.contains('is-open');
+        closeNavDropdowns();
+        setDropdownOpen(parentDropdown, !wasOpen);
         return;
       }
+      closeNavDropdowns();
       if (handleSamePageNavClick(event, item, item)) return;
-      navDropdowns.forEach((dropdown) => dropdown.classList.remove('is-open'));
       setActiveNavItem(item);
     });
   });
@@ -843,11 +853,39 @@ function initTaxPowerSite() {
     const dropdownToggle = dropdown.querySelector('.nav-dropdown-toggle');
     const dropdownLinks = dropdown.querySelectorAll('.nav-dropdown-link');
 
+    dropdown.classList.add('nav-dropdown-managed');
+    setDropdownOpen(dropdown, false);
+    dropdown.addEventListener('focusin', event => {
+      if (event.target.matches(':focus-visible')) {
+        closeNavDropdowns();
+        setDropdownOpen(dropdown, true);
+      }
+    });
+    dropdown.addEventListener('focusout', event => {
+      if (!dropdown.contains(event.relatedTarget)) setDropdownOpen(dropdown, false);
+    });
+    dropdown.addEventListener('keydown', event => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        dropdownToggle.focus();
+        setDropdownOpen(dropdown, false);
+      } else if (event.target === dropdownToggle && ['ArrowDown', ' '].includes(event.key)) {
+        event.preventDefault();
+        closeNavDropdowns();
+        setDropdownOpen(dropdown, true);
+        dropdownLinks[0]?.focus();
+      }
+    });
     dropdown.addEventListener('mouseenter', () => {
+      if (window.matchMedia('(hover: hover)').matches && window.innerWidth > 1180) {
+        closeNavDropdowns();
+        setDropdownOpen(dropdown, true);
+      }
       moveIndicator(dropdownToggle);
     });
 
     dropdown.addEventListener('mouseleave', () => {
+      if (window.matchMedia('(hover: hover)').matches && window.innerWidth > 1180) setDropdownOpen(dropdown, false);
       // Ignore mouseleave briefly after a click or while click-scrolling
       if (navClickJustHappened || isNavClickScrolling) {
         if (currentActiveTab) moveIndicator(currentActiveTab);
@@ -865,7 +903,7 @@ function initTaxPowerSite() {
     dropdownLinks.forEach((dropdownLink) => {
       dropdownLink.addEventListener('click', (event) => {
         setNavClickGuard();
-        dropdown.classList.remove('is-open');
+        setDropdownOpen(dropdown, false);
         if (handleSamePageNavClick(event, dropdownLink, dropdownToggle)) return;
         setActiveNavItem(dropdownToggle);
       });
@@ -874,7 +912,7 @@ function initTaxPowerSite() {
 
   document.addEventListener('click', (event) => {
     if (!event.target.closest('.nav-dropdown')) {
-      navDropdowns.forEach((dropdown) => dropdown.classList.remove('is-open'));
+      closeNavDropdowns();
     }
   });
 

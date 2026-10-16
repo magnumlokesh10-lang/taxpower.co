@@ -180,3 +180,20 @@
 }
 @media(max-width:760px) {.download-support-box{align-items:flex-start;flex-direction:column;gap:16px;padding:18px;}.download-support-contacts{max-width:100%;}}
 @media(max-width:1180px) {.header.nav-gradient-depth .support-nav-dropdown .nav-dropdown-menu{min-width:0;}}
+
+/* One shared menu design and explicit open state for mouse, touch and keyboard. */
+.header.nav-gradient-depth .nav-dropdown .nav-dropdown-menu {min-width:280px;padding:7px;border:1px solid #dce7ed;border-top:3px solid #ed8b42;border-radius:13px;background:#fff;box-shadow:0 12px 30px #17384d18;}
+.header.nav-gradient-depth .nav-dropdown .nav-dropdown-menu::before {top:-18px;height:18px;}
+.header.nav-gradient-depth .nav-dropdown .nav-dropdown-link {display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;padding:12px 14px;border-radius:8px;white-space:normal;}
+.header.nav-gradient-depth .nav-dropdown .nav-dropdown-link strong {font-size:13px;font-weight:600;}
+.header.nav-gradient-depth .nav-dropdown .nav-dropdown-link small {font-size:11px;font-weight:400;line-height:1.5;color:#617385;}
+.header.nav-gradient-depth .nav-dropdown .nav-dropdown-link:is(:hover,:focus-visible) {background:linear-gradient(100deg,#fff0e2,#fffaf5);}
+.header.nav-gradient-depth .nav-dropdown .nav-dropdown-link:last-child:is(:hover,:focus-visible) {background:linear-gradient(100deg,#eaf5fd,#f7fbff);}
+.header.nav-gradient-depth .nav-dropdown-managed:not(.is-open) > .nav-dropdown-menu {opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-6px);}
+.header.nav-gradient-depth .nav-dropdown-managed.is-open > .nav-dropdown-menu {opacity:1;visibility:visible;pointer-events:auto;transform:translateY(0);}
+@media(max-width:1180px) {
+ .header.nav-gradient-depth .nav-dropdown .nav-dropdown-menu {min-width:0;width:auto;margin:4px 0 8px;padding:5px;}
+ .header.nav-gradient-depth .nav-dropdown-managed:not(.is-open) > .nav-dropdown-menu {display:none;}
+ .header.nav-gradient-depth .nav-dropdown-managed.is-open > .nav-dropdown-menu {display:block;}
+}
+@media(prefers-reduced-motion:reduce) {.header.nav-gradient-depth .nav-dropdown-menu{transition:none;}}
