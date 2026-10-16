@@ -16,7 +16,7 @@
 :is(#support, #quickEnquiryRoot) .support-phone-text {display:flex;gap:8px;flex-wrap:wrap;}
 :is(#support, #quickEnquiryRoot) .support-clean-details a {color:#087ca6;text-decoration:none;overflow-wrap:anywhere;}
 :is(#support, #quickEnquiryRoot) .support-clean-details a:hover {text-decoration:underline;}
-:is(#support, #quickEnquiryRoot) .support-detailed {margin-top:20px;border:1px solid #dce6ed;border-radius:12px;scroll-margin-top:100px;}
+:is(#support, #quickEnquiryRoot) .support-detailed {box-sizing:border-box;width:100%;max-width:850px;margin:20px auto 0;border:1px solid #dce6ed;border-radius:12px;scroll-margin-top:100px;}
 :is(#support, #quickEnquiryRoot) .support-detailed > summary {display:flex;justify-content:space-between;align-items:center;gap:16px;list-style:none;padding:18px 22px;cursor:pointer;}
 :is(#support, #quickEnquiryRoot) .support-detailed > summary::-webkit-details-marker {display:none;}
 :is(#support, #quickEnquiryRoot) .support-detailed > summary strong {display:block;font-size:17px;color:#17384d;margin:0 0 5px;line-height:1.4;}
