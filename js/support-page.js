@@ -4,8 +4,34 @@
   window.taxPowerQuickEnquiryInitialized = true;
   let opener, dialog, loading, autoTimer;
   let shown = false;
-  const sessionKey = 'taxpower-quick-enquiry-shown';
-  try { shown = sessionStorage.getItem(sessionKey) === '1'; } catch (_) {}
+  const cooldownKey = 'taxpower-quick-enquiry-until';
+  const day = 24 * 60 * 60 * 1000;
+  let cooldownUntil = 0;
+  function readCooldown() {
+    for (const storageName of ['localStorage', 'sessionStorage']) {
+      try {
+        const value = Number(window[storageName].getItem(cooldownKey));
+        if (Number.isFinite(value)) cooldownUntil = Math.max(cooldownUntil, value);
+      } catch (_) { /* In-memory protection remains when storage is unavailable. */ }
+    }
+    return cooldownUntil;
+  }
+  function suppressAutoPopup(duration) {
+    cooldownUntil = Math.max(readCooldown(), Date.now() + duration);
+    for (const storageName of ['localStorage', 'sessionStorage']) {
+      try { window[storageName].setItem(cooldownKey, String(cooldownUntil)); } catch (_) {}
+    }
+    clearTimeout(autoTimer);
+    autoTimer = null;
+  }
+  const autoBlocked = () => readCooldown() > Date.now();
+  document.addEventListener('taxpower:enquiry-saved', () => suppressAutoPopup(7 * day));
+  window.addEventListener('storage', event => {
+    if (event.key === cooldownKey && autoBlocked()) {
+      clearTimeout(autoTimer);
+      autoTimer = null;
+    }
+  });
   const root = document.createElement('div');
   root.id = 'quickEnquiryRoot';
   const floating = document.createElement('button');
@@ -50,21 +76,20 @@
     floating.hidden = true;
     shown = true;
     clearTimeout(autoTimer);
-    try { sessionStorage.setItem(sessionKey, '1'); } catch (_) {}
     dialog.querySelector('input[name="name"]').focus();
   }
   function scheduleAutoPopup() {
-    if (shown || autoTimer) return;
+    if (shown || autoTimer || autoBlocked()) return;
     autoTimer = setTimeout(() => {
       autoTimer = null;
-      if (shown) return;
+      if (shown || autoBlocked()) return;
       // Wait if the visitor is already typing or using another dialog.
       if (document.hidden || document.querySelector('dialog[open]') ||
           document.activeElement?.matches('input,textarea,select,[contenteditable="true"]')) {
         scheduleAutoPopup(); return;
       }
       showEnquiry();
-    }, 2500);
+    }, 10000);
   }
   function openDetailedFromHash() {
     if (location.hash === '#demo-enquiry') {
@@ -91,6 +116,7 @@
   }, true);
   document.addEventListener('close', event => {
     if (event.target.id !== 'quickEnquiryDialog') return;
+    suppressAutoPopup(day);
     floating.hidden = false;
     if (opener?.isConnected) opener.focus();
   }, true);

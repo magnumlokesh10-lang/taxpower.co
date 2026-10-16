@@ -27,6 +27,7 @@ window.TAXPOWER_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz8GTac
       if (!response.ok || response.type === 'opaque') throw new Error('Unconfirmed response');
       const result = await response.json();
       if (result.result !== 'success') throw new Error('Enquiry not accepted');
+      document.dispatchEvent(new CustomEvent('taxpower:enquiry-saved'));
       return result;
     }).finally(() => { clearTimeout(timer); pending.delete(form); });
     pending.set(form, promise);
