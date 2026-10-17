@@ -5,18 +5,18 @@
   if (!baseElement) { baseElement = document.createElement('base'); document.head.prepend(baseElement); }
   baseElement.href = base.href;
   const routes = {
-    home: '', taxpowergst: 'taxpowergst', dashboard_bg: 'gst-return',
+    home: 'home', taxpowergst: 'taxpowergst', dashboard_bg: 'gst-return',
     'gst-return': 'gst-return', 'gst-billing-intro': 'gst-billing', 'gst-einvoice': 'gst-billing',
     taxpowertds: 'taxpowertds', pricing: 'pricing', 'pricing-banner': 'pricing',
     downloads: 'downloads', 'downloads-banner': 'downloads', aboutus: 'aboutus',
     support: 'support', 'technical-support': 'technical-support', 'demo-enquiry': 'demo-enquiry'
   };
-  const sections = {'': 'home', taxpowergst: 'taxpowergst', 'gst-return': 'dashboard_bg',
+  const sections = {'': 'home', home: 'home', taxpowergst: 'taxpowergst', 'gst-return': 'dashboard_bg',
     'gst-billing': 'gst-billing-intro', taxpowertds: 'taxpowertds', pricing: 'pricing-banner',
     downloads: 'downloads', aboutus: 'aboutus', support: 'support',
     'technical-support': 'technical-support', 'demo-enquiry': 'demo-enquiry'};
   const titles = {
-  "": "TaxPower | GST, Billing & TDS Software",
+  "home": "TaxPower | GST, Billing & TDS Software",
   "taxpowergst": "TaxPower GST | GST Return Filing Software",
   "gst-return": "TaxPower GST | GST Return Filing Software",
   "gst-billing": "TaxPower Billing | E-Invoice & E-Way Bill Software",
