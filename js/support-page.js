@@ -108,7 +108,7 @@
     }, 10000);
   }
   function openDetailedFromHash() {
-    if (location.hash === '#demo-enquiry') {
+    if ((window.TaxPowerRoutes?.hash() || location.hash) === '#demo-enquiry') {
       const details = document.getElementById('demo-enquiry');
       if (details?.tagName === 'DETAILS') details.open = true;
     }

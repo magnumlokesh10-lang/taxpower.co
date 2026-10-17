@@ -1,6 +1,6 @@
 (() => {
-  const NAV_CACHE_KEY = 'taxpower-navigation-hover-v5';
-  const navigationRequest = fetch('nav.html?v=20261016-hover-menus', {
+  const NAV_CACHE_KEY = 'taxpower-navigation-routes-v6';
+  const navigationRequest = fetch('nav.html?v=20261017-clean-urls', {
     cache: 'force-cache',
     credentials: 'omit'
   }).then((response) => {

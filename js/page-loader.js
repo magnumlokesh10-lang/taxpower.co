@@ -42,12 +42,13 @@
       container.removeAttribute('aria-busy');
       document.dispatchEvent(new CustomEvent('taxpower:sections-loaded'));
 
-      if (window.location.hash) {
+      const sectionHash = window.TaxPowerRoutes?.hash() || window.location.hash;
+      if (sectionHash) {
         requestAnimationFrame(() => {
-          const target = document.querySelector(window.location.hash);
+          const target = document.getElementById(sectionHash.slice(1));
           if (!target) return;
 
-          const targetTop = target.getBoundingClientRect().top + window.scrollY - 16;
+          const targetTop = target.getBoundingClientRect().top + window.scrollY - (document.querySelector('.header')?.offsetHeight || 64) - 16;
           window.scrollTo({ top: targetTop, behavior: 'auto' });
         });
       }

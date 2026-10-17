@@ -365,12 +365,15 @@ function initTaxPowerSite() {
     moveIndicator(currentActiveTab, shouldAnimate);
   }
 
+  const currentSectionHash = () => window.TaxPowerRoutes?.hash() || window.location.hash;
+
   function getCurrentPageName() {
+    if (document.querySelector('[data-page-sections]')) return 'index.html';
     const pageName = window.location.pathname.split('/').pop();
     return pageName || 'index.html';
   }
 
-  function getNavItemForCurrentLocation(hashValue = window.location.hash) {
+  function getNavItemForCurrentLocation(hashValue = currentSectionHash()) {
     const rawHash = (hashValue || '').trim();
     const sectionId = rawHash.replace(/^#/, '');
 
@@ -406,6 +409,8 @@ function initTaxPowerSite() {
   }
 
   function getSamePageSectionHash(linkElement) {
+    const routedHash = window.TaxPowerRoutes?.hashForURL(linkElement.href);
+    if (routedHash && isIndexPage()) return routedHash;
     const href = linkElement.getAttribute('href');
     if (!href || href === '#') return '';
 
@@ -414,7 +419,7 @@ function initTaxPowerSite() {
     }
 
     try {
-      const linkUrl = new URL(href, window.location.href);
+      const linkUrl = new URL(href, document.baseURI);
       const currentUrl = new URL(window.location.href);
       const isSameOrigin = linkUrl.origin === currentUrl.origin;
       const isIndexTarget = linkUrl.pathname.endsWith('/index.html') || linkUrl.pathname === '/' || linkUrl.pathname === currentUrl.pathname;
@@ -538,7 +543,7 @@ function initTaxPowerSite() {
   }
 
   function handlePendingDemoHashOrContext() {
-    if (window.location.hash !== '#demo-enquiry') return;
+    if (currentSectionHash() !== '#demo-enquiry') return;
 
     try {
       const savedContext = sessionStorage.getItem('taxpower_demo_context');
@@ -583,7 +588,7 @@ function initTaxPowerSite() {
       moveIndicator(currentActiveTab, true);
     }
 
-    if (window.location.hash === '#demo-enquiry') {
+    if (currentSectionHash() === '#demo-enquiry') {
       focusDemoFullNameField({ preventScroll: false });
     }
   }
@@ -624,7 +629,8 @@ function initTaxPowerSite() {
     return Math.max(0, Math.round(absoluteTop - offset));
   }
 
-  function handleSamePageNavClick(event, linkElement, activeItem) {
+  function handleSamePageNavClick(event, linkElement, activeItem, fromHistory = false) {
+    if (event.button > 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return false;
     const sectionHash = getSamePageSectionHash(linkElement);
     if (!sectionHash) return false;
 
@@ -643,7 +649,7 @@ function initTaxPowerSite() {
       event.preventDefault();
       const onSectionsLoaded = () => {
         document.removeEventListener('taxpower:sections-loaded', onSectionsLoaded);
-        handleSamePageNavClick(event, linkElement, activeItem);
+        handleSamePageNavClick(event, linkElement, activeItem, fromHistory);
       };
       document.addEventListener('taxpower:sections-loaded', onSectionsLoaded);
       return true;
@@ -664,8 +670,9 @@ function initTaxPowerSite() {
       showHeader();
     }
 
-    if (history.pushState) {
-      history.pushState(null, '', sectionHash);
+    if (!fromHistory) {
+      if (window.TaxPowerRoutes) window.TaxPowerRoutes.write(sectionHash);
+      else history.pushState(null, '', sectionHash);
     }
 
     if (sectionHash === '#demo-enquiry') {
@@ -929,7 +936,7 @@ function initTaxPowerSite() {
       }
     }
 
-    const anchor = event.target.closest('a[href^="#"], a[href*="index.html#"]');
+    const anchor = event.target.closest('a[href]');
     if (!anchor) {
       if (demoTrigger) {
         const form = document.getElementById('demoEnquiryForm');
@@ -971,26 +978,34 @@ function initTaxPowerSite() {
     }
   });
 
+  window.addEventListener('popstate', () => {
+    if (!isIndexPage()) return;
+    const hash = currentSectionHash() || '#home';
+    const link = document.createElement('a');
+    link.href = window.TaxPowerRoutes?.urlFor(hash) || hash;
+    handleSamePageNavClick({preventDefault() {}}, link, getNavItemForCurrentLocation(hash), true);
+  });
+
   window.addEventListener('hashchange', () => {
     resetDemoTriggerState();
-    setActiveNavFromLocation(window.location.hash);
-    if (window.location.hash === '#demo-enquiry') {
+    setActiveNavFromLocation(currentSectionHash());
+    if (currentSectionHash() === '#demo-enquiry') {
       handlePendingDemoHashOrContext();
     }
   });
 
   requestAnimationFrame(() => {
-    setActiveNavFromLocation(window.location.hash);
+    setActiveNavFromLocation(currentSectionHash());
     initSectionScrollSpy();
-    if (window.location.hash === '#demo-enquiry') {
+    if (currentSectionHash() === '#demo-enquiry') {
       handlePendingDemoHashOrContext();
     }
   });
 
   document.addEventListener('taxpower:sections-loaded', () => {
     initSectionScrollSpy();
-    setActiveNavFromLocation(window.location.hash);
-    if (window.location.hash === '#demo-enquiry') {
+    setActiveNavFromLocation(currentSectionHash());
+    if (currentSectionHash() === '#demo-enquiry') {
       handlePendingDemoHashOrContext();
     }
   });
