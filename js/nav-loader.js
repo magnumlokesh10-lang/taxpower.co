@@ -1,6 +1,6 @@
 (() => {
-  const NAV_CACHE_KEY = 'taxpower-navigation-routes-v6';
-  const navigationRequest = fetch('nav.html?v=20261017-clean-urls', {
+  const NAV_CACHE_KEY = 'taxpower-navigation-routes-v7';
+  const navigationRequest = fetch('nav.html?v=20261017-support-routes', {
     cache: 'force-cache',
     credentials: 'omit'
   }).then((response) => {
