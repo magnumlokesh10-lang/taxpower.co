@@ -15,6 +15,26 @@
     'gst-billing': 'gst-billing-intro', taxpowertds: 'taxpowertds', pricing: 'pricing-banner',
     downloads: 'downloads', aboutus: 'aboutus', support: 'support',
     'technical-support': 'technical-support', 'demo-enquiry': 'demo-enquiry'};
+  const titles = {
+  "": "TaxPower | GST, Billing & TDS Software",
+  "taxpowergst": "TaxPower GST | GST Return Filing Software",
+  "gst-return": "TaxPower GST | GST Return Filing Software",
+  "gst-billing": "TaxPower Billing | E-Invoice & E-Way Bill Software",
+  "taxpowertds": "TaxPower TDS | TDS Return Filing Software",
+  "pricing": "TaxPower Pricing | GST, Billing & TDS",
+  "downloads": "TaxPower Downloads | GST, Billing & TDS Software",
+  "aboutus": "About TaxPower | GST, Billing & TDS Software Solutions",
+  "support": "TaxPower Customer Support",
+  "technical-support": "TaxPower Technical Support",
+  "demo-enquiry": "Book a TaxPower Demo | GST, Billing & TDS Software"
+};
+  function updateTitle() {
+    const hash = hashForURL(location.href);
+    const route = routes[hash.slice(1)];
+    if (route !== undefined) document.title = titles[route];
+  }
+  window.addEventListener('popstate', updateTitle);
+  window.addEventListener('hashchange', updateTitle);
   function hashForURL(value) {
     const url = new URL(value, base);
     if (url.origin !== base.origin || !url.pathname.startsWith(base.pathname)) return '';
@@ -22,6 +42,7 @@
     if (url.hash && (path === '' || path === 'index.html' || Object.hasOwn(sections, path))) {
       return Object.hasOwn(routes, url.hash.slice(1)) ? url.hash : '';
     }
+    if (path === 'index.html') return '#home';
     return Object.hasOwn(sections, path) ? '#' + sections[path] : '';
   }
   function urlFor(hash) {
@@ -33,6 +54,7 @@
     if (!url) return;
     url.search = location.search;
     if (url.href !== location.href) history[replace ? 'replaceState' : 'pushState'](null, '', url);
+    updateTitle();
   }
   function cleanLinks() {
     document.querySelectorAll('a[href]').forEach(link => {
@@ -50,6 +72,7 @@
       const hash = hashForURL(location.href);
       if (hash) write(hash, true);
     }
+    updateTitle();
     cleanLinks();
   }
   document.addEventListener('DOMContentLoaded', ready);

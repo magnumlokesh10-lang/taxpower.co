@@ -26,6 +26,7 @@ function page(url) {
 for (const url of ['https://taxpower.co/taxpowertds/', 'https://taxpower.co/index.html#taxpowertds', 'https://example.github.io/project/taxpowertds/']) {
   const dom=page(url), w=dom.window, r=w.TaxPowerRoutes;
   assert.equal(r.hash(),'#taxpowertds');
+  assert.equal(w.document.title,'TaxPower TDS | TDS Return Filing Software');
   assert.equal(w.location.hash,'');
   assert.ok(w.location.pathname.endsWith('/taxpowertds'));
   assert.ok(w.document.baseURI.endsWith(url.includes('github.io') ? '/project/' : 'taxpower.co/'));
@@ -42,15 +43,18 @@ assert.equal(w.taxPowerSiteInitialized,true);
 Object.defineProperty(d.documentElement,'scrollHeight',{value:10000});
 d.getElementById('pricing-banner').getBoundingClientRect=()=>({top:2000});
 const click=selector=>d.querySelector(selector).dispatchEvent(new w.MouseEvent('click',{bubbles:true,cancelable:true}));
-click('.nav-item[data-nav-page="pricing.html"]');assert.equal(w.location.pathname,'/pricing');assert.equal(w.location.hash,'');assert.ok(w.lastScroll);
+click('.nav-item[data-nav-page="pricing.html"]');assert.equal(w.location.pathname,'/pricing');assert.equal(d.title,'TaxPower Pricing | GST, Billing & TDS');assert.equal(w.location.hash,'');assert.ok(w.lastScroll);
 click('.nav-item[data-nav-page="taxpowertds.html"]');assert.equal(w.location.pathname,'/taxpowertds');
 w.history.replaceState(null,'','/pricing');w.dispatchEvent(new w.PopStateEvent('popstate'));
 assert.equal(d.querySelector('.nav-item.h-current').dataset.navPage,'pricing.html');
-click('[data-logo-home-link]');assert.equal(w.location.pathname,'/');
+click('[data-logo-home-link]');assert.equal(w.location.pathname,'/');assert.equal(d.title,'TaxPower | GST, Billing & TDS Software');
 click('[data-plan-action="quote"]');assert.equal(w.location.pathname,'/demo-enquiry');
 assert.equal(d.querySelector('[name="purpose"]').value,'Pricing or Quotation');
 assert.equal(d.querySelector('#demo-enquiry').open,true);
 for(const route of ['taxpowergst','gst-return','gst-billing','taxpowertds','pricing','downloads','aboutus','support','technical-support','demo-enquiry']) {
- assert.equal(read(route+'/index.html'),read('index.html').replace('<head>','<head>\n  <base href="../">'));
+ const staticPage = new JSDOM(read(route+'/index.html'));
+ const titles = JSON.parse(read('js/section-routes.js').match(/const titles = (\{[\s\S]*?\});/)[1]);
+ assert.equal(staticPage.window.document.title,titles[route]);
+ staticPage.window.close();
 }
 dom.window.close();console.log('PASS: clean routes, legacy hashes, subpath hosting, nav clicks, history, demo context and 10 static entry pages.');
