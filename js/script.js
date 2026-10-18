@@ -109,7 +109,7 @@ function initTaxPowerSite() {
     }
 
     function startBackgroundFlash() {
-      if (!flashTimer && !backgroundReducedMotion.matches) {
+      if (!flashTimer && !backgroundReducedMotion.matches && !document.hidden) {
         flashTimer = setInterval(triggerNextRandomFlash, 220);
       }
     }
@@ -153,6 +153,9 @@ function initTaxPowerSite() {
       });
     });
 
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stopBackgroundFlash(); else startBackgroundFlash();
+    });
     backgroundReducedMotion.addEventListener('change', () => {
       stopBackgroundFlash();
       startBackgroundFlash();
@@ -193,10 +196,11 @@ function initTaxPowerSite() {
 
   const dotsList = Array.from(document.querySelectorAll('.dot'));
   let autoSlideTimer = null;
+  let heroVisible = true;
 
   // Auto slide run karne ka helper function
   function startAutoSlide() {
-    if (totalSlides > 1 && !autoSlideTimer && !isUserPaused && !reducedMotionQuery.matches) {
+    if (totalSlides > 1 && !autoSlideTimer && !isUserPaused && !reducedMotionQuery.matches && !document.hidden && heroVisible) {
       sliderViewport?.classList.remove('is-autoplay-paused');
       autoSlideTimer = setInterval(() => changeSlide(1), autoSlideDuration);
     }
@@ -244,6 +248,13 @@ function initTaxPowerSite() {
     activeIndex = index;
     updateSliderView();
     startAutoSlide();
+  }
+
+  if (sliderViewport && 'IntersectionObserver' in window) {
+    new IntersectionObserver(entries => {
+      heroVisible = entries[0].isIntersecting;
+      if (heroVisible) startAutoSlide(); else stopAutoSlide();
+    }).observe(sliderViewport);
   }
 
   // connecting interface hardware event listeners triggers

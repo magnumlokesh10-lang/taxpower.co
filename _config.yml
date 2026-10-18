@@ -1,0 +1,8 @@
+# Keep build inputs and developer checks out of the public Pages site.
+exclude:
+  - _site-source
+  - scripts
+  - tests
+  - ROUTING.md
+  - SEO-DEPLOYMENT.md
+  - google-apps-script

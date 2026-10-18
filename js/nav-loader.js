@@ -1,4 +1,8 @@
 (() => {
+  if (document.querySelector('.navbar')) {
+    window.taxPowerNavigationLoaded = true;
+    return;
+  }
   const NAV_CACHE_KEY = 'taxpower-navigation-routes-v7';
   const navigationRequest = fetch('nav.html?v=20261017-support-routes', {
     cache: 'force-cache',
@@ -15,7 +19,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
     <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
-    <link class="favicon-node" rel="icon" type="image/png" href="asset/taxpower_icon.png">
+    <link class="favicon-node" rel="icon" type="image/png" href="asset/swt_icon/taxpower_icon.png">
     <meta name="author" content="TaxPower">
   `;
 

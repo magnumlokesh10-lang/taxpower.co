@@ -1350,7 +1350,7 @@
 .gst-intro-copy { position: relative; z-index: 2; min-width: 0; }
 .gst-intro-eyebrow { display: inline-flex; align-items: center; gap: 9px; padding: 8px 12px; margin-bottom: 18px; border-radius: 30px; border: 1px solid #c7e9f9; background: #eaf7fe; color: #0369a1; font-size: 11px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
 .gst-intro-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: #f97316; }
-.gst-intro-copy h1 { margin: 0 0 18px; font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: clamp(42px, 4.9vw, 72px); font-weight: 800; line-height: 1.08; letter-spacing: -.045em; }
+.gst-intro-copy :is(h1,.original-h1) { margin: 0 0 18px; font-family: 'Plus Jakarta Sans', Arial, sans-serif; font-size: clamp(42px, 4.9vw, 72px); font-weight: 800; line-height: 1.08; letter-spacing: -.045em; }
 .gst-intro-brand, .gst-intro-product { display: block; }
 .gst-intro-brand { color: #f47a22; background: linear-gradient(90deg, #f97316, #fb923c); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 .gst-intro-product { color: #082f49; }
@@ -1414,13 +1414,13 @@
 @media (max-width: 1000px) {
  .gst-intro-hero { gap: 16px; padding: 28px 22px; }
  .gst-office-preview { padding-inline: 5px; }
- .gst-intro-copy h1 { font-size: clamp(38px, 5vw, 54px); }
+ .gst-intro-copy :is(h1,.original-h1) { font-size: clamp(38px, 5vw, 54px); }
  .gst-intro-actions { gap: 14px; }
 }
 @media (max-width: 767px) {
  .gst-intro-hero { grid-template-columns: minmax(0, 1fr); padding: 28px 18px 18px; gap: 18px; }
  .gst-intro-copy { text-align: center; }
- .gst-intro-copy h1 { font-size: clamp(40px, 9vw, 60px); }
+ .gst-intro-copy :is(h1,.original-h1) { font-size: clamp(40px, 9vw, 60px); }
  .gst-dashboard-page .gst-intro-description { border: 0; padding: 0; font-size: 26px; }
  .gst-intro-actions, .gst-intro-highlights { justify-content: center; }
  .gst-dashboard-page .gst-intro-supporting { margin-inline: auto; }

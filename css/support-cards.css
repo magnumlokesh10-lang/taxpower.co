@@ -2,7 +2,7 @@
 :is(#support, #quickEnquiryRoot) .support-layout {box-sizing:border-box;width:100%;padding:clamp(20px,3vw,36px);border:1px solid #dce6ed;border-radius:18px;background:#fff;color:#183347;}
 :is(#support, #quickEnquiryRoot) .support-clean-heading {display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:24px;}
 :is(#support, #quickEnquiryRoot) .support-eyebrow {display:block;color:#087eaa;font-size:11px;font-weight:700;letter-spacing:1.2px;margin-bottom:7px;}
-:is(#support, #quickEnquiryRoot) .support-clean-heading h1 {font-size:clamp(24px,3vw,34px);line-height:1.2;letter-spacing:-.7px;margin:0 0 8px;color:#17384d;font-style:normal;}
+:is(#support, #quickEnquiryRoot) .support-clean-heading :is(h1,.original-h1) {font-size:clamp(24px,3vw,34px);line-height:1.2;letter-spacing:-.7px;margin:0 0 8px;color:#17384d;font-style:normal;}
 :is(#support, #quickEnquiryRoot) .support-clean-heading p,:is(#support, #quickEnquiryRoot) .support-clean-card p {margin:0;color:#617385;font-size:13px;line-height:1.6;}
 :is(#support, #quickEnquiryRoot) .support-callback {display:inline-flex;justify-content:center;align-items:center;gap:12px;flex-shrink:0;min-height:44px;padding:11px 18px;border:1px solid #ec781e;border-radius:9px;background:#ed7a22;color:#fff;font-family:inherit;font-size:14px;font-weight:600;line-height:1.4;cursor:pointer;}
 :is(#support, #quickEnquiryRoot) .support-callback:hover {background:#d96715;}

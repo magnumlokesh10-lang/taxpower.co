@@ -1788,7 +1788,7 @@ body {
   position: absolute;
   inset: -18px;
   z-index: -2;
-  background-image: linear-gradient(180deg, rgba(8, 30, 48, 0.08), rgba(8, 30, 48, 0.42)), url('../asset/promo banner/dnwd_bnnr.png');
+  background-image: linear-gradient(180deg, rgba(8, 30, 48, 0.08), rgba(8, 30, 48, 0.42)), url('../asset/promo banner/dnwd_bnnr.webp');
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -1851,7 +1851,7 @@ body {
   stroke-width: 1.7;
 }
 
-.downloads-banner-search-field h1 {
+.downloads-banner-search-field :is(h1,.original-h1) {
   flex: 1;
   min-width: 0;
   color: #ffffff;
@@ -2039,7 +2039,7 @@ body {
   transform: translate(-50%, -50%);
   width: min(380px, 65%);
   height: min(380px, 65%);
-  background-image: url('../asset/swt_icon/taxpower3dlg.png');
+  background-image: url('../asset/swt_icon/taxpower3dlg.webp');
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;

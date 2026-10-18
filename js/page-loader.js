@@ -37,8 +37,10 @@
     container.setAttribute('aria-busy', 'true');
 
     try {
-      const sections = await Promise.all(pageSections.map(loadPageSection));
-      container.replaceChildren(...sections);
+      if (container.dataset.prerendered !== 'true') {
+        const sections = await Promise.all(pageSections.map(loadPageSection));
+        container.replaceChildren(...sections);
+      }
       container.removeAttribute('aria-busy');
       document.dispatchEvent(new CustomEvent('taxpower:sections-loaded'));
 
@@ -61,7 +63,11 @@
 
   async function loadSharedFooter() {
     const slot = document.querySelector('[data-footer-slot]');
-    if (!slot) return;
+    if (!slot) {
+      const year = document.querySelector('[data-current-year]');
+      if (year) year.textContent = new Date().getFullYear();
+      return;
+    }
 
     try {
       const response = await fetch('footer.html', { cache: 'no-cache' });

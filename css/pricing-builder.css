@@ -123,8 +123,8 @@
 .tp-pricing-faq details { border-top:1px solid #e4eaf0; }
 .tp-pricing-faq summary { padding:15px 0; cursor:pointer; color:#29475c; font-size:13px; font-weight:650; }
 .pricing-page .tp-pricing-faq p { margin:0 0 16px; color:#596b7c; font-size:13px; line-height:1.7; max-width:850px; }
-.pricing-page .pricing-banner h1.tp-pricing-title { display:block; max-width:100%; font-size:clamp(24px,3vw,38px); }
-.pricing-page .pricing-banner h1.tp-pricing-title > span { white-space:normal; }
+.pricing-page .pricing-banner :is(h1,.original-h1).tp-pricing-title { display:block; max-width:100%; font-size:clamp(24px,3vw,38px); }
+.pricing-page .pricing-banner :is(h1,.original-h1).tp-pricing-title > span { white-space:normal; }
 @media(max-width:800px) {
  .tp-plan .tp-plan-options { order:0; }
  .tp-plan .tp-plan-summary { order:1; }

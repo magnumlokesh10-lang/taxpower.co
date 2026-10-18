@@ -5,7 +5,7 @@
 .downloads-page .downloads-banner-content { box-sizing:border-box; min-height:230px; padding:28px 34px; }
 .downloads-page .downloads-banner-search-field { max-width:100%; }
 .downloads-page .downloads-search-row { box-sizing:border-box; gap:12px; }
-.downloads-page .downloads-banner-search-field h1 { margin:0; line-height:1.25; overflow-wrap:break-word; }
+.downloads-page .downloads-banner-search-field :is(h1,.original-h1) { margin:0; line-height:1.25; overflow-wrap:break-word; }
 .downloads-page .downloads-search-suggestion { box-sizing:border-box; }
 .downloads-page .downloads-table-wrap { width:min(1120px,100%); margin-inline:auto; }
 .downloads-page .utility-download-heading { max-width:100%; }
@@ -14,7 +14,7 @@
  .downloads-page .downloads-banner { min-height:210px; margin-bottom:22px; }
  .downloads-page .downloads-banner-content { min-height:210px; padding:25px 22px; }
  .downloads-page .downloads-search-row { min-height:64px; padding:14px 18px; border-radius:16px; }
- .downloads-page .downloads-banner-search-field h1 { font-size:clamp(22px,4.5vw,30px); }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(22px,4.5vw,30px); }
  .downloads-page .downloads-search-icon { width:36px; height:36px; flex-basis:36px; }
  .downloads-page .downloads-search-icon svg { width:32px; height:32px; }
  .downloads-page .downloads-search-suggestion { width:calc(100% - 16px); padding:12px 16px; font-size:15px; line-height:1.5; border-radius:14px; }
@@ -23,7 +23,7 @@
  .downloads-page .downloads-banner { min-height:0; border-radius:14px; }
  .downloads-page .downloads-banner-content { min-height:0; padding:24px 18px; }
  .downloads-page .downloads-search-row { gap:8px; padding:12px; }
- .downloads-page .downloads-banner-search-field h1 { font-size:clamp(20px,6vw,26px); }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(20px,6vw,26px); }
  .downloads-page .downloads-search-icon { width:28px; height:28px; flex-basis:28px; }
  .downloads-page .downloads-search-icon svg { width:26px; height:26px; }
  .downloads-page .downloads-search-suggestion { width:100%; font-size:14px; padding:11px 12px; }
@@ -34,7 +34,7 @@
 .downloads-page .downloads-banner-content { position:relative; padding-right:25%; justify-content:center; }
 .downloads-page .downloads-banner-search-field { margin-top:0; }
 .downloads-page .downloads-search-row { min-height:64px; }
-.downloads-page .downloads-banner-search-field h1 { font-size:clamp(23px,2.6vw,34px); }
+.downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(23px,2.6vw,34px); }
 .downloads-page .downloads-search-suggestion { font-size:16px; padding:10px 22px; background:#713a194d; }
 .downloads-desktop-art { position:absolute; right:2%; top:50%; transform:translateY(-50%); width:21%; max-width:240px; pointer-events:none; }
 .downloads-banner-links { display:flex; flex-wrap:wrap; gap:9px; margin-top:13px; }
@@ -51,12 +51,12 @@
 @media(max-width:767px) {
  .downloads-page .downloads-banner-content { padding-right:22px; }
  .downloads-desktop-art { display:none; }
- .downloads-page .downloads-banner-search-field h1 { font-size:clamp(22px,4.5vw,30px); }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(22px,4.5vw,30px); }
  .downloads-page .downloads-search-suggestion { font-size:15px; padding:12px 16px; }
 }
 @media(max-width:480px) {
  .downloads-page .downloads-banner-content { padding-right:18px; }
- .downloads-page .downloads-banner-search-field h1 { font-size:clamp(20px,6vw,26px); }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(20px,6vw,26px); }
  .downloads-page .downloads-search-suggestion { font-size:14px; padding:11px 12px; }
  .downloads-banner-links { width:100%; gap:7px; }
  .downloads-banner-links a { justify-content:space-between; flex:1 1 auto; padding:9px 10px; gap:8px; font-size:11px; }
@@ -173,12 +173,12 @@
 
 /* Refined downloads banner only. */
 .downloads-page .downloads-banner { border:1px solid #cce2ed; box-shadow:0 8px 26px #254e6710; background:#f2faff; }
-.downloads-page .downloads-banner-background { inset:0; background-image:url('../asset/promo banner/dnwd_bnnr.png'); background-position:center; }
+.downloads-page .downloads-banner-background { inset:0; background-image:url('../asset/promo banner/dnwd_bnnr.webp'); background-position:center; }
 .downloads-page .downloads-banner::before { background:linear-gradient(100deg,#eff9fff5 0%,#eff9ffe8 44%,#eff9ff80 75%,#eff9ff33 100%); }
 .downloads-page .downloads-banner-content { padding:26px 28% 26px 34px; gap:0; }
 .downloads-page .downloads-banner-search-field { width:100%; gap:10px; }
 .downloads-page .downloads-search-row { min-height:64px; padding:14px 18px; gap:14px; border:1px solid #ffffffed; border-radius:14px; background:linear-gradient(115deg,#ffffffed,#e4f6ffc9); box-shadow:0 5px 16px #3776950d; }
-.downloads-page .downloads-banner-search-field h1 { color:#0b3b3b; font-size:clamp(24px,2.5vw,35px); font-weight:800; letter-spacing:-.035em; line-height:1.25; }
+.downloads-page .downloads-banner-search-field :is(h1,.original-h1) { color:#0b3b3b; font-size:clamp(24px,2.5vw,35px); font-weight:800; letter-spacing:-.035em; line-height:1.25; }
 .downloads-page .downloads-search-icon { order:0; width:42px; height:42px; flex-basis:42px; margin-left:0; border-radius:12px; background:#d7f0fc; color:#008dbb; }
 .downloads-page .downloads-search-icon svg { width:27px; height:27px; }
 .downloads-page .downloads-search-suggestion { align-self:flex-start; width:100%; padding:10px 16px; text-align:left; color:#466679; border:1px solid #ffffffaa; border-radius:11px; background:#ffffffa6; font-size:15px; line-height:1.6; }
@@ -194,7 +194,7 @@
 @media(max-width:767px) {
  .downloads-page .downloads-banner-content { padding:24px 22px; }
  .downloads-page .downloads-search-row { padding:13px 15px; gap:11px; }
- .downloads-page .downloads-banner-search-field h1 { font-size:clamp(22px,4.5vw,30px); }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(22px,4.5vw,30px); }
  .downloads-page .downloads-banner::before { background:linear-gradient(100deg,#eff9fff5,#eff9ffdb); }
 }
 @media(max-width:480px) {
@@ -202,7 +202,7 @@
  .downloads-page .downloads-search-row { padding:12px; gap:10px; }
  .downloads-page .downloads-search-icon { width:34px; height:34px; flex-basis:34px; border-radius:9px; }
  .downloads-page .downloads-search-icon svg { width:23px; height:23px; }
- .downloads-page .downloads-banner-search-field h1 { font-size:22px; }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:22px; }
  .downloads-page .downloads-search-suggestion { font-size:13px; padding:10px 12px; }
  .downloads-page .downloads-banner-links a { min-height:44px; font-size:12px; }
 }
@@ -212,7 +212,7 @@
 .downloads-page .downloads-banner::before { background:linear-gradient(105deg,#c5e8f5f5 0%,#d0eaf5e6 43%,#d6ecf5a6 72%,#c3e3f54d 100%); }
 .downloads-page .downloads-search-row { background:linear-gradient(110deg,#d3effcf2,#bce4f3e6); border-color:#83bfd9; box-shadow:0 4px 14px #245b7610; }
 .downloads-page .downloads-search-icon { background:#078ab5; color:#fff; }
-.downloads-page .downloads-banner-search-field h1 { color:#0a3d53; }
+.downloads-page .downloads-banner-search-field :is(h1,.original-h1) { color:#0a3d53; }
 .downloads-page .downloads-search-suggestion { background:#edf8ffd9; border-color:#aad2e3; color:#294f64; font-weight:500; }
 .downloads-page .download-section-heading { position:relative; padding:3px 0 15px 16px; border-bottom:1px solid #c6dfe9; }
 .downloads-page .download-section-heading::before { content:""; position:absolute; left:0; top:5px; bottom:15px; width:3px; border-radius:3px; background:linear-gradient(#f38b37,#f7bd73); }
@@ -238,7 +238,7 @@
 /* Restore the intended search-query and search-suggestion visual. */
 .downloads-page .downloads-banner-search-field { gap:0; border:1px solid #91bfd3; border-radius:22px; background:#ffffffed; box-shadow:0 9px 24px #1c597923; overflow:hidden; }
 .downloads-page .downloads-search-row { border:0; border-radius:0; background:linear-gradient(110deg,#f7fcff,#e9f7ff); padding:17px 21px; box-shadow:none; gap:16px; min-height:73px; }
-.downloads-page .downloads-banner-search-field h1 { order:1; color:#173f51; font-size:clamp(23px,2.45vw,33px); font-weight:700; letter-spacing:-.025em; }
+.downloads-page .downloads-banner-search-field :is(h1,.original-h1) { order:1; color:#173f51; font-size:clamp(23px,2.45vw,33px); font-weight:700; letter-spacing:-.025em; }
 .downloads-page .downloads-search-icon { order:2; margin-left:auto; background:transparent; color:#078bbc; width:38px; height:38px; flex-basis:38px; border-radius:0; }
 .downloads-page .downloads-search-icon svg { width:32px; height:32px; stroke-width:1.9; }
 .downloads-page .downloads-search-suggestion { display:flex; align-items:center; gap:12px; width:100%; margin:0; padding:14px 21px; border:0; border-top:1px solid #d5e7ef; border-radius:0; background:#ffffffed; text-align:left; color:#4b6676; font-size:14px; font-weight:500; line-height:1.5; }
@@ -248,12 +248,12 @@
 @media(max-width:767px) {
  .downloads-page .downloads-banner-search-field { border-radius:17px; }
  .downloads-page .downloads-search-row { padding:15px 16px; gap:10px; }
- .downloads-page .downloads-banner-search-field h1 { font-size:clamp(22px,4.5vw,29px); }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(22px,4.5vw,29px); }
  .downloads-page .downloads-search-suggestion { padding:12px 16px; font-size:14px; gap:10px; }
 }
 @media(max-width:480px) {
  .downloads-page .downloads-search-row { padding:14px; }
- .downloads-page .downloads-banner-search-field h1 { font-size:21px; }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:21px; }
  .downloads-page .downloads-search-icon { width:28px; height:28px; flex-basis:28px; }
  .downloads-page .downloads-search-icon svg { width:26px; height:26px; }
  .downloads-page .downloads-search-suggestion { padding:12px 14px; font-size:13px; align-items:flex-start; gap:8px; }
@@ -271,7 +271,7 @@
  .downloads-page .downloads-banner-content { min-height:0; height:auto; padding:23px 20px; }
  .downloads-page .downloads-banner-search-field { width:100%; border-radius:16px; }
  .downloads-page .downloads-search-row { min-height:0; padding:16px; align-items:center; }
- .downloads-page .downloads-banner-search-field h1 { font-size:clamp(22px,3.7vw,28px); line-height:1.35; text-wrap:balance; }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(22px,3.7vw,28px); line-height:1.35; text-wrap:balance; }
  .downloads-page .downloads-search-suggestion { font-size:14px; line-height:1.6; align-items:flex-start; }
  .downloads-suggestion-icon { margin-top:3px; }
  .downloads-page .downloads-banner-links { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); width:100%; gap:10px; margin-top:14px; }
@@ -282,7 +282,7 @@
  .downloads-page .downloads-banner-content { padding:18px 14px; }
  .downloads-page .downloads-banner-search-field { border-radius:14px; }
  .downloads-page .downloads-search-row { padding:14px 12px; gap:9px; }
- .downloads-page .downloads-banner-search-field h1 { font-size:clamp(19px,5.3vw,23px); letter-spacing:-.025em; line-height:1.35; }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(19px,5.3vw,23px); letter-spacing:-.025em; line-height:1.35; }
  .downloads-page .downloads-search-icon { width:27px; height:27px; flex-basis:27px; }
  .downloads-page .downloads-search-icon svg { width:25px; height:25px; }
  .downloads-page .downloads-search-suggestion { padding:11px 12px; gap:8px; font-size:12px; line-height:1.65; }
@@ -303,7 +303,7 @@
 .downloads-page .downloads-banner-content { min-height:230px; padding:28px 34px; justify-content:center; }
 .downloads-page .downloads-banner-search-field { width:min(820px,100%); border:0; border-radius:0; background:none; box-shadow:none; overflow:visible; gap:12px; }
 .downloads-page .downloads-search-row { width:fit-content; max-width:100%; min-height:0; padding:0; border:0; border-radius:0; background:none; box-shadow:none; gap:18px; }
-.downloads-page .downloads-banner-search-field h1 { font-size:clamp(27px,3.1vw,40px); color:#087da5; font-weight:800; line-height:1.2; letter-spacing:-.035em; }
+.downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(27px,3.1vw,40px); color:#087da5; font-weight:800; line-height:1.2; letter-spacing:-.035em; }
 .downloads-banner-brand { color:#cc6017; }
 .downloads-page .downloads-search-icon { color:#628492; width:28px; height:28px; flex-basis:28px; }
 .downloads-page .downloads-search-icon svg { width:26px; height:26px; }
@@ -319,13 +319,13 @@
  .downloads-page .downloads-banner { min-height:210px; }
  .downloads-page .downloads-banner-content { min-height:210px; padding:25px 22px; }
  .downloads-page .downloads-banner::before { background:linear-gradient(90deg,#f7fbfff5,#f7fbffdf 65%,#f7fbff9c); }
- .downloads-page .downloads-banner-search-field h1 { font-size:30px; }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:30px; }
  .downloads-page .downloads-search-suggestion { font-size:14px; }
 }
 @media(max-width:480px) {
  .downloads-page .downloads-banner,.downloads-page .downloads-banner-content { min-height:0; }
  .downloads-page .downloads-banner-content { padding:24px 18px; }
- .downloads-page .downloads-banner-search-field h1 { font-size:clamp(24px,7vw,30px); line-height:1.25; text-wrap:balance; }
+ .downloads-page .downloads-banner-search-field :is(h1,.original-h1) { font-size:clamp(24px,7vw,30px); line-height:1.25; text-wrap:balance; }
  .downloads-page .downloads-search-row { gap:10px; }
  .downloads-page .downloads-search-icon { flex-basis:24px; width:24px; }
  .downloads-page .downloads-search-icon svg { width:23px; height:23px; }

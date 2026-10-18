@@ -1,16 +1,17 @@
-# Search URL configuration
+# SEO deployment and owner checks
 
-Canonical tags and sitemap.xml use the verified live base:
-https://magnumlokesh10-lang.github.io/taxpower.co/
+The preferred site origin is https://taxpower.co. Sitemap: https://taxpower.co/sitemap.xml. Robots permits public crawling and points to this sitemap. Page titles, descriptions, canonical URLs, social metadata and JSON-LD are generated from scripts/seo-routes.json.
 
-The custom domain https://taxpower.co could not be verified from this environment on October 16, 2026. No hosting/DNS changes were made. Once that domain serves the site successfully:
+HTTP and www redirects to HTTPS/non-www were observed in the October 17 audit. Keep GitHub Pages Enforce HTTPS enabled. Canonical tags consolidate .html, trailing-slash and subsection aliases; they are hints, not server 301 redirects. Do not add a blanket SPA 404 fallback. Unknown URLs should remain genuine 404 responses.
 
-- Replace the GitHub Pages base in canonical tags, sitemap.xml, robots.txt, support Open Graph/ContactPage URLs and pricing structured-data URLs with the final HTTPS domain.
-- Ensure one preferred host and redirects from other variants.
-- Verify the final property in Google Search Console and submit its sitemap URL. Check support.html using URL Inspection.
+## Requires the owner account
 
-On GitHub project hosting, this repository's robots.txt is below the host root. Its Sitemap directive may not be discovered as a root robots file; submit the sitemap directly in Search Console. Do not overwrite another site's host-root robots.txt.
+1. Add/verify the taxpower.co Domain property in Google Search Console using its provided DNS TXT record. Do not invent a token. Existing DNS verification may already be present.
+2. Submit sitemap.xml after deployment.
+3. Inspect /home, /taxpowergst, /taxpowertds and /pricing. Check live crawl accessibility and Google-selected canonical, then request indexing if appropriate.
+4. Review Page Indexing, Search Performance and Core Web Vitals after data becomes available. New domains may not yet have field performance data.
+5. Measure mobile LCP, INP and CLS with PageSpeed Insights/field data; compare lab and field results separately. No ranking, indexing date, memory reduction or Core Web Vitals pass is guaranteed by these code changes.
 
-Support content and FAQ answers are present in static support.html. FAQ content is intended to help visitors; no FAQ rich-result eligibility or ranking claim is made. The homepage also loads the support section, so the standalone support page has its own canonical and is included in the sitemap. Internal product links use actual HTML pages rather than only fragments.
+No Search Console verification, DNS mutation, live enquiry submission or backlink outreach has been performed by this code update. Browser visual checks were unavailable because the Chromium download failed. DOM and static checks cover routing, headings, schema, pricing and enquiry prefill.
 
-Mobile automatic enquiries use a small dismissible prompt. A full form opens only on a deliberate click. Desktop retains the 10-second popup. Both respect the existing 24-hour dismissal and seven-day confirmed-submission cooldowns in the same browser.
+Keep genuine business/product facts in schema; do not add invented ratings or testimonials. Performance changes preserve visible design and interaction, and pause background work when hidden/offscreen. Prefer useful original product guides and legitimate dealer/association links over purchased backlink packages.
