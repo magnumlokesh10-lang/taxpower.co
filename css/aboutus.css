@@ -266,8 +266,8 @@
 }
 .se-about .se-intro .se-logo-orbit { margin-top:8px; }
 .se-about .se-intro .se-logo-orbit::before { opacity:.24; transform:scale(1.05); }
-.se-about .se-intro .se-brand-name { margin-top:4px; }
-.se-about .se-intro .se-brand-name span { margin-top:6px; }
+.se-about .se-intro .se-brand-name { margin-top:-6px; }
+.se-about .se-intro .se-brand-name span { margin-top:1px; }
 .se-about .se-intro .se-brand-panel p { margin:10px 0; color:#425f70; line-height:1.6; }
 .se-about .se-intro .se-dealer-tag {
   display:inline-flex; align-items:center; justify-content:center; gap:6px;
