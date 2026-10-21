@@ -346,10 +346,7 @@
   background:inherit; -webkit-background-clip:text; background-clip:text;
   color:inherit; -webkit-text-fill-color:inherit;
   pointer-events:none;
-  filter:drop-shadow(0 1px 0 #74cbdc)
-    drop-shadow(.4px .7px 0 #2997b7)
-    drop-shadow(.4px .7px 0 #2086a5)
-    drop-shadow(0 3px 2px #07598524);
+  filter:drop-shadow(0 1px 0 #2997b7);
 }
 .se-about .se-intro .se-brand-name span { filter:none; text-shadow:none; }
 @media (forced-colors:active) {
