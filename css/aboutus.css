@@ -325,7 +325,7 @@
 .se-about .se-intro .se-brand-name span {
   display:flex; align-items:center; justify-content:center; gap:8px;
   margin-top:5px; font-size:11px; font-weight:800; letter-spacing:.25em;
-  color:#087f99; -webkit-text-fill-color:#087f99;
+  color:#52616e; -webkit-text-fill-color:#52616e;
 }
 @media (forced-colors:active) {
   .se-about .se-intro .se-brand-name,
@@ -333,3 +333,10 @@
     background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; filter:none;
   }
 }
+
+.se-about .se-intro .se-brand-name span::before,
+.se-about .se-intro .se-brand-name span::after {
+  content:""; width:16px; height:1px; flex:0 0 16px;
+  background:linear-gradient(90deg,transparent,#a3b4bf);
+}
+.se-about .se-intro .se-brand-name span::after { transform:rotate(180deg); }
