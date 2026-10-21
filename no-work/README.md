@@ -26,3 +26,5 @@ Checked tracked HTML (including build sources), CSS, JavaScript, JSON manifests,
 - `asset/swt_icon/siddharth-enterprises-satin-3d.webp`: previous logo retained for review. The active logo is `asset/swt_icon/siddharth-enterprises-logo.webp`.
 
 Build inputs, route copies, tests, deployment files, original images referenced by the conversion manifest, and backend scripts remain in their current locations because they have a purpose.
+
+- `asset/swt_icon/siddharth-enterprises-subtle-depth.webp`: previous active logo, archived when the final uploaded logo replaced it on 2026-10-21.
