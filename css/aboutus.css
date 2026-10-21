@@ -270,7 +270,7 @@
 }
 .se-about .se-intro .se-brand-name {
   margin-top:-20px;
-  filter:drop-shadow(0 1px 0 #0867a83d) drop-shadow(0 2px 1px #164e7026);
+  filter:drop-shadow(0 1px 0 #3cbdd64d) drop-shadow(0 2px 1px #42bdd626);
 }
 .se-about .se-intro .se-brand-name span { margin-top:1px; }
 .se-about .se-intro .se-brand-panel p { margin:10px 0; color:#425f70; line-height:1.6; }
@@ -304,7 +304,7 @@
 /* Two-tone live wordmark: dark upper 60%, lighter lower 40%; original font retained. */
 @supports ((background-clip:text) or (-webkit-background-clip:text)) {
   .se-about .se-intro .se-brand-name {
-    background-color:#087bd7;
+    background-color:#53d9e9;
     background-image:linear-gradient(180deg,#087bd7 0%,#087bd7 60%,#53d9e9 100%);
     background-size:100% .85em;
     background-position:center .13em;
