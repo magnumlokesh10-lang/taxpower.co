@@ -306,3 +306,33 @@
   font-family:Arial,sans-serif; font-size:12px; font-weight:600;
   line-height:1; color:#0754c9; pointer-events:none;
 }
+
+/* Refined brand lockup: smooth color, restrained relief, balanced subtitle. */
+.se-about .se-intro .se-brand-name {
+  color:#0868b8;
+  filter:drop-shadow(0 1px 0 #d4f3fa) drop-shadow(0 2px 2px #07598518);
+}
+@supports ((background-clip:text) or (-webkit-background-clip:text)) {
+  .se-about .se-intro .se-brand-name {
+    background:linear-gradient(120deg,#0759b7 15%,#078dc5 55%,#11aebd 90%) 0 0 / 100% 1.2em no-repeat;
+    -webkit-background-clip:text; background-clip:text;
+    color:transparent; -webkit-text-fill-color:transparent;
+  }
+}
+.se-about .se-intro .se-brand-name span {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  margin-top:3px; font-size:10px; font-weight:700; letter-spacing:.24em;
+  color:#24748a; -webkit-text-fill-color:#24748a;
+}
+.se-about .se-intro .se-brand-name span::before,
+.se-about .se-intro .se-brand-name span::after {
+  content:""; width:16px; height:1px; flex:0 0 16px;
+  background:linear-gradient(90deg,transparent,#60bdcb);
+}
+.se-about .se-intro .se-brand-name span::after { transform:rotate(180deg); }
+@media (forced-colors:active) {
+  .se-about .se-intro .se-brand-name,
+  .se-about .se-intro .se-brand-name span {
+    background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; filter:none;
+  }
+}
