@@ -265,7 +265,9 @@
   border-color:#e0edf3; box-shadow:0 12px 30px #1e6b8c0d;
 }
 .se-about .se-intro .se-logo-orbit { margin-top:8px; }
-.se-about .se-intro .se-logo-orbit::before { opacity:.24; transform:scale(1.05); }
+.se-about .se-intro .se-logo-orbit::before {
+  opacity:.38; filter:blur(23px); transform:scale(1.16);
+}
 .se-about .se-intro .se-brand-name {
   margin-top:-20px;
   filter:drop-shadow(0 1px 0 #06448c80) drop-shadow(0 1px 0 #06448c50) drop-shadow(0 3px 2px #164e7033);
