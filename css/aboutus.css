@@ -310,10 +310,7 @@
 /* Refined brand lockup: smooth color, restrained relief, balanced subtitle. */
 .se-about .se-intro .se-brand-name {
   color:#0868b8;
-  filter:drop-shadow(0 1px 0 #74cbdc)
-    drop-shadow(.4px .7px 0 #2997b7)
-    drop-shadow(.4px .7px 0 #2086a5)
-    drop-shadow(0 3px 2px #07598524);
+  position:relative; filter:none;
 }
 @supports ((background-clip:text) or (-webkit-background-clip:text)) {
   .se-about .se-intro .se-brand-name {
@@ -340,3 +337,21 @@
   background:linear-gradient(90deg,transparent,#a3b4bf);
 }
 .se-about .se-intro .se-brand-name span::after { transform:rotate(180deg); }
+
+/* Apply relief only to the first word; Enterprises and its lines remain flat. */
+.se-about .se-intro .se-brand-name::before {
+  content:"Siddharth" / "";
+  position:absolute; top:0; left:0; right:0; height:1.2em;
+  font:inherit; letter-spacing:inherit; line-height:inherit; text-align:inherit;
+  background:inherit; -webkit-background-clip:text; background-clip:text;
+  color:inherit; -webkit-text-fill-color:inherit;
+  pointer-events:none;
+  filter:drop-shadow(0 1px 0 #74cbdc)
+    drop-shadow(.4px .7px 0 #2997b7)
+    drop-shadow(.4px .7px 0 #2086a5)
+    drop-shadow(0 3px 2px #07598524);
+}
+.se-about .se-intro .se-brand-name span { filter:none; text-shadow:none; }
+@media (forced-colors:active) {
+  .se-about .se-intro .se-brand-name::before { content:none; }
+}
