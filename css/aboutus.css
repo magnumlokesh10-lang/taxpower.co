@@ -270,7 +270,8 @@
 }
 .se-about .se-intro .se-brand-name {
   margin-top:-20px;
-  filter:drop-shadow(0 1px 0 #3cbdd64d) drop-shadow(0 2px 1px #42bdd626);
+  position:relative;
+  filter:drop-shadow(.4px .6px 0 #72e2ee) drop-shadow(.4px .6px 0 #39adc6) drop-shadow(.3px .6px 0 #65cedd) drop-shadow(0 3px 2px #167f9b26);
 }
 .se-about .se-intro .se-brand-name span { margin-top:1px; }
 .se-about .se-intro .se-brand-panel p { margin:10px 0; color:#425f70; line-height:1.6; }
@@ -331,4 +332,17 @@
   content:"™"; position:absolute; top:10%; right:15%; z-index:2;
   font-family:Arial,sans-serif; font-size:12px; font-weight:600;
   line-height:1; color:#0754c9; pointer-events:none;
+}
+
+/* Fine front bevel on Siddharth, with the existing live text and font preserved. */
+.se-about .se-intro .se-brand-name::after {
+  content:"Siddharth" / "";
+  position:absolute; top:0; left:0; right:0; height:1.2em;
+  font:inherit; letter-spacing:inherit; line-height:inherit; text-align:inherit;
+  color:transparent; -webkit-text-fill-color:transparent;
+  -webkit-text-stroke:.35px #d5faff99;
+  pointer-events:none;
+}
+@media (forced-colors:active) {
+  .se-about .se-intro .se-brand-name::after { content:none; }
 }
