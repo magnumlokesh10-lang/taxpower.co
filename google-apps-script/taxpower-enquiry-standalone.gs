@@ -27,7 +27,8 @@
 var SHEET_ID = 'PASTE_YOUR_SHEET_ID_HERE';
 
 var SHEET_NAME = 'Enquiries';
-var NOTIFY_EMAIL = 'magnumlokesh10@gmail.com';
+// Both quick callback and detailed enquiry notifications go to the sales inbox.
+var NOTIFY_EMAIL = 'sales@taxpower.co';
 var WHATSAPP_PHONE = '918080631102';          // country code + number, no +
 var WHATSAPP_APIKEY = 'PASTE_YOUR_CALLMEBOT_APIKEY';
 

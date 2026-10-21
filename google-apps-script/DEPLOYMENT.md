@@ -6,7 +6,7 @@ The website uses one Google Apps Script endpoint. GitHub Pages does not host an 
 
 1. Open the Apps Script project serving the `/exec` URL in `js/form-backend.js`.
 2. Use `taxpower-enquiry.gs` for a spreadsheet-bound project, or `taxpower-enquiry-standalone.gs` for a standalone project. Do not paste both files into one project.
-3. Preserve the existing Sheet ID (standalone), sheet name, notification email and any configured WhatsApp credentials. Repository placeholders are not working credentials.
+3. Preserve the existing Sheet ID (standalone), sheet name and any configured WhatsApp credentials. Set `NOTIFY_EMAIL` to `sales@taxpower.co` for both enquiry forms. Repository placeholders are not working credentials.
 4. Save the code. Choose **Deploy → Manage deployments → Edit → New version → Deploy**, executing as the owner with public web-app access. Updating the existing deployment preserves its URL.
 5. If creating a different deployment, update `window.TAXPOWER_FORM_ENDPOINT` in `js/form-backend.js` to its `/exec` URL.
 6. From the actual website, submit one clearly identified test enquiry. Confirm one row in the Google Sheet, the displayed enquiry reference, and the email notification. Repeating the same request ID should not create another row.
@@ -22,3 +22,7 @@ Saving the row is authoritative. Notification failures are logged separately and
 Redeploy the updated script to support the new callback popup. It sends `enquiryType=quick` with name, mobile, email, product and `purpose=Request a Callback`. Company, city, state, GSTIN and address are intentionally blank for quick requests. Detailed requests still require all existing mandatory fields. Both flows share the same 13 sheet columns, confirmed-save responses, deduplication and notification recipients. No additional service or SMTP setup is required for this popup.
 
 Check one quick request and one detailed request after deploying. Verify the product is saved correctly for both the popup select and detailed-form checkboxes. Website updates do not redeploy Apps Script automatically.
+
+## Sales inbox (October 21 update)
+
+Both backend variants now send quick callback and detailed enquiry alerts to `sales@taxpower.co`. Update `NOTIFY_EMAIL` in the live Apps Script project and deploy a new version of the existing deployment using step 4 above. The website layout and endpoint URL do not need to change. After deployment, submit one test from each form and confirm both emails arrive in the sales inbox (check spam too). This repository change alone does not verify delivery.
