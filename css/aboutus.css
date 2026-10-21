@@ -310,7 +310,10 @@
 /* Refined brand lockup: smooth color, restrained relief, balanced subtitle. */
 .se-about .se-intro .se-brand-name {
   color:#0868b8;
-  filter:drop-shadow(0 1px 0 #d4f3fa) drop-shadow(0 2px 2px #07598518);
+  filter:drop-shadow(0 1px 0 #74cbdc)
+    drop-shadow(.4px .7px 0 #2997b7)
+    drop-shadow(.4px .7px 0 #2086a5)
+    drop-shadow(0 3px 2px #07598524);
 }
 @supports ((background-clip:text) or (-webkit-background-clip:text)) {
   .se-about .se-intro .se-brand-name {
