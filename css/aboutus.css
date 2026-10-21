@@ -317,22 +317,16 @@
 }
 @supports ((background-clip:text) or (-webkit-background-clip:text)) {
   .se-about .se-intro .se-brand-name {
-    background:linear-gradient(120deg,#0759b7 15%,#078dc5 55%,#11aebd 90%) 0 0 / 100% 1.2em no-repeat;
+    background:linear-gradient(180deg,#0759b7 0%,#0759b7 48%,#10a9bd 88%,#0c8da9 100%) 0 0 / 100% 1.2em no-repeat;
     -webkit-background-clip:text; background-clip:text;
     color:transparent; -webkit-text-fill-color:transparent;
   }
 }
 .se-about .se-intro .se-brand-name span {
   display:flex; align-items:center; justify-content:center; gap:8px;
-  margin-top:3px; font-size:10px; font-weight:700; letter-spacing:.24em;
-  color:#24748a; -webkit-text-fill-color:#24748a;
+  margin-top:5px; font-size:11px; font-weight:800; letter-spacing:.25em;
+  color:#087f99; -webkit-text-fill-color:#087f99;
 }
-.se-about .se-intro .se-brand-name span::before,
-.se-about .se-intro .se-brand-name span::after {
-  content:""; width:16px; height:1px; flex:0 0 16px;
-  background:linear-gradient(90deg,transparent,#60bdcb);
-}
-.se-about .se-intro .se-brand-name span::after { transform:rotate(180deg); }
 @media (forced-colors:active) {
   .se-about .se-intro .se-brand-name,
   .se-about .se-intro .se-brand-name span {
