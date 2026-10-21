@@ -322,7 +322,7 @@
 .se-about .se-intro .se-brand-name span {
   display:flex; align-items:center; justify-content:center; gap:8px;
   margin-top:5px; font-size:11px; font-weight:800; letter-spacing:.25em;
-  color:#52616e; -webkit-text-fill-color:#52616e;
+  color:#0c8da9; -webkit-text-fill-color:#0c8da9;
 }
 @media (forced-colors:active) {
   .se-about .se-intro .se-brand-name,
