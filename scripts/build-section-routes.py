@@ -66,9 +66,9 @@ for img in source.xpath('//img[@src]'):
 # Lightweight illustration variants referenced by CSS are updated separately.
 for el in source.xpath('//script[@src] | //link[@href]'):
     key='src' if el.tag=='script' else 'href';value=el.get(key)
-    if value.startswith(('js/','css/')):el.set(key,value.split('?')[0]+('?v=20261020-logo' if value.startswith('css/aboutus.css') else '?v=20261017-seo'))
+    if value.startswith(('js/','css/')):el.set(key,value.split('?')[0]+('?v=20261021-logo' if value.startswith('css/aboutus.css') else '?v=20261017-seo'))
 source.xpath('//h1[@class="visually-hidden original-h1"]')
-organization={'@type':'Organization','@id':BASE+'#siddharth','name':'Siddharth Enterprises','url':BASE+'aboutus','logo':BASE+'asset/swt_icon/siddharth-enterprises-satin-3d.webp','email':'support@taxpower.co','telephone':['+919145073173','+917755912821'],'address':{'@type':'PostalAddress','streetAddress':'Plot No.14, Godawari Apartment, Amar Nagar Road, T-Point Hingna, Hingna MIDC','addressLocality':'Nagpur','addressRegion':'Maharashtra','postalCode':'440016','addressCountry':'IN'}}
+organization={'@type':'Organization','@id':BASE+'#siddharth','name':'Siddharth Enterprises','url':BASE+'aboutus','logo':BASE+'asset/swt_icon/siddharth-enterprises-logo.webp','email':'support@taxpower.co','telephone':['+919145073173','+917755912821'],'address':{'@type':'PostalAddress','streetAddress':'Plot No.14, Godawari Apartment, Amar Nagar Road, T-Point Hingna, Hingna MIDC','addressLocality':'Nagpur','addressRegion':'Maharashtra','postalCode':'440016','addressCountry':'IN'}}
 for route,meta in config.items():
     doc=deepcopy(source);head=doc.find('head');canonical=BASE+meta.get('canonical',route)
     doc.xpath('//title')[0].text=meta['title']
