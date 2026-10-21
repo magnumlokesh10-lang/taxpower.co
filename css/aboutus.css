@@ -270,8 +270,6 @@
 }
 .se-about .se-intro .se-brand-name {
   margin-top:-20px;
-  position:relative;
-  filter:drop-shadow(.4px .6px 0 #72e2ee) drop-shadow(.4px .6px 0 #39adc6) drop-shadow(.3px .6px 0 #65cedd) drop-shadow(0 3px 2px #167f9b26);
 }
 .se-about .se-intro .se-brand-name span { margin-top:1px; }
 .se-about .se-intro .se-brand-panel p { margin:10px 0; color:#425f70; line-height:1.6; }
@@ -302,47 +300,9 @@
 .se-about .se-intro .se-brand-services span:nth-child(4) { --se-service-icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m8%206-6%206%206%206m8-12%206%206-6%206m-3-15-2%2018%22%2F%3E%3C%2Fsvg%3E"); }
 .se-about .se-intro .se-dealer-tag { --se-service-icon:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22black%22%20stroke-width%3D%221.7%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22m12%202%208%204v6c0%205-8%2010-8%2010S4%2017%204%2012V6z%22%2F%3E%3Cpath%20d%3D%22m8%2012%203%203%205-6%22%2F%3E%3C%2Fsvg%3E"); }
 
-/* Two-tone live wordmark: dark upper 60%, lighter lower 40%; original font retained. */
-@supports ((background-clip:text) or (-webkit-background-clip:text)) {
-  .se-about .se-intro .se-brand-name {
-    background-color:#53d9e9;
-    background-image:linear-gradient(180deg,#087bd7 0%,#087bd7 60%,#53d9e9 100%);
-    background-size:100% .85em;
-    background-position:center .13em;
-    background-repeat:no-repeat;
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    -webkit-text-fill-color:transparent;
-  }
-  .se-about .se-intro .se-brand-name span {
-    color:#007f9b;
-    -webkit-text-fill-color:currentColor;
-  }
-}
-@media (forced-colors:active) {
-  .se-about .se-intro .se-brand-name,
-  .se-about .se-intro .se-brand-name span {
-    background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; filter:none;
-  }
-}
-
 /* Trademark mark aligned with the logo's upper-right tip. */
 .se-about .se-intro .se-logo-orbit::after {
   content:"™"; position:absolute; top:10%; right:15%; z-index:2;
   font-family:Arial,sans-serif; font-size:12px; font-weight:600;
   line-height:1; color:#0754c9; pointer-events:none;
-}
-
-/* Fine front bevel on Siddharth, with the existing live text and font preserved. */
-.se-about .se-intro .se-brand-name::after {
-  content:"Siddharth" / "";
-  position:absolute; top:0; left:0; right:0; height:1.2em;
-  font:inherit; letter-spacing:inherit; line-height:inherit; text-align:inherit;
-  color:transparent; -webkit-text-fill-color:transparent;
-  -webkit-text-stroke:.35px #d5faff99;
-  pointer-events:none;
-}
-@media (forced-colors:active) {
-  .se-about .se-intro .se-brand-name::after { content:none; }
 }
