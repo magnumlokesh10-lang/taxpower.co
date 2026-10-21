@@ -270,7 +270,7 @@
 }
 .se-about .se-intro .se-brand-name {
   margin-top:-20px;
-  filter:drop-shadow(0 1px 0 #06448c80) drop-shadow(0 1px 0 #06448c50) drop-shadow(0 3px 2px #164e7033);
+  filter:drop-shadow(0 1px 0 #0867a83d) drop-shadow(0 2px 1px #164e7026);
 }
 .se-about .se-intro .se-brand-name span { margin-top:1px; }
 .se-about .se-intro .se-brand-panel p { margin:10px 0; color:#425f70; line-height:1.6; }
@@ -304,8 +304,8 @@
 /* Two-tone live wordmark: dark upper 60%, lighter lower 40%; original font retained. */
 @supports ((background-clip:text) or (-webkit-background-clip:text)) {
   .se-about .se-intro .se-brand-name {
-    background-color:#0754c9;
-    background-image:linear-gradient(180deg,#0754c9 0%,#0754c9 60%,#20b8d1 100%);
+    background-color:#087bd7;
+    background-image:linear-gradient(180deg,#087bd7 0%,#087bd7 60%,#53d9e9 100%);
     background-size:100% .85em;
     background-position:center .13em;
     background-repeat:no-repeat;
@@ -324,4 +324,11 @@
   .se-about .se-intro .se-brand-name span {
     background:none; color:CanvasText; -webkit-text-fill-color:CanvasText; filter:none;
   }
+}
+
+/* Trademark mark aligned with the logo's upper-right tip. */
+.se-about .se-intro .se-logo-orbit::after {
+  content:"™"; position:absolute; top:10%; right:15%; z-index:2;
+  font-family:Arial,sans-serif; font-size:12px; font-weight:600;
+  line-height:1; color:#0754c9; pointer-events:none;
 }

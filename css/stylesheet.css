@@ -5163,3 +5163,9 @@ body.demo-form-open {
 .footer-company-card a:hover{text-decoration:underline}
 @media(max-width:800px){.footer-company-grid{grid-template-columns:1fr}.footer-company-logo,.footer-company-logo--magnum{flex-basis:84px}}
 @media(max-width:480px){.footer-company-grid{margin:0 20px 20px}.footer-company-card{padding:16px;gap:12px;flex-direction:column}.footer-company-logo,.footer-company-logo--magnum{flex-basis:auto;width:84px;min-height:64px}.footer-company-logo img{max-height:48px;width:auto}}
+
+.footer-company-logo:not(.footer-company-logo--magnum){position:relative}
+.footer-company-logo:not(.footer-company-logo--magnum)::after{
+  content:"™";position:absolute;top:12px;right:10px;
+  font-family:Arial,sans-serif;font-size:8px;font-weight:600;line-height:1;color:#0754c9;pointer-events:none
+}
