@@ -10,7 +10,7 @@ FormSubmit and the custom Python backend are removed. No Google Sheet, spreadshe
 4. Check sales@taxpower.co Inbox/Spam for `TaxPower — Apps Script email test`. This isolates mailbox delivery from the website. If missing, inspect Apps Script Executions and check ordinary Gmail-to-sales email delivery before deploying.
 5. Deploy → New deployment → select Web app. Execute as: Me. Who has access: Anyone (not 'Anyone with a Google account'). Deploy and authorize if requested. If Anyone is unavailable, account/admin restrictions must be resolved; visitors must not need Google sign-in.
 6. Copy the Web app URL ending `/exec` and send that public endpoint URL to the website maintainer. Do not send passwords or OAuth tokens. `/dev` is for editors only.
-7. Set that URL in `js/form-backend.js` → TAXPOWER_FORM_ENDPOINT and push. It is currently blank, so public forms will report an error until this step is completed.
+7. Set that URL in `js/form-backend.js` → TAXPOWER_FORM_ENDPOINT and push. The supplied deployment URL is now configured. The owner confirmed receipt of the editor test email; website-to-inbox delivery still needs verification.
 8. Open `/exec` while signed out: it should return JSON identifying the TaxPower email-only service. Test one quick callback and one detailed enquiry from the actual website; verify receipt in the sales inbox, All Products, Reply-To, and retry reference handling. No live deployment or delivery has been verified by the repository update.
 
 For future script edits use Deploy → Manage deployments → Edit → New version → Deploy to preserve the same endpoint. Never treat an opaque no-cors response as success: website code requires readable JSON and a matching enquiry reference.
