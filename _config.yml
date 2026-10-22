@@ -5,5 +5,5 @@ exclude:
   - tests
   - ROUTING.md
   - SEO-DEPLOYMENT.md
-  - backend
+  - FORM-EMAIL-SETUP.md
   - no-work
