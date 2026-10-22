@@ -5,5 +5,5 @@ exclude:
   - tests
   - ROUTING.md
   - SEO-DEPLOYMENT.md
-  - google-apps-script
+  - backend
   - no-work

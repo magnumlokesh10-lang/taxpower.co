@@ -1,11 +1,11 @@
-/* Redeploy google-apps-script/taxpower-enquiry.gs for validation and references.
- * Never treat an opaque response as a confirmed save. */
-window.TAXPOWER_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz8GTacY-V0Loi3-MtnOdzExnGv3b5uCqRLTgqhEiR_ibXYGRF9t9ETljXDKbxdesIQ/exec';
+/* Set this to your deployed HTTPS /enquiry endpoint after SMTP setup. */
+window.TAXPOWER_FORM_ENDPOINT = '';
 (function () {
   'use strict';
   const pending = new WeakMap();
   const requests = new WeakMap();
   window.sendDemoEnquiryToBackend = function (form) {
+    if (!window.TAXPOWER_FORM_ENDPOINT) return Promise.reject(new Error('Email service is not configured yet.'));
     if (pending.has(form)) return pending.get(form);
     const data = Object.fromEntries(new FormData(form));
     Object.keys(data).forEach(key => { data[key] = String(data[key]).trim(); });
