@@ -202,7 +202,7 @@
       if (result?.result !== 'success') throw new Error('Unconfirmed submission');
       form.dataset.sent = 'true';
       button.textContent = 'Request received';
-      status.textContent = 'Thank you! Our sales team will contact you.' + (result.reference ? ' Reference: ' + result.reference : '');
+      status.textContent = 'Thank you! Our sales team will contact you.';
     } catch (error) {
       button.disabled = false;
       button.textContent = 'Retry callback request';

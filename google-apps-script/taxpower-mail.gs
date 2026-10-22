@@ -81,8 +81,8 @@ function sendEnquiryEmail(data) {
     to: NOTIFY_EMAIL,
     name: 'TaxPower Website',
     replyTo: data.email,
-    subject: 'TaxPower — ' + kind + ' — ' + data.requestId,
-    body: kind + '\n\n' + FIELDS.map(function(key) { return key + ': ' + (data[key] || '-'); }).join('\n')
+    subject: 'TaxPower — ' + kind,
+    body: kind + '\n\n' + FIELDS.filter(function(key) { return key !== 'requestId'; }).map(function(key) { return key + ': ' + (data[key] || '-'); }).join('\n')
   });
 }
 

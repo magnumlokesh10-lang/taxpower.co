@@ -1696,7 +1696,7 @@ function initTaxPowerSite() {
       const result = await submission;
       if (!result || result.result !== 'success') throw new Error('Save not confirmed');
       form.dataset.sent = 'true';
-      setDemoStatus('Thank you! Your enquiry for ' + selected + ' has been received.' + (result.reference ? ' Reference: ' + result.reference + '.' : '') + ' Our team will contact you shortly.');
+      setDemoStatus('Thank you! Your enquiry for ' + selected + ' has been received.' + ' Our team will contact you shortly.');
       button.querySelector('.submit-btn-text').textContent = 'Enquiry Sent';
       setDemoButtonMotion(button, 'is-submit-complete');
     } catch (error) {
