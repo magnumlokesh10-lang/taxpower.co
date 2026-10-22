@@ -6,4 +6,5 @@ exclude:
   - ROUTING.md
   - SEO-DEPLOYMENT.md
   - FORM-EMAIL-SETUP.md
+  - google-apps-script
   - no-work

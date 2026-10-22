@@ -1,5 +1,5 @@
-/* FormSubmit: activate sales@taxpower.co from its confirmation email before launch. */
-window.TAXPOWER_FORM_ENDPOINT = 'https://formsubmit.co/ajax/sales@taxpower.co';
+/* Paste the new email-only Apps Script Web app /exec URL here after deployment. */
+window.TAXPOWER_FORM_ENDPOINT = '';
 (function () {
   'use strict';
   const pending = new WeakMap();
@@ -11,12 +11,6 @@ window.TAXPOWER_FORM_ENDPOINT = 'https://formsubmit.co/ajax/sales@taxpower.co';
     Object.keys(data).forEach(key => { data[key] = String(data[key]).trim(); });
     if (form.querySelector('input[name="product"]')) data.product = Array.from(form.querySelectorAll('input[name="product"]:checked')).map(i => i.value).join(', ');
     if (data.website) return Promise.reject(new Error('Request rejected.'));
-    data._honey = data.website || '';
-    delete data.website;
-    data._subject = form.id === 'quickEnquiryForm' ? 'TaxPower — New callback request' : 'TaxPower — New detailed enquiry';
-    data._template = 'table';
-    data._captcha = 'false'; // AJAX flow: use the existing honeypot for basic spam filtering.
-    data._replyto = data.email;
     data.page = window.location.origin + window.location.pathname;
     const fingerprint = JSON.stringify(data);
     let request = requests.get(form);
@@ -33,9 +27,9 @@ window.TAXPOWER_FORM_ENDPOINT = 'https://formsubmit.co/ajax/sales@taxpower.co';
     }).then(async response => {
       if (!response.ok || response.type === 'opaque') throw new Error('Unconfirmed response');
       const result = await response.json();
-      if (result.success !== true && result.success !== 'true') throw new Error('Enquiry not accepted');
+      if (result.result !== 'success' || result.reference !== request.id) throw new Error('Enquiry not accepted');
       document.dispatchEvent(new CustomEvent('taxpower:enquiry-saved'));
-      // Provider acceptance is not proof of inbox delivery. No server-side deduplication is promised.
+      // MailApp acceptance is not proof of final inbox delivery.
       return { result: 'success', reference: request.id };
     }).finally(() => { clearTimeout(timer); pending.delete(form); });
     pending.set(form, promise);
