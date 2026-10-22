@@ -207,7 +207,7 @@
       button.disabled = false;
       button.textContent = 'Retry callback request';
       status.classList.add('is-error');
-      status.textContent = 'We could not confirm your request. Your details are saved here. Please retry or email support@taxpower.co.';
+      status.textContent = 'We could not confirm your request. Your details are saved here. Please retry or email sales@taxpower.co.';
     } finally {
       fields.forEach(input => { input.disabled = false; });
       delete form.dataset.sending;
